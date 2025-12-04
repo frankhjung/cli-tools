@@ -1,4 +1,7 @@
-# Step-by-Step Guide to Gemini CLI
+---
+title: "Step-by-Step Guide to Gemini CLI"
+author: "Frank Jung"
+---
 
 [[_TOC_]]
 

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Frank Jung" />
+  <title>Step-by-Step Guide to Gemini CLI</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="public/style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Step-by-Step Guide to Gemini CLI</h1>
+<p class="author">Frank Jung</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#part-1-coding-projects-ide-integration"
+id="toc-part-1-coding-projects-ide-integration">Part 1: Coding Projects
+&amp; IDE Integration</a>
+<ul>
+<li><a href="#launching-context-aware-sessions"
+id="toc-launching-context-aware-sessions">1. Launching Context-Aware
+Sessions</a></li>
+<li><a href="#onboarding-and-code-explanation"
+id="toc-onboarding-and-code-explanation">2. Onboarding and Code
+Explanation</a></li>
+<li><a href="#the-react-loop-editing-and-refactoring"
+id="toc-the-react-loop-editing-and-refactoring">3. The “ReAct” Loop
+(Editing and Refactoring)</a></li>
+</ul></li>
+<li><a href="#part-2-non-coding-projects-blogs-podcasts"
+id="toc-part-2-non-coding-projects-blogs-podcasts">Part 2: Non-Coding
+Projects (Blogs &amp; Podcasts)</a>
+<ul>
+<li><a href="#research-with-grounding"
+id="toc-research-with-grounding">1. Research with “Grounding”</a></li>
+<li><a href="#drafting-content" id="toc-drafting-content">2. Drafting
+Content</a></li>
+<li><a href="#saving-your-work" id="toc-saving-your-work">3. Saving Your
+Work</a></li>
+</ul></li>
+<li><a href="#part-3-setting-up-specialized-agents"
+id="toc-part-3-setting-up-specialized-agents">Part 3: Setting Up
+Specialized Agents</a>
+<ul>
+<li><a href="#defining-agent-persona-gemini.md"
+id="toc-defining-agent-persona-gemini.md">1. Defining Agent Persona
+(<code>GEMINI.md</code>)</a></li>
+<li><a href="#extending-capabilities-with-mcp"
+id="toc-extending-capabilities-with-mcp">2. Extending Capabilities with
+MCP</a></li>
+<li><a href="#persistent-memory" id="toc-persistent-memory">3.
+Persistent Memory</a></li>
+</ul></li>
+<li><a href="#references" id="toc-references">References</a>
+<ul>
+<li><a href="#ref-1" id="toc-ref-1">ref-1</a></li>
+<li><a href="#ref-2" id="toc-ref-2">ref-2</a></li>
+<li><a href="#ref-3" id="toc-ref-3">ref-3</a></li>
+<li><a href="#ref-4" id="toc-ref-4">ref-4</a></li>
+<li><a href="#ref-5" id="toc-ref-5">ref-5</a></li>
+<li><a href="#ref-6" id="toc-ref-6">ref-6</a></li>
+<li><a href="#ref-7" id="toc-ref-7">ref-7</a></li>
+<li><a href="#ref-8" id="toc-ref-8">ref-8</a></li>
+<li><a href="#ref-9" id="toc-ref-9">ref-9</a></li>
+<li><a href="#ref-10" id="toc-ref-10">ref-10</a></li>
+<li><a href="#ref-11" id="toc-ref-11">ref-11</a></li>
+<li><a href="#ref-12" id="toc-ref-12">ref-12</a></li>
+</ul></li>
+</ul>
+</nav>
+<p>[[<em>TOC</em>]]</p>
+<p>This tutorial covers how to use the <code>gemini-cli</code> for
+coding projects, content creation, and creating specialized agents. It
+assumes the CLI is already installed and authenticated <a
+href="#ref-1">[1]</a>.</p>
+<h2 id="part-1-coding-projects-ide-integration">Part 1: Coding Projects
+&amp; IDE Integration</h2>
+<p>The <code>gemini-cli</code> runs in your terminal, making it
+compatible with VS Code, “Antigravity” IDEs (via terminal), or any
+editor that supports a command line interface <a
+href="#ref-1">[1]</a>.</p>
+<h3 id="launching-context-aware-sessions">1. Launching Context-Aware
+Sessions</h3>
+<p>To make the AI aware of your specific code, you must run the CLI from
+the project’s root directory.</p>
+<ol type="1">
+<li><p>Open the integrated terminal in your IDE (e.g., VS
+Code).</p></li>
+<li><p>Navigate to your project folder:
+<code>cd path/to/your/project</code> <a href="#ref-2">[2]</a>.</p></li>
+<li><p>Start the tool:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gemini</span></span></code></pre></div>
+<p><em>Why:</em> This enables the <code>read-file</code> and
+<code>read-many-files</code> tools to access your codebase <a
+href="#ref-3">[3]</a>.</p></li>
+</ol>
+<h3 id="onboarding-and-code-explanation">2. Onboarding and Code
+Explanation</h3>
+<p>Use the CLI to generate documentation or understand complex
+logic.</p>
+<ul>
+<li><strong>Project Summary:</strong> Run
+<code>Explain the main components of this codebase</code>. The CLI will
+parse your file structure (e.g., <code>src/</code>,
+<code>public/</code>) and provide a high-level summary <a
+href="#ref-2">[2]</a>.</li>
+<li><strong>File Analysis:</strong> Ask specific questions like
+<code>What does index.js do?</code> to trigger the CLI to read and
+explain specific files <a href="#ref-4">[4]</a>.</li>
+<li><strong>Performance Audits:</strong> Ask
+<code>Analyze this repo for common performance anti-patterns</code>. The
+CLI can read multiple files to identify issues like “N+1 Queries” or
+“Large Frontend Bundle Size” <a href="#ref-5">[5]</a>.</li>
+</ul>
+<h3 id="the-react-loop-editing-and-refactoring">3. The “ReAct” Loop
+(Editing and Refactoring)</h3>
+<p>The CLI operates as a “ReAct” agent, meaning it thinks, chooses a
+tool, acts, and then responds <a href="#ref-6">[6]</a>.</p>
+<ul>
+<li><strong>Fixing Bugs:</strong> You can paste external contexts, such
+as GitHub issues, to generate fixes.
+<ul>
+<li><em>Prompt:</em>
+<code>Here's a GitHub issue: [@search https://github.com/url/issue]. Analyze the code and suggest a fix.</code></li>
+<li>The CLI will analyze the issue, plan a fix, and can use the
+<code>edit</code> tool to apply changes via diffs if you approve them <a
+href="#ref-7">[7]</a>, <a href="#ref-3">[3]</a>.</li>
+</ul></li>
+<li><strong>Shell Integration:</strong> Run terminal commands without
+leaving the session by prefixing with <code>!</code>.
+<ul>
+<li><em>Example:</em> <code>!npm test</code> or <code>!ls -al</code> <a
+href="#ref-4">[4]</a>.</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="part-2-non-coding-projects-blogs-podcasts">Part 2: Non-Coding
+Projects (Blogs &amp; Podcasts)</h2>
+<p>The CLI supports multimodal inputs (images/PDFs) and web
+connectivity, making it powerful for research and content creation <a
+href="#ref-6">[6]</a>.</p>
+<h3 id="research-with-grounding">1. Research with “Grounding”</h3>
+<p>Avoid hallucinations by forcing the CLI to fetch real-world data.</p>
+<ul>
+<li><strong>Web Search:</strong> Use <code>@search</code> or the
+<code>google_web_search</code> tool to find current information <a
+href="#ref-3">[3]</a>.</li>
+<li><strong>Content Fetching:</strong> Use <code>web-fetch</code> to
+retrieve content from URLs for summarization.
+<ul>
+<li><em>Prompt:</em>
+<code>Fetch this URL [insert link] and summarize the key points for a podcast script</code>
+<a href="#ref-3">[3]</a>.</li>
+</ul></li>
+</ul>
+<h3 id="drafting-content">2. Drafting Content</h3>
+<ul>
+<li><strong>Writing:</strong> Ask the CLI to generate prose directly.
+<ul>
+<li><em>Example:</em>
+<code>Write a blog post intro about the benefits of local LLMs</code> <a
+href="#ref-8">[8]</a>.</li>
+</ul></li>
+<li><strong>Multimodal Tasks:</strong> The CLI can process images or
+PDFs. You can prompt it to “Summarize this PDF” or “Generate a blog
+caption based on this image” <a href="#ref-6">[6]</a>.</li>
+</ul>
+<h3 id="saving-your-work">3. Saving Your Work</h3>
+<ul>
+<li><strong>Write to Disk:</strong> Use the <code>write-file</code> tool
+to save your drafts immediately.
+<ul>
+<li><em>Command:</em>
+<code>Create a new file named podcast_draft.md with the summary you just generated</code>
+<a href="#ref-3">[3]</a>.</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="part-3-setting-up-specialized-agents">Part 3: Setting Up
+Specialized Agents</h2>
+<p>You can configure <code>gemini-cli</code> to act as a specialized
+agent (e.g., “Senior Editor” or “DevOps Engineer”) using configuration
+files and the Model Context Protocol (MCP).</p>
+<h3 id="defining-agent-persona-gemini.md">1. Defining Agent Persona
+(<code>GEMINI.md</code>)</h3>
+<p>To create a persistent context for a specific project, create a
+<code>GEMINI.md</code> file in the project root <a
+href="#ref-9">[9]</a>.</p>
+<ul>
+<li><strong>Action:</strong> Create a file named
+<code>GEMINI.md</code>.</li>
+<li><strong>Content:</strong> specific rules, such as “Always write code
+in TypeScript,” “Use a casual tone for blog posts,” or “Prefer
+async/await patterns.”</li>
+<li><strong>Result:</strong> Every session launched in this folder will
+automatically ingest these rules, creating a consistent “agent”
+experience.</li>
+</ul>
+<h3 id="extending-capabilities-with-mcp">2. Extending Capabilities with
+MCP</h3>
+<p>You can connect the CLI to external services (like GitHub, Google
+Drive, or Databases) using MCP Servers <a href="#ref-10">[10]</a>.</p>
+<h4 id="example-setting-up-a-github-agent">Example: Setting up a GitHub
+Agent</h4>
+<ol type="1">
+<li><p>Create a configuration directory:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .gemini <span class="kw">&amp;&amp;</span> <span class="fu">touch</span> .gemini/settings.json</span></code></pre></div></li>
+<li><p>Add the MCP server configuration to <code>settings.json</code> <a
+href="#ref-11">[11]</a>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;mcpServers&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;github&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;npx&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;-y&quot;</span><span class="ot">,</span> <span class="st">&quot;@modelcontextprotocol/server-github&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;env&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;GITHUB_PERSONAL_ACCESS_TOKEN&quot;</span><span class="fu">:</span> <span class="st">&quot;[YOUR-TOKEN]&quot;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div></li>
+<li><p><strong>Activate:</strong> Restart the CLI (<code>/quit</code>
+then <code>gemini</code>).</p></li>
+<li><p><strong>Verify:</strong> Type <code>/mcp</code> to see the new
+tools. Your agent can now “Create issues” or “Check PRs” directly <a
+href="#ref-11">[11]</a>.</p></li>
+</ol>
+<h3 id="persistent-memory">3. Persistent Memory</h3>
+<p>Use the <code>save_memory</code> tool (or <code>memoryTool</code>) to
+store facts during a session. This allows the agent to remember user
+preferences across different interactions within the session <a
+href="#ref-3">[3]</a>, <a href="#ref-12">[12]</a>.</p>
+<h2 id="references">References</h2>
+<p>The following sources were used to compile the Gemini CLI
+tutorial:</p>
+<h3 id="ref-1">ref-1</h3>
+<p><strong><a href="https://www.kdnuggets.com">Beginner’s Guide to
+Gemini CLI: Install, Setup, and Use It Like a Pro</a></strong> -
+KDnuggets, Kanwal Mehreen. Provided IDE integration and installation
+guidance.</p>
+<h3 id="ref-2">ref-2</h3>
+<p><strong><a href="https://www.kdnuggets.com">Beginner’s Guide to
+Gemini CLI</a></strong> - KDnuggets. Project navigation and code
+explanation workflows.</p>
+<h3 id="ref-3">ref-3</h3>
+<p><strong><a
+href="https://proflead.dev/posts/gemini-cli-tutorial/">Gemini CLI Full
+Tutorial</a></strong> - ProfLead.dev, Vladislav Guzey. Built-in tools
+documentation (<code>read-file</code>, <code>write-file</code>,
+<code>web-fetch</code>, <code>google_web_search</code>).</p>
+<h3 id="ref-4">ref-4</h3>
+<p><strong><a
+href="https://proflead.dev/posts/gemini-cli-tutorial/">Gemini CLI Full
+Tutorial</a></strong> - ProfLead.dev. File analysis and shell
+integration features.</p>
+<h3 id="ref-5">ref-5</h3>
+<p><strong><a
+href="https://proflead.dev/posts/gemini-cli-tutorial/">Gemini CLI Full
+Tutorial</a></strong> - ProfLead.dev. Performance audit
+capabilities.</p>
+<h3 id="ref-6">ref-6</h3>
+<p><strong><a
+href="https://proflead.dev/posts/gemini-cli-tutorial/">Gemini CLI Full
+Tutorial</a></strong> - ProfLead.dev. ReAct agent loop and multimodal
+input support.</p>
+<h3 id="ref-7">ref-7</h3>
+<p><strong><a href="https://github.com/google-gemini/gemini-cli">Gemini
+CLI Documentation</a></strong> - Official Documentation. Edit tool and
+diff-based code changes.</p>
+<h3 id="ref-8">ref-8</h3>
+<p><strong><a href="https://github.com/google-gemini/gemini-cli">Gemini
+CLI Documentation</a></strong> - Official Documentation. Content
+generation capabilities.</p>
+<h3 id="ref-9">ref-9</h3>
+<p><strong><a
+href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli
+GitHub Repository</a></strong> - GitHub. GEMINI.md context file
+configuration.</p>
+<h3 id="ref-10">ref-10</h3>
+<p><strong><a
+href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli
+GitHub Repository</a></strong> - GitHub. MCP Server integration.</p>
+<h3 id="ref-11">ref-11</h3>
+<p><strong><a
+href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli
+GitHub Repository</a></strong> - GitHub. MCP settings.json configuration
+examples.</p>
+<h3 id="ref-12">ref-12</h3>
+<p><strong><a
+href="https://dev.to/proflead/gemini-cli-full-tutorial-2ab5">Gemini CLI
+Full Tutorial</a></strong> - DEV Community, Vladislav Guzey. Memory tool
+(<code>save_memory</code>, <code>memoryTool</code>) for persistent
+session data.</p>
+</body>
+</html>
