@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QGemini CLI Full Tutorial - DEV Community, Vladislav Guzey.\\E$"}
