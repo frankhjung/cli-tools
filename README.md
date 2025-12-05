@@ -117,6 +117,16 @@ You can connect the CLI to external services (like GitHub, Google Drive, or Data
 
 Use the `save_memory` tool (or `memoryTool`) to store facts during a session. This allows the agent to remember user preferences across different interactions within the session [[3]](#ref-3), [[12]](#ref-12).
 
+## Agents
+
+Look at [agents/](agents/) for pre-built [agent
+personas](https://docs.github.com/en/copilot/how-tos/use-copilot-agents) you can
+use as templates.
+
+These examples are for Copilot Agents, but the same principles apply to Gemini
+CLI agents. These agents should be copied to your
+`~/.config/Code/User/prompts` folder. for use with VS Code.
+
 ## Next Steps
 
 - Experiment with different agent personas by modifying `GEMINI.md`.
