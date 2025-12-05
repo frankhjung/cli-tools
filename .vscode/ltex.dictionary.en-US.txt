@@ -7,3 +7,4 @@ ProfLead
 Guzey
 gemini-cli
 json
+codewiki

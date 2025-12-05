@@ -9,7 +9,7 @@ This tutorial covers how to use the `gemini-cli` for coding projects, content cr
 
 ## Part 1: Coding Projects & IDE Integration
 
-The `gemini-cli` runs in your terminal, making it compatible with VS Code, "Antigravity" IDEs (via terminal), or any editor that supports a command line interface [[1]](#ref-1).
+The `gemini-cli` runs in your terminal, making it compatible with VS Code, [antigravity](https://antigravity.google/) IDEs (via terminal), or any editor that supports a command line interface [[1]](#ref-1).
 
 ### 1. Launching Context-Aware Sessions
 
@@ -79,7 +79,7 @@ You can configure `gemini-cli` to act as a specialized agent (e.g., "Senior Edit
 To create a persistent context for a specific project, create a `GEMINI.md` file in the project root [[9]](#ref-9).
 
 - **Action:** Create a file named `GEMINI.md`.
-- **Content:** specific rules, such as "Always write code in TypeScript," "Use a casual tone for blog posts," or "Prefer async/await patterns."
+- **Content:** Specific rules, such as "Always write code in TypeScript," "Use a casual tone for blog posts," or "Prefer async/await patterns."
 - **Result:** Every session launched in this folder will automatically ingest these rules, creating a consistent "agent" experience.
 
 ### 2. Extending Capabilities with MCP
@@ -121,7 +121,7 @@ Use the `save_memory` tool (or `memoryTool`) to store facts during a session. Th
 
 - Experiment with different agent personas by modifying `GEMINI.md`.
 - Explore additional MCP Servers for more integrations.
-- Use [Code Wiki](https://codewiki.google/) for documentation
+- Use Google's [Code Wiki](https://codewiki.google/) for documentation.
 
 ## References
 
