@@ -31,6 +31,16 @@ The agent enforces:
 
 Use "General Programming Review Agent" as a base.
 
+### Coding Style
+
+* Use 2 spaces for indentation.
+* Limit lines to 80 characters.
+* Use camelCase for variable and function names.
+* Use PascalCase for type and data constructors.
+* Use single characters for generic type variables (e.g., `a`, `b`, `m`).
+* Use [hlint](https://github.com/ndmitchell/hlint) to enforce style guidelines and suggest improvements.
+* Use [stylish-haskell](https://github.com/haskell/stylish-haskell) for consistent formatting.
+
 ### Functional Programming (FP) Foundations
 
 - Encourage pure, total functions.

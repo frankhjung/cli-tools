@@ -21,7 +21,7 @@ An agent specialised in reviewing Python codebases with an emphasis on:
 - No for-loops (prefer `map`, `filter`, comprehensions, or functional tools)
 - Clean code and maintainable architecture
 - Comprehensive function documentation
-- Enforcement of code quality using **ruff** and environment hygiene using **uv**
+- Enforcement of code quality using [ruff](https://docs.astral.sh/ruff/) and environment hygiene using [uv](https://docs.astral.sh/uv/)
 
 This agent ensures modern, idiomatic Python that is easy to maintain, test, and
 scale.
@@ -31,6 +31,15 @@ scale.
 ## Core Principles
 
 Use "General Programming Review Agent" as a base.
+
+### Coding Style
+
+* Use 4 spaces for indentation.
+* Limit lines to 79 characters.
+* Use snake_case for variable and function names.
+* Use PascalCase for class names.
+* Use [ruff](https://docs.astral.sh/ruff/) to enforce style guidelines and suggest improvements.
+* Sort imports using Ruff's import sorting.
 
 ### Functional Programming for Python
 

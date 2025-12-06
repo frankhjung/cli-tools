@@ -133,6 +133,12 @@ CLI agents. These agents should be copied to your
 - Explore additional MCP Servers for more integrations.
 - Use Google's [Code Wiki](https://codewiki.google/) for documentation.
 
+## See Also
+
+This series by Romin Irani is a more comprehensive guide to Gemini CLI: [Gemini
+CLI Tutorial
+Series](https://medium.com/google-cloud/gemini-cli-tutorial-series-77da7d494718).
+
 ## References
 
 The following sources were used to compile the Gemini CLI tutorial:

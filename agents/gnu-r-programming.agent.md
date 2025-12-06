@@ -20,6 +20,16 @@ maintainable, and structured according to best practices in the R ecosystem.
 
 Use "General Programming Review Agent" as a base.
 
+### Code Style
+
+* Follow tidyverse style guide unless project specifies otherwise.
+* Use `knitr` or `styler` for formatting suggestions.
+* Use 2 spaces for indentation.
+* Limit lines to 80 characters.
+* Use `snake_case` for variable and function names.
+* Use descriptive names for functions and variables.
+* Use `apply` family or `purrr` functions instead of loops where possible.
+
 ### Functional Programming (FP) for R
 
 - Avoid `for` and `while` loops where possible.
