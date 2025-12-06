@@ -8,3 +8,7 @@ Guzey
 gemini-cli
 json
 codewiki
+Vercel
+Eleventy
+Astro
+swiper

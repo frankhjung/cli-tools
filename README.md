@@ -5,15 +5,22 @@ author: "Frank Jung"
 
 [[_TOC_]]
 
-This tutorial covers how to use the `gemini-cli` for coding projects, content creation, and creating specialized agents. It assumes the CLI is already installed and authenticated [[1]](#ref-1).
+This tutorial covers how to use the `gemini-cli` for coding projects, content
+creation, and creating specialized agents. It assumes the CLI is already
+installed and authenticated [[1]](#ref-1).
+
+---
 
 ## Part 1: Coding Projects & IDE Integration
 
-The `gemini-cli` runs in your terminal, making it compatible with VS Code, [antigravity](https://antigravity.google/) IDEs (via terminal), or any editor that supports a command line interface [[1]](#ref-1).
+The `gemini-cli` runs in your terminal, making it compatible with VS Code,
+Google's [AntiGravity](https://antigravity.google/) IDEs (via terminal), or any
+editor that supports command-line interfaces [[1]](#ref-1).
 
 ### 1. Launching Context-Aware Sessions
 
-To make the AI aware of your specific code, you must run the CLI from the project's root directory.
+To make the AI aware of your specific code, you must run the CLI from the
+project's root directory.
 
 1. Open the integrated terminal in your IDE (e.g., VS Code).
 2. Navigate to your project folder: `cd path/to/your/project` [[2]](#ref-2).
@@ -23,7 +30,8 @@ To make the AI aware of your specific code, you must run the CLI from the projec
     gemini
     ```
 
-    _Why:_ This enables the `read-file` and `read-many-files` tools to access your codebase [[3]](#ref-3).
+    _Why:_ This enables the `read-file` and `read-many-files` tools to access
+    your codebase [[3]](#ref-3).
 
 ### 2. Onboarding and Code Explanation
 
@@ -47,7 +55,8 @@ The CLI operates as a "ReAct" agent, meaning it thinks, chooses a tool, acts, an
 
 ## Part 2: Non-Coding Projects (Blogs & Podcasts)
 
-The CLI supports multimodal inputs (images/PDFs) and web connectivity, making it powerful for research and content creation [[6]](#ref-6).
+The CLI supports multimodal inputs (images/PDFs) and web connectivity, making it
+powerful for research and content creation [[6]](#ref-6).
 
 ### 1. Research with "Grounding"
 
@@ -72,11 +81,14 @@ Avoid hallucinations by forcing the CLI to fetch real-world data.
 
 ## Part 3: Setting Up Specialized Agents
 
-You can configure `gemini-cli` to act as a specialized agent (e.g., "Senior Editor" or "DevOps Engineer") using configuration files and the Model Context Protocol (MCP).
+You can configure `gemini-cli` to act as a specialized agent (e.g., "Senior
+Editor" or "DevOps Engineer") using configuration files and the Model Context
+Protocol (MCP).
 
 ### 1. Defining Agent Persona (`GEMINI.md`)
 
-To create a persistent context for a specific project, create a `GEMINI.md` file in the project root [[9]](#ref-9).
+To create a persistent context for a specific project, create a `GEMINI.md` file
+in the project root [[9]](#ref-9).
 
 - **Action:** Create a file named `GEMINI.md`.
 - **Content:** Specific rules, such as "Always write code in TypeScript," "Use a casual tone for blog posts," or "Prefer async/await patterns."
@@ -115,32 +127,53 @@ You can connect the CLI to external services (like GitHub, Google Drive, or Data
 
 ### 3. Persistent Memory
 
-Use the `save_memory` tool (or `memoryTool`) to store facts during a session. This allows the agent to remember user preferences across different interactions within the session [[3]](#ref-3), [[12]](#ref-12).
+Use the `save_memory` tool (or `memoryTool`) to store facts during a session.
+This allows the agent to remember user preferences across different interactions
+within the session [[3]](#ref-3), [[12]](#ref-12).
 
-## Agents
+---
 
-Look at [agents/](agents/) for pre-built [agent
+## Part 4: Next Steps & Further Reading
+
+### 1. Agents
+
+This section explores the use of specialized agents with `gemini-cli`, drawing
+parallels with existing agent platforms like Copilot Agents. Look at
+[agents/](agents/) for pre-built [agent
 personas](https://docs.github.com/en/copilot/how-tos/use-copilot-agents) you can
 use as templates.
 
 These examples are for Copilot Agents, but the same principles apply to Gemini
-CLI agents. These agents should be copied to your
-`~/.config/Code/User/prompts` folder. for use with VS Code.
+CLI agents. These agents should be copied to your `~/.config/Code/User/prompts`
+folder for use with VS Code.
 
-## Next Steps
+### 2. Other tools and Integrations
 
 - Experiment with different agent personas by modifying `GEMINI.md`.
 - Explore additional MCP Servers for more integrations.
 - Use Google's [Code Wiki](https://codewiki.google/) for documentation.
+- Look at [extensions](https://geminicli.com/extensions/). Or from Gemini CLI invoke:
 
-## See Also
+  ```bash
+  /extensions explore
+  ```
+
+  For example, to run a documentation review agent on this README file:
+
+  ```bash
+  copilot-cli agents run documentation-reviewer README.md
+  ```
+
+### 3. Other Resources
 
 This series by [Romin Irani](https://iromin.medium.com/) is a more comprehensive
-guide to Gemini CLI:
-[Gemini CLI Tutorial Series](https://medium.com/google-cloud/gemini-cli-tutorial-series-77da7d494718).
+guide to Gemini CLI: [Gemini CLI Tutorial
+Series](https://medium.com/google-cloud/gemini-cli-tutorial-series-77da7d494718).
 
-Also look at the official Gemini CLI tutorials:
-[Gemini CLI Tutorials](https://geminicli.com/docs/cli/tutorials/).
+Also look at the official Gemini CLI tutorials: [Gemini CLI
+Tutorials](https://geminicli.com/docs/cli/tutorials/).
+
+---
 
 ## References
 
@@ -148,7 +181,7 @@ The following sources were used to compile the Gemini CLI tutorial:
 
 ### ref-1
 
-**[Beginner's Guide to Gemini CLI: Install, Setup, and Use It Like a Pro](https://www.kdnuggets.com)** - KDnuggets, Kanwal Mehreen. Provided IDE integration and installation guidance.
+**[Beginner's Guide to Gemini CLI: Install, Setup, and Use It Like a Pro](https://www.kdnuggets.com)** - KDnuggets, Kanwal Mehreen. Covers IDE integration and installation guidance.
 
 ### ref-2
 

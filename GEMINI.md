@@ -52,3 +52,4 @@ Run the agent on a file:
 
 ```bash
 copilot-cli agents run documentation-reviewer README.md
+```
