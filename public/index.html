@@ -134,7 +134,17 @@ MCP</a></li>
 <li><a href="#persistent-memory" id="toc-persistent-memory">3.
 Persistent Memory</a></li>
 </ul></li>
-<li><a href="#next-steps" id="toc-next-steps">Next Steps</a></li>
+<li><a href="#part-4-next-steps-further-reading"
+id="toc-part-4-next-steps-further-reading">Part 4: Next Steps &amp;
+Further Reading</a>
+<ul>
+<li><a href="#agents" id="toc-agents">1. Agents</a></li>
+<li><a href="#other-tools-and-integrations"
+id="toc-other-tools-and-integrations">2. Other tools and
+Integrations</a></li>
+<li><a href="#other-resources" id="toc-other-resources">3. Other
+Resources</a></li>
+</ul></li>
 <li><a href="#references" id="toc-references">References</a>
 <ul>
 <li><a href="#ref-1" id="toc-ref-1">ref-1</a></li>
@@ -157,12 +167,13 @@ Persistent Memory</a></li>
 coding projects, content creation, and creating specialized agents. It
 assumes the CLI is already installed and authenticated <a
 href="#ref-1">[1]</a>.</p>
+<hr />
 <h2 id="part-1-coding-projects-ide-integration">Part 1: Coding Projects
 &amp; IDE Integration</h2>
 <p>The <code>gemini-cli</code> runs in your terminal, making it
-compatible with VS Code, <a
-href="https://antigravity.google/">antigravity</a> IDEs (via terminal),
-or any editor that supports a command line interface <a
+compatible with VS Code, Google’s <a
+href="https://antigravity.google/">AntiGravity</a> IDEs (via terminal),
+or any editor that supports command-line interfaces <a
 href="#ref-1">[1]</a>.</p>
 <h3 id="launching-context-aware-sessions">1. Launching Context-Aware
 Sessions</h3>
@@ -317,21 +328,54 @@ href="#ref-11">[11]</a>.</p></li>
 store facts during a session. This allows the agent to remember user
 preferences across different interactions within the session <a
 href="#ref-3">[3]</a>, <a href="#ref-12">[12]</a>.</p>
-<h2 id="next-steps">Next Steps</h2>
+<hr />
+<h2 id="part-4-next-steps-further-reading">Part 4: Next Steps &amp;
+Further Reading</h2>
+<h3 id="agents">1. Agents</h3>
+<p>This section explores the use of specialized agents with
+<code>gemini-cli</code>, drawing parallels with existing agent platforms
+like Copilot Agents. Look at <a href="agents/">agents/</a> for pre-built
+<a
+href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents">agent
+personas</a> you can use as templates.</p>
+<p>These examples are for Copilot Agents, but the same principles apply
+to Gemini CLI agents. These agents should be copied to your
+<code>~/.config/Code/User/prompts</code> folder for use with VS
+Code.</p>
+<h3 id="other-tools-and-integrations">2. Other tools and
+Integrations</h3>
 <ul>
-<li>Experiment with different agent personas by modifying
-<code>GEMINI.md</code>.</li>
-<li>Explore additional MCP Servers for more integrations.</li>
-<li>Use Google’s <a href="https://codewiki.google/">Code Wiki</a> for
-documentation.</li>
+<li><p>Experiment with different agent personas by modifying
+<code>GEMINI.md</code>.</p></li>
+<li><p>Explore additional MCP Servers for more integrations.</p></li>
+<li><p>Use Google’s <a href="https://codewiki.google/">Code Wiki</a> for
+documentation.</p></li>
+<li><p>Look at <a
+href="https://geminicli.com/extensions/">extensions</a>. Or from Gemini
+CLI invoke:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/extensions</span> explore</span></code></pre></div>
+<p>For example, to run a documentation review agent on this README
+file:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">copilot-cli</span> agents run documentation-reviewer README.md</span></code></pre></div></li>
 </ul>
+<h3 id="other-resources">3. Other Resources</h3>
+<p>This series by <a href="https://iromin.medium.com/">Romin Irani</a>
+is a more comprehensive guide to Gemini CLI: <a
+href="https://medium.com/google-cloud/gemini-cli-tutorial-series-77da7d494718">Gemini
+CLI Tutorial Series</a>.</p>
+<p>Also look at the official Gemini CLI tutorials: <a
+href="https://geminicli.com/docs/cli/tutorials/">Gemini CLI
+Tutorials</a>.</p>
+<hr />
 <h2 id="references">References</h2>
 <p>The following sources were used to compile the Gemini CLI
 tutorial:</p>
 <h3 id="ref-1">ref-1</h3>
 <p><strong><a href="https://www.kdnuggets.com">Beginner’s Guide to
 Gemini CLI: Install, Setup, and Use It Like a Pro</a></strong> -
-KDnuggets, Kanwal Mehreen. Provided IDE integration and installation
+KDnuggets, Kanwal Mehreen. Covers IDE integration and installation
 guidance.</p>
 <h3 id="ref-2">ref-2</h3>
 <p><strong><a href="https://www.kdnuggets.com">Beginner’s Guide to
