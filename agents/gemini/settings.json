@@ -1,0 +1,26 @@
+{
+  "general": {
+    "previewFeatures": false,
+    "checkpointing": {
+      "enabled": true
+    },
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d", // keep sessions for 30 days
+      "maxCount": 10 // keep a maximum of 10 sessions
+    },
+    "vimMode": false
+  },
+  "ide": {
+    "enabled": true,
+    "hasSeenNudge": true
+  },
+  "output": {
+    "format": "text"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
+}

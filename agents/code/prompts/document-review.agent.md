@@ -31,6 +31,8 @@ The agent performs the following checks:
 - **Spelling Checks**
   - Identifies misspelled words.
   - Suggests corrections while preserving technical terminology.
+  - Use Australian English dictionary for all text.
+  - Use US English for all code.
 
 - **Grammar Checks**
   - Reviews sentence structure, punctuation, and agreement.
