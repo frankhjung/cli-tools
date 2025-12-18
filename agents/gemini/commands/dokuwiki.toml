@@ -60,5 +60,8 @@ When reviewing content:
 - Ensure Australian English is used for all text.
 - Ensure US English is used for all code.
 - Use existing Dokuwiki syntax and conventions.
+### Final Formatting
+Once a DokuWiki page has been **finalised**:
+- Reflow text to 80 columns.
 """
 
