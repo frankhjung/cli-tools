@@ -147,9 +147,11 @@ These examples are for Copilot Agents, but the same principles apply to Gemini
 CLI agents. These agents should be copied to your `~/.config/Code/User/prompts`
 folder for use with VS Code.
 
-### 2. Slash Commnds
+### 2. Gemini
 
-See <https://geminicli.com/docs/cli/commands/>
+#### 2.1 [Gemini README](../gemini-readme.md)
+
+#### 2.2 [Gemini Slash Commands](https://geminicli.com/docs/cli/commands/)
 
 ### 3. Other tools and Integrations
 
@@ -185,48 +187,67 @@ The following sources were used to compile the Gemini CLI tutorial:
 
 ### ref-1
 
-**[Beginner's Guide to Gemini CLI: Install, Setup, and Use It Like a Pro](https://www.kdnuggets.com)** - KDnuggets, Kanwal Mehreen. Covers IDE integration and installation guidance.
+**[Beginner's Guide to Gemini CLI: Install, Setup, and Use It Like a
+Pro](https://www.kdnuggets.com)** - KDnuggets, Kanwal Mehreen. Covers IDE
+integration and installation guidance.
 
 ### ref-2
 
-**[Beginner's Guide to Gemini CLI](https://www.kdnuggets.com)** - KDnuggets. Project navigation and code explanation workflows.
+**[Beginner's Guide to Gemini CLI](https://www.kdnuggets.com)** - KDnuggets.
+Project navigation and code explanation workflows.
 
 ### ref-3
 
-**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)** - ProfLead.dev, Vladislav Guzey. Built-in tools documentation (`read-file`, `write-file`, `web-fetch`, `google_web_search`).
+**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)**
+- ProfLead.dev, Vladislav Guzey. Built-in tools documentation (`read-file`,
+`write-file`, `web-fetch`, `google_web_search`).
 
 ### ref-4
 
-**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)** - ProfLead.dev. File analysis and shell integration features.
+**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)**
+- ProfLead.dev. File analysis and shell integration features.
 
 ### ref-5
 
-**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)** - ProfLead.dev. Performance audit capabilities.
+**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)**
+- ProfLead.dev. Performance audit capabilities.
 
 ### ref-6
 
-**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)** - ProfLead.dev. ReAct agent loop and multimodal input support.
+**[Gemini CLI Full Tutorial](https://proflead.dev/posts/gemini-cli-tutorial/)**
+- ProfLead.dev. ReAct agent loop and multimodal input support.
 
 ### ref-7
 
-**[Gemini CLI Documentation](https://github.com/google-gemini/gemini-cli)** - Official Documentation. Edit tool and diff-based code changes.
+**[Gemini CLI Documentation](https://github.com/google-gemini/gemini-cli)** -
+Official Documentation. Edit tool and diff-based code changes.
 
 ### ref-8
 
-**[Gemini CLI Documentation](https://github.com/google-gemini/gemini-cli)** - Official Documentation. Content generation capabilities.
+**[Gemini CLI Documentation](https://github.com/google-gemini/gemini-cli)** -
+Official Documentation. Content generation capabilities.
 
 ### ref-9
 
-**[google-gemini/gemini-cli GitHub Repository](https://github.com/google-gemini/gemini-cli)** - GitHub. GEMINI.md context file configuration.
+**[google-gemini/gemini-cli GitHub
+Repository](https://github.com/google-gemini/gemini-cli)** - GitHub. GEMINI.md
+context file configuration.
 
 ### ref-10
 
-**[google-gemini/gemini-cli GitHub Repository](https://github.com/google-gemini/gemini-cli)** - GitHub. MCP Server integration.
+**[google-gemini/gemini-cli GitHub
+Repository](https://github.com/google-gemini/gemini-cli)** - GitHub. MCP Server
+integration.
 
 ### ref-11
 
-**[google-gemini/gemini-cli GitHub Repository](https://github.com/google-gemini/gemini-cli)** - GitHub. MCP settings.json configuration examples.
+**[google-gemini/gemini-cli GitHub
+Repository](https://github.com/google-gemini/gemini-cli)** - GitHub. MCP
+settings.json configuration examples.
 
 ### ref-12
 
-**[Gemini CLI Full Tutorial](https://dev.to/proflead/gemini-cli-full-tutorial-2ab5)** - DEV Community, Vladislav Guzey. Memory tool (`save_memory`, `memoryTool`) for persistent session data.
+**[Gemini CLI Full
+Tutorial](https://dev.to/proflead/gemini-cli-full-tutorial-2ab5)** - DEV
+Community, Vladislav Guzey. Memory tool (`save_memory`, `memoryTool`) for
+persistent session data.
