@@ -1,6 +1,9 @@
 {
+  "experimental": {
+    "skills": true
+  },
   "general": {
-    "previewFeatures": false,
+    "previewFeatures": true,
     "checkpointing": {
       "enabled": true
     },
@@ -9,7 +12,8 @@
       "maxAge": "30d", // keep sessions for 30 days
       "maxCount": 10 // keep a maximum of 10 sessions
     },
-    "vimMode": false
+    "vimMode": false,
+    "enablePromptCompletion": true
   },
   "ide": {
     "enabled": true,
@@ -22,5 +26,8 @@
     "auth": {
       "selectedType": "oauth-personal"
     }
+  },
+  "ui": {
+    "showStatusInTitle": true
   }
 }

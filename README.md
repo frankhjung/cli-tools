@@ -198,11 +198,66 @@ Series](https://medium.com/google-cloud/gemini-cli-tutorial-series-77da7d494718)
 Also look at the official Gemini CLI tutorials: [Gemini CLI
 Tutorials](https://geminicli.com/docs/cli/tutorials/).
 
-#### Claude Skills
+##### Gemini Skills
 
-[Skills](https://code.claude.com/docs/en/skills) are a growing feature from
-Claude. Look at examples here,
-[github.com/obra/superpowers](https://github.com/obra/superpowers)
+###### [Skill Discovery Tiers](https://geminicli.com/docs/cli/skills/)
+
+Gemini CLI discovers skills from three primary locations:
+
+1. **Project Skills** (`.gemini/skills/`): Project-specific skills that are
+   typically committed to version control and shared with the team.
+1. **User Skills** (`~/.gemini/skills/`): Personal skills available across all
+   your projects. Extension Skills: Skills bundled within installed extensions
+1. **Extension Skills**: Skills bundled within installed extensions
+
+**Precedence:** If multiple skills share the same name, higher-precedence
+locations override lower ones: `Project > User > Extension`.
+
+#### Copilot
+
+##### Copilot Skills
+
+[Claude Skills](https://code.claude.com/docs/en/skills) is an open standard and
+can be used by Copilot Agents as well. See this
+[announcement](https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/).
+
+For examples look at:
+
+- [github.com/obra/superpowers](https://github.com/obra/superpowers)
+- Can use Anthropic (Claude) Skills: https://github.com/anthropics/skills
+  GitHub’s community: https://github.com/github/awesome-copilot
+
+For more details see
+[Copilot: about agent skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills?utm_source=docs&utm_medium=&utm_campaign=skills-25)
+
+Copilot supports: Project skills, stored in your repository (`.github/skills` or
+`.claude/skills`) Personal skills, stored in your home directory and shared
+across projects (`~/.copilot/skills` or `~/.claude/skills`)
+
+I'd recommend starting with the
+[README](https://github.com/github/awesome-copilot/blob/main/README.md)
+
+###### Agents-Skills
+
+- [devops-expert.agent](https://github.com/github/awesome-copilot/blob/main/agents/devops-expert.agent.md)
+- [janitor.agent](https://github.com/github/awesome-copilot/blob/main/agents/janitor.agent.md)
+- [Thinking-Beast-Mode.agent](https://github.com/github/awesome-copilot/blob/main/agents/Thinking-Beast-Mode.agent.md)
+- [clojure-interactive-programming.agent](https://github.com/github/awesome-copilot/blob/main/agents/clojure-interactive-programming.agent.md)
+- [mentor.agent](https://github.com/github/awesome-copilot/blob/main/agents/mentor.agent.md)
+
+###### Instructions
+
+Start with these
+[instructions](https://github.com/github/awesome-copilot/blob/main/instructions/instructions.instructions.md).
+
+- [clojure.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/clojure.instructions.md)
+- [code-review-generic.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/code-review-generic.instructions.md)
+- [devops-core-principles.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/devops-core-principles.instructions.md)
+- [makefile.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/makefile.instructions.md)
+- [markdown.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/markdown.instructions.md)
+- [python.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/python.instructions.md)
+- [r.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/r.instructions.md)
+- [shell.instructions.md](https://github.com/github/awesome-copilot/blob/main/instructions/shell.instructions.md)
 
 ## References
 
