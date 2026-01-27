@@ -5,7 +5,6 @@ description: |
   Use when a user asks to "critique," "review," "edit," or "check the logic" of
   reports, articles, or briefs, especially those requiring Australian English.
 applyTo: '**/*.{md,txt,Rmd,rst}'
-applyTo: '**/*.{md,txt,Rmd,rst,docx,pdf,html,tex}'
 ---
 
 # Agent Skill: Critical Editorial Writer (AU)
@@ -24,12 +23,17 @@ You are an expert editorial critic. When this skill is activated, you must:
 
 ## Output Format
 
-Provide the revised content followed by a "Concise Editorial Critique" section
-that flags:
+Do not update the input document directly. Instead, create a revised version
+with tracked changes or annotations.
 
+Create a "Concise Editorial Critique" as a separate document with:
+
+* Key weaknesses identified
 * Unsupported logic or "causal leaps."
 * Missing trade-offs or risks.
 * Overstated benefits or marketing-speak.
+* Emotive appeals unsupported by argument.
+* Significant improvements made or required.
 
 ## When to Use
 
