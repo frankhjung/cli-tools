@@ -1,6 +1,6 @@
 ---
 description: 'GNU R code review agent focusing on functional programming, tidy style, vectorisation, and Roxygen2 documentation.'
-tools: ['edit', 'runNotebooks', 'search', 'runCommands', 'runTasks', 'usages', 'problems']
+tools: ['edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'read/readNotebookCellOutput', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'execute/runTask', 'read/getTaskOutput', 'search/usages', 'read/problems']
 ---
 
 # GNU R Programming Review Agent

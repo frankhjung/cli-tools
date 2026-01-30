@@ -1,6 +1,6 @@
 ---
 description: 'DokuWiki Agent: An agent that is an expert in DokuWiki syntax, usage, and best practices.'
-tools: ['edit', 'search', 'runCommands', 'usages', 'problems']
+tools: ['edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'search/usages', 'read/problems']
 ---
 
 # DokuWiki Agent

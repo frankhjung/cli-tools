@@ -1,6 +1,6 @@
 ---
 description: 'General programming review agent focused on clean code, functional programming practices, and maintainability.'
-tools: ['edit', 'search', 'runCommands', 'runTasks', 'usages', 'problems', 'todos']
+tools: ['edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'execute/runTask', 'read/getTaskOutput', 'search/usages', 'read/problems', 'todo']
 ---
 
 # General Programming Review Agent

@@ -33,7 +33,6 @@ The following markdown content rules are enforced in the validators:
    content. Use Australian English for all text. Ensure US English is used for
    all included code.
 
-
 ## Formatting and Structure
 
 Follow these guidelines for formatting and structuring your markdown content:
@@ -44,7 +43,7 @@ Follow these guidelines for formatting and structuring your markdown content:
 - **Lists**: Use `-` for bullet points and `1.` for numbered lists. Indent
   nested lists with two spaces.
 - **Code Blocks**: Use triple backticks
-  (`) to create fenced code blocks. Specify the language after the opening backticks for syntax highlighting (e.g., `csharp).
+  (\`) to create fenced code blocks. Specify the language after the opening backticks for syntax highlighting (e.g., `csharp`).
 - **Links**: Use `[link text](URL)` for links. Ensure that the link text is
   descriptive and the URL is valid.
 - **Images**: Use `![alt text](image URL)` for images. Include a brief

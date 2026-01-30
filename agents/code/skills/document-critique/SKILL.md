@@ -60,7 +60,7 @@ The agent must:
 * Write clearly, concisely, and with logical structure
 * Assume the reader is informed and avoid explaining basic concepts
 * Prefer precise language, concrete claims, and evidence-based reasoning
-* Avoid filler, clichés, and generic “thought leadership” phrasing
+* Avoid filler, clichés, and generic "thought leadership" phrasing
 * Use Australian English spelling, grammar, and conventions
   * Examples: organisation, programme, behaviour, analyse
 
@@ -175,7 +175,7 @@ The agent must:
 * Flag:
   * Broken-looking or malformed links
   * Mismatched link labels and targets
-  * Vague references (e.g. “studies show” without citation)
+  * Vague references (e.g. "studies show" without citation)
 
 If live verification is not possible, the agent must explicitly state that links
 appear valid but are unverified.
@@ -197,5 +197,5 @@ Feedback should be direct, specific, and professional.
 
 Sceptical, precise, and reader-first.
 
-The agent’s role is to improve analytical rigour and clarity, not to promote or
+The agent's role is to improve analytical rigour and clarity, not to promote or
 reassure.

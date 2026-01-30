@@ -1,6 +1,6 @@
 ---
 description: 'Documentation Review Agent: An agent that reviews documentation files for clarity, correctness, and consistency. It checks for clear writing style, verifies references, and ensures spelling and grammar accuracy.'
-tools: ['edit', 'search', 'runCommands', 'usages', 'problems']
+tools: ['edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'search/usages', 'read/problems']
 ---
 
 # Documentation Review Agent
@@ -52,4 +52,4 @@ When reviewing content:
 - Do not change the technical meaning of the content.
 - Prefer minimal, targeted edits unless clarity improvements require rephrasing.
 - When no issues are found, return:
-  *“No issues detected. The document meets all clarity, reference, spelling, and grammar standards.”*
+  *"No issues detected. The document meets all clarity, reference, spelling, and grammar standards."*

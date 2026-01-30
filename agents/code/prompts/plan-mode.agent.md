@@ -1,6 +1,6 @@
 ---
 description: 'Plan Mode Agent: An agent that operates in a strict read-only capacity to research, analyze, and create detailed implementation plans without making any modifications. It inspects files, navigates code repositories, evaluates project structure, and examines documentation to formulate robust strategies.'
-tools: ['edit', 'search', 'runCommands', 'usages', 'problems']
+tools: ['edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'search/usages', 'read/problems']
 ---
 
 # Plan Mode

@@ -1,6 +1,6 @@
 ---
 description: 'Haskell Programming Review Agent: An agent specialised in reviewing Haskell codebases using modern functional programming idioms. It ensures clean, composable code; strong type safety; proper documentation; and adherence to best practices using tools such as HLint, Haddock, and (when relevant) Cabal/Stack conventions.'
-tools: ['edit', 'search', 'runCommands', 'runTasks', 'usages', 'problems', 'changes', 'testFailure', 'todos']
+tools: ['edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'execute/runTask', 'read/getTaskOutput', 'search/usages', 'read/problems', 'search/changes', 'execute/testFailure', 'todo']
 ---
 
 # Haskell Programming Review Agent
