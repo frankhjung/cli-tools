@@ -1,154 +1,38 @@
-# CLI Tools (Gemini CLI Focus)
+# Article: Gemini and VSCode CLI Tools
 
-This repo is a set of ready-to-copy assets for working with Gemini CLI:
+This repository contains the source and build tooling for the article.
 
-- Project instructions (`GEMINI.md`)
-- Gemini CLI settings (`.gemini/settings.json`)
-- Custom slash commands (`.gemini/commands/*.toml`)
-- Skills (`.gemini/skills/**/SKILL.md`)
+Read the article online: <https://frankhjung.github.io/cli-tools/>
 
-See also: [gemini-readme.md](gemini-readme.md) for extra Gemini CLI notes
-(extensions, Conductor, etc.).
+## Source
 
-A smaller section at the end covers GitHub Copilot CLI.
+Primary source file: [cli-tools.md](cli-tools.md)
 
-## Install
+## Build (Make)
 
-For installation see the following:
+Requirements:
 
-- Gemini CLI: <https://geminicli.com/>
-- GitHub Copilot CLI (via GitHub CLI): <https://docs.github.com/>
+- [pandoc](https://pandoc.org/)
+- a TeX engine for PDF output, e.g.,
+  [xelatex](https://www.overleaf.com/learn/latex/XeLaTeX)
 
-## Quick Start (Gemini CLI)
+Targets:
 
-### 1) Start a context-aware session
+- `make` → builds HTML and PDF into `public/` directory
+- `make clean` → removes the `public/` directory
 
-Run Gemini CLI from the root of the project you want it to work on:
+## Output
 
-```bash
-cd /path/to/your/project
-gemini
-```
+- HTML: `public/index.html`
+- PDF: `public/cli-tools.pdf`
 
-### 2) Common tasks
+## Pages
 
-Use natural language prompts (or your own `/commands` if configured).
+This article is published in these locations:
 
-- Understand a repo:
-  - "Summarise this repository: main components and entry points."
-- Explain code:
-  - "Explain what `src/foo/bar.ts` does and how it's used."
-- Plan work before coding:
-  - "/plan Add caching to the API client and tests"
-- Review a doc:
-  - "Review this markdown for clarity and broken links: ..."
+- <https://frankhjung.github.io/cli-tools/>
+- <https://frankhjung.github.io/cli-tools/cli-tools.pdf>
 
-Tip: if your Gemini CLI setup supports shell passthrough, you can run commands
-from inside a session (commonly via `!<command>`). If unsure, use `help` or
-`/help` in the CLI.
+See also my blog:
 
-## Use These Assets With Gemini CLI
-
-The templates in this repo live under `agents/gemini/` and are meant to be
-copied into either:
-
-- a specific project (recommended), or
-- your user config (if you want them everywhere).
-
-### Option A (recommended): project-local setup
-
-From your target project directory:
-
-```bash
-export CLI_TOOLS_DIR=/path/to/this/repo
-
-mkdir -p .gemini/commands .gemini/skills
-
-# Project instructions (loaded when you run `gemini` in this folder)
-cp "$CLI_TOOLS_DIR/agents/gemini/GEMINI.md" ./GEMINI.md
-
-# Gemini CLI settings for this project
-cp "$CLI_TOOLS_DIR/agents/gemini/settings.json" ./.gemini/settings.json
-
-# Custom slash commands (invoked like: /plan <goal>)
-cp "$CLI_TOOLS_DIR/agents/gemini/commands/"*.toml ./.gemini/commands/
-
-# Skills (discovered by Gemini CLI)
-cp -r "$CLI_TOOLS_DIR/agents/gemini/skills/"* ./.gemini/skills/
-```
-
-What you get:
-
-- Instructions: `GEMINI.md`
-- Commands: `.gemini/commands/plan.toml`, `.gemini/commands/dokuwiki.toml`,
-  `.gemini/commands/gnur-programming.toml`
-- Skills: `.gemini/skills/**/SKILL.md`
-
-### Option B: user-wide skills
-
-Gemini CLI can also discover skills from a user directory.
-
-```bash
-export CLI_TOOLS_DIR=/path/to/this/repo
-
-mkdir -p ~/.gemini/skills
-cp -r "$CLI_TOOLS_DIR/agents/gemini/skills/"* ~/.gemini/skills/
-```
-
-Gemini skill precedence is typically:
-
-1. Project skills: `.gemini/skills/`
-2. User skills: `~/.gemini/skills/`
-3. Extension skills
-
-If multiple skills share the same name, project-local skills win.
-
-### Included Gemini commands
-
-These ship as templates in `agents/gemini/commands/`:
-
-- `/plan <goal>`: planning-only mode (no code changes)
-- `/dokuwiki <content>`: Dokuwiki helper / reviewer
-- `/gnur <content>`: GNU R programming review helper
-
-### Included Gemini skills
-
-These ship as templates in `agents/gemini/skills/`:
-
-- document critique
-- dokuwiki validator
-- haskell programmer
-- markdown validator
-- python programmer
-
-See also: `agents/gemini/gems/` for reusable prompt “gems”.
-
-## Quick Start (GitHub Copilot CLI)
-
-Copilot CLI is typically exposed via GitHub CLI as `gh copilot`.
-
-### Common tasks
-
-```bash
-# Ask for a command suggestion
-gh copilot suggest "find large files in this repo"
-
-# Explain a command you don’t understand
-gh copilot explain "tar -xzf archive.tgz -C /usr/local"
-
-# Discover what else is available
-gh copilot --help
-gh copilot suggest --help
-gh copilot explain --help
-```
-
-### About agents and skills for Copilot
-
-The Copilot CLI itself does not typically consume agent persona files. If you
-are using Copilot Agents (e.g., in VS Code), this repo includes:
-
-- Agent prompts in `agents/code/prompts/` (copy to
-  `~/.config/Code/User/prompts`)
-- Skill templates in `agents/code/skills/`
-  - repo-scoped: copy into `.github/skills/`
-  - user-scoped: copy into `~/.copilot/skills/`
+- <https://frankhjung.blogspot.com/>

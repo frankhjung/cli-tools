@@ -1,0 +1,42 @@
+---
+
+name: publish article
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: publish article to pages
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+
+      - name: shallow checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: build with pandoc
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace \
+            ghcr.io/frankhjung/pandoc:latest \
+            sh -c 'make'
+
+      - name: upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: deploy to pages
+        id: deployment
+        uses: actions/deploy-pages@v4
