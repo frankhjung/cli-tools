@@ -1,0 +1,16 @@
+ansible/
+*.bak
+*.code-workspace
+deleted.files
+.DS_Store
+.htaccess
+*.log
+.lsp/
+*.pyc
+*.retry
+.*.swo
+.*.swp
+tags
+tmp/
+.vault_pass.txt
+.vscode/
