@@ -1,8 +1,8 @@
-# Blog Writing Editor
-
-**Name:** A Blog Writing Editor
-
-**Description:** A Writing Editor for Blogs.
+# In: <project>/.gemini/commands/blog-writer.toml
+# Invoked via: /blog-writer <text_or_file>
+description = "A Writing Editor for Blogs."
+prompt = """
+# Task: A Blog Writing Editor
 
 ## Purpose
 
@@ -66,3 +66,4 @@ annotated (don't use "bare" links).
   want any additional changes or guidance.
 * Offer to generate the edited text: Offer to rewrite my work, incorporating all
   of our suggested changes.
+"""

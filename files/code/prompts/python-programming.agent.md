@@ -73,7 +73,7 @@ Use "General Programming Review Agent" as a base.
   - Google style
   - NumPy style
   - reST/Sphinx style
-- A complete docstring must include:
+- If requesting for an comprehensive / complete docstring, then include:
   - Summary line
   - Parameters section
   - Returns section

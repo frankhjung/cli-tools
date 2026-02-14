@@ -25,7 +25,8 @@ You are an expert editorial critic. When this skill is activated, you must:
 Do not update the input document directly. Instead, create a revised version
 with tracked changes or annotations.
 
-Create a "Concise Editorial Critique" as a separate document with:
+Create a "Concise Editorial Critique" as a separate document called
+`CRITIQUE.md` with:
 
 * Key weaknesses identified
 * Unsupported logic or "causal leaps."
