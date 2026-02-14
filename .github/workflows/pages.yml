@@ -27,10 +27,9 @@ jobs:
           fetch-depth: 1
 
       - name: build with pandoc
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace \
-            ghcr.io/frankhjung/pandoc:latest \
-            sh -c 'make'
+        uses: docker://frankhjung/pandoc:3.1.11.1
+        with:
+          args: make
 
       - name: upload pages artifact
         uses: actions/upload-pages-artifact@v3
