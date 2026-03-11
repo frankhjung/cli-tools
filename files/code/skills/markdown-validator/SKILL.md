@@ -1,69 +1,59 @@
 ---
 name: markdown-validator
-description: 'Markdown creation standards'
+description: Validates markdown content against established standards for structure, formatting, and language quality.
 applyTo: '**/*.md'
 ---
 
 # Markdown Validator
 
-This skill specialises in validating markdown content to ensure it adheres to
-established documentation and content creation standards.
+Specialises in validating markdown content to ensure it adheres to established
+documentation and content creation standards.
 
-## Markdown Content Rules
+## Standards and Rules
 
-The following markdown content rules are enforced in the validators:
+**Structure (MUST):**
 
-1. **Headings**: Use appropriate heading levels (H2, H3, etc.) to structure your
-   content. Do not use an H1 heading, as this will be generated based on the
-   title.
-2. **Lists**: Use bullet points or numbered lists for lists. Ensure proper
-   indentation and spacing.
-3. **Code Blocks**: Use fenced code blocks for code snippets. Specify the
-   language for syntax highlighting.
-4. **Links**: Use proper markdown syntax for links. Ensure that links are valid
-   and accessible.
-5. **Images**: Use proper markdown syntax for images. Include alt text for
-   accessibility.
-6. **Tables**: Use markdown tables for tabular data. Ensure proper formatting
-   and alignment.
-7. **Line Length**: Limit line length to 400 characters for readability.
-8. **Whitespace**: Use appropriate whitespace to separate sections and improve
-   readability.
-9. **Spelling and Grammar**: Ensure correct spelling and grammar throughout the
-   content. Use Australian English for all text. Ensure US English is used for
-   all included code.
+- Use heading levels H2 and H3 only (no H1; no H4 or deeper)
+- Use logical heading hierarchy
+- Use `-` for bullet points; `1.` for numbered lists with two-space indentation for nesting
 
-## Formatting and Structure
+**Code and Technical (MUST):**
 
-Follow these guidelines for formatting and structuring your markdown content:
+- Use fenced code blocks with language specified: ` ```bash `
+- Use Australian English for all text; US English for code
+- Specify language after opening backticks for syntax highlighting
 
-- **Headings**: Use `##` for H2 and `###` for H3. Ensure that headings are used
-  in a hierarchical manner. Recommend restructuring if content includes H4, and
-  more strongly recommend for H5.
-- **Lists**: Use `-` for bullet points and `1.` for numbered lists. Indent
-  nested lists with two spaces.
-- **Code Blocks**: Use triple backticks
-  (\`) to create fenced code blocks. Specify the language after the opening backticks for syntax highlighting (e.g., `csharp).
-- **Links**: Use `[link text](URL)` for links. Ensure that the link text is
-  descriptive and the URL is valid.
-- **Images**: Use `![alt text](image URL)` for images. Include a brief
-  description of the image in the alt text.
-- **Tables**: Use `|` to create tables. Ensure that columns are properly aligned
-  and headers are included.
-- **Line Length**: Break lines at 80 characters to improve readability. Use hard
-  line breaks for long paragraphs.
-- **Whitespace**: Use blank lines to separate sections and improve readability.
-  Avoid excessive whitespace.
+**Links and Images (MUST):**
 
-## Validation Requirements
+- Use `[link text](URL)` syntax with descriptive link text
+- Use `![alt text](image URL)` syntax with meaningful alt text
+- Verify all links are valid and accessible
+- Do not use bare URLs; if necessary, format as `<URL>`
+- Add a blank line between text and lists
+- Lint markdown files with a tool like `markdownlint` to enforce style consistency
 
-Ensure compliance with the following validation requirements:
+**Tables (SHOULD):**
 
-- **Content Rules**: Ensure that the content follows the markdown content rules
-  specified above.
-- **Formatting**: Ensure that the content is properly formatted and structured
-  according to the guidelines.
-- **Validation**: Run the validation tools to check for compliance with the
-  rules and guidelines.
-- **Feedback**: Provide feedback on any issues found during validation and
-  suggest improvements.
+- Use `|` to create tables with proper column alignment and headers
+
+**Formatting (SHOULD):**
+
+- Break lines at 80 characters for readability
+- Use blank lines to separate sections
+- Avoid excessive whitespace
+
+**Language Quality (MUST):**
+
+- Correct spelling and grammar throughout
+- Consistent tense and terminology
+- Clear, concise phrasing without ambiguity or jargon
+
+## Validation Process
+
+1. **Check structure**: Verify headings (H2/H3 only), lists, and logical hierarchy
+2. **Check code**: Verify fenced blocks with language specified, language consistency
+3. **Check links and images**: Verify syntax, descriptive text, and link validity
+4. **Check language**: Verify spelling, grammar, tense, Australian/US English usage
+5. **Check formatting**: Verify 80-character line breaks and appropriate whitespace
+
+**Report findings**: List issues by category with severity (MUST fix / SHOULD improve). Suggest corrections for each issue. Confirm "Markdown validated. No issues detected." when all standards met.
