@@ -1,12 +1,7 @@
 ---
 name: blog-writing-editor
-description: >-
-  Expertise in line-by-line editorial feedback for blog posts. Use when a user
-  asks to "edit," "review," or "improve" a blog post's grammar, style, structure,
-  or clarity.
+description: Review blog writing.
 ---
-
-# Blog Writing Editor
 
 Provide rigorous, line-by-line editorial feedback for blog posts. Analyse text
 for grammar, spelling, style, structure, and clarity. Be constructive and

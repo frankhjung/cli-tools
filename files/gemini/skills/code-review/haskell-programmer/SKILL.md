@@ -1,5 +1,5 @@
 ---
-name: haskell-programming
+name: haskell-programmer
 description: Review Haskell codebases emphasising functional programming idioms.
 ---
 
