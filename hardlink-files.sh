@@ -35,13 +35,9 @@ die() {
 # Hard-link every regular file under SOURCE_DIR into DEST_DIR,
 # preserving the relative path structure. Files already linked
 # to the same inode are skipped; all others are force-linked.
-# Accumulates counts into the caller-scoped total_created and
-# total_skipped variables.
 link_tree() {
   local source_dir="$1"
   local dest_dir="$2"
-  local created=0
-  local skipped=0
   local src_dev dst_dev
 
   [[ -d "${source_dir}" ]] \
@@ -55,44 +51,25 @@ link_tree() {
 
   echo "Source:      ${source_dir}"
   echo "Destination: ${dest_dir}"
+
+  # cp -a  : Archive mode (recursive, preserves attributes)
+  # cp -l  : Hard link files instead of copying
+  # cp -f  : Force overwrite if destination exists but is a different file
+  cp -alf "${source_dir}/." "${dest_dir}/"
+
+  local file_count
+  file_count=$(find "${dest_dir}" -type f | wc -l)
+
+  echo "Tree linked successfully. (${file_count} files in destination)"
+  echo "Files in ${dest_dir}:"
+  find "${dest_dir}" -type f -printf "  - %P\n" | sort
   echo
-
-  while IFS= read -r -d '' src_file; do
-    local rel_path dest_file
-
-    rel_path="${src_file#"${source_dir}"/}"
-    dest_file="${dest_dir}/${rel_path}"
-    mkdir -p "$(dirname "${dest_file}")"
-
-    if [[ -f "${dest_file}" && "${src_file}" -ef "${dest_file}" ]]; then
-      echo "  SKIP: ${rel_path}"
-      ((skipped++)) || :
-      continue
-    fi
-
-    ln -f "${src_file}" "${dest_file}"
-    echo "  LINK: ${rel_path}"
-    ((created++)) || :
-  done < <(find "${source_dir}" -type f -print0 | sort -z)
-
-  echo
-  echo "Created ${created} hard link(s), skipped ${skipped}."
-  echo
-
-  total_created=$((total_created + created))
-  total_skipped=$((total_skipped + skipped))
 }
 
 #
 # MAIN
 #
 
-total_created=0
-total_skipped=0
-
-# Process each mapping
 for mapping in "${MAPPINGS[@]}"; do
   link_tree "${mapping%%|*}" "${mapping#*|}"
 done
-
-echo "Created ${total_created} hard link(s), skipped ${total_skipped}."
