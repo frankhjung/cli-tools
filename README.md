@@ -4,21 +4,28 @@ This repository contains the source and build tooling for the article.
 
 Read the article online: <https://frankhjung.github.io/cli-tools/>
 
-## Source
+## Repository Structure
 
-Primary source file: [cli-tools.md](cli-tools.md)
+This repository contains the following main components:
+
+- [cli-tools.md]: The primary markdown source file for the article.
+- [files/gemini/]: Ready-to-use assets for Gemini CLI, including project
+  instructions ([GEMINI.md]), settings, and [skills/].
+- [files/code/prompts/]: Agent prompt templates for GitHub Copilot CLI / VS
+  Code.
+- [hardlink-files.sh]: A utility script to synchronise files via hard links.
 
 ## Build (Make)
 
 Requirements:
 
 - [pandoc](https://pandoc.org/)
-- a TeX engine for PDF output, e.g.,
+- A TeX engine for PDF output, e.g.,
   [xelatex](https://www.overleaf.com/learn/latex/XeLaTeX)
 
 Targets:
 
-- `make` → builds HTML and PDF into `public/` directory
+- `make` → builds HTML and PDF into the `public/` directory
 - `make clean` → removes the `public/` directory
 
 ## Output
@@ -36,3 +43,35 @@ This article is published in these locations:
 See also my blog:
 
 - <https://frankhjung.blogspot.com/>
+
+## Hardlink Files Script (`hardlink-files.sh`)
+
+The [hardlink-files.sh] script is used to synchronise the local assets
+in the `files/` directory with files from an Ansible AI role directory
+(defined in the `MAPPINGS` variable).
+
+It creates hard links for all regular files, preserving the directory
+structure. Because hard links are used:
+
+- Both paths refer to the same inode on disk.
+- Edits made to files in either directory are immediately reflected in both.
+- Duplicate file storage is avoided.
+
+### Usage
+
+Run the script from the repository root:
+
+```bash
+./hardlink-files.sh
+```
+
+> [!IMPORTANT]
+> Both the source and destination directories must reside on the same
+> filesystem, as hard links cannot span across different filesystems.
+
+[cli-tools.md]: file:///home/frank/dev/ai/cli-tools/cli-tools.md
+[files/gemini/]: file:///home/frank/dev/ai/cli-tools/files/gemini/
+[GEMINI.md]: file:///home/frank/dev/ai/cli-tools/files/gemini/GEMINI.md
+[skills/]: file:///home/frank/dev/ai/cli-tools/files/gemini/skills/
+[files/code/prompts/]: file:///home/frank/dev/ai/cli-tools/files/code/prompts/
+[hardlink-files.sh]: file:///home/frank/dev/ai/cli-tools/hardlink-files.sh

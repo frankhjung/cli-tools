@@ -10,13 +10,14 @@ to established documentation and content creation standards.
 
 - **Language:** Australian English for text; US English for code
 - **Line length:** Break lines at 80 characters
-- **Headings:** Use H2 and H3 only (no H1; no H4 or deeper);
-  maintain logical hierarchy
-- **Lists:** Use `-` for bullets, `1.` for numbered lists;
-  two-space indentation for nesting
+- **Headings:** Use headings rather than bold text for structure. Headings
+  should be in title case. The top level heading should be h1.
+- **Lists:** Use `-` for bulleted lists, `1.` for numbered lists, and
+  indent nested levels by two spaces.
 - **Code blocks:** Fenced with language specified (` ```bash `)
 - **Links:** `[descriptive text](URL)` — no bare URLs; if
-  unavoidable, format as `<URL>`
+  unavoidable, format as `<URL>`. Use bare URL's only when descriptive text is
+  the same as the URL.
 - **Images:** `![meaningful alt text](image URL)`
 - **Tables:** Use `|` with proper column alignment and headers
 - **Whitespace:** Blank lines between sections and before lists;
@@ -40,8 +41,7 @@ to established documentation and content creation standards.
 
 List issues by category with severity (MUST fix / SHOULD
 improve). Suggest corrections for each issue. If no issues
-found, confirm with:
-  "Markdown validated. No issues detected."
+found, confirm with: "Markdown validated. No issues detected."
 
 ## Resources
 

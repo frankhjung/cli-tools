@@ -20,8 +20,8 @@ set -euo pipefail
 # --- Configuration -------------------------------------------
 MAPPINGS=(
   "$HOME/dev/ansible/debian/roles/antigravity/files/skills|files/gemini/skills"
-  "$HOME/dev/ansible/debian/roles/vscode/files/prompts|files/code/prompts"
 )
+# "$HOME/dev/ansible/debian/roles/vscode/files/prompts|files/code/prompts"
 # -------------------------------------------------------------
 
 # die MESSAGE
