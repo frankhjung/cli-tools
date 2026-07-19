@@ -69,9 +69,9 @@ Run the script from the repository root:
 > Both the source and destination directories must reside on the same
 > filesystem, as hard links cannot span across different filesystems.
 
-[cli-tools.md]: file:///home/frank/dev/ai/cli-tools/cli-tools.md
-[files/gemini/]: file:///home/frank/dev/ai/cli-tools/files/gemini/
-[GEMINI.md]: file:///home/frank/dev/ai/cli-tools/files/gemini/GEMINI.md
-[skills/]: file:///home/frank/dev/ai/cli-tools/files/gemini/skills/
-[files/code/prompts/]: file:///home/frank/dev/ai/cli-tools/files/code/prompts/
-[hardlink-files.sh]: file:///home/frank/dev/ai/cli-tools/hardlink-files.sh
+[cli-tools.md]: cli-tools.md
+[files/gemini/]: files/gemini/
+[GEMINI.md]: files/gemini/GEMINI.md
+[skills/]: files/gemini/skills/
+[files/code/prompts/]: files/code/prompts/
+[hardlink-files.sh]: hardlink-files.sh

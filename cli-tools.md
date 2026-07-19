@@ -24,7 +24,7 @@ For installation see the following:
 
 ## Quick Start (Gemini CLI)
 
-### 1) Start a context-aware session
+### Start a context-aware session
 
 Run Gemini CLI from the root of the project you want it to work on:
 
@@ -33,7 +33,7 @@ cd /path/to/your/project
 gemini
 ```
 
-### 2) Common tasks
+### Common tasks - Gemini
 
 Use natural language prompts (or your own `/commands` if configured).
 
@@ -83,8 +83,7 @@ cp -r "$CLI_TOOLS_DIR/files/gemini/skills/"* ./.gemini/skills/
 What you get:
 
 - Instructions: `GEMINI.md`
-- Commands: `.gemini/commands/plan.toml`, `.gemini/commands/dokuwiki.toml`,
-  `.gemini/commands/gnur-programming.toml`
+- Settings: `.gemini/settings.json`
 - Skills: `.gemini/skills/**/SKILL.md`
 
 ### Option B: user-wide skills
@@ -106,23 +105,21 @@ Gemini skill precedence is typically:
 
 If multiple skills share the same name, project-local skills win.
 
-### Included Gemini commands
-
-These ship as templates in `files/gemini/commands/`:
-
-- `/plan <goal>`: planning-only mode (no code changes)
-- `/dokuwiki <content>`: Dokuwiki helper / reviewer
-- `/gnur <content>`: GNU R programming review helper
-
-### Included Gemini skills
+### Included Gemini Skills
 
 These ship as templates in `files/gemini/skills/`:
 
-- document critique
-- dokuwiki validator
-- haskell programmer
-- markdown validator
-- python programmer
+- `blog-writing-editor`
+- `clojure-programmer`
+- `dokuwiki-validator`
+- `gnur-programmer`
+- `grill-me`
+- `haskell-programmer`
+- `improve-codebase-architecture`
+- `lean-programmer`
+- `markdown-validator`
+- `python-programmer`
+- `shell-programmer`
 
 See also: `files/gemini/gems/` for reusable prompt “gems”.
 
@@ -130,7 +127,7 @@ See also: `files/gemini/gems/` for reusable prompt “gems”.
 
 Copilot CLI is typically exposed via GitHub CLI as `gh copilot`.
 
-### Common tasks
+### Common Tasks - Copilot
 
 ```bash
 # Ask for a command suggestion
@@ -150,7 +147,5 @@ gh copilot explain --help
 The Copilot CLI itself does not typically consume agent persona files. If you
 are using Copilot Agents (e.g., in VS Code), this repo includes:
 
-- Agent prompts in `files/code/prompts/`: copy to `~/.config/Code/User/prompts`
-- Skill templates in `files/code/skills/`
-  - repo-scoped: copy into `.github/skills/`
-  - user-scoped: copy into `~/.copilot/skills/`
+- Agent prompts in `files/code/prompts/`: copy to
+  `~/.config/Code/User/prompts`

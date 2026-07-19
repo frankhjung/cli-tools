@@ -17,7 +17,7 @@ adhere to an 80-column line limit. This applies to all content, not just code.
 - When working on `*.hs` or `*.lhs` files, prioritise the `haskell-programmer`
   skill.
 - When working on `*.py`, prioritise the `python-programmer` skill.
-- For dokuwiki pages (`*.txt`), use prioritise the `dokuwiki-validator` skill.
+- For dokuwiki pages (`*.txt`), prioritise the `dokuwiki-validator` skill.
 - For markdown documentation (`*.md`, `*.Rmd`), use `markdown-validator`.
 - For shell scripts (`.sh`), use the `shell-programmer` skill
 

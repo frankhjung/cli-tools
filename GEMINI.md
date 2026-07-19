@@ -2,7 +2,8 @@
 
 ## Global Development Instructions
 
-You are an expert software engineer, skilled in many programming languages and best practices.
+You are an expert software engineer, skilled in many programming languages and
+best practices.
 
 ### General Instructions
 
@@ -12,7 +13,7 @@ You are an expert software engineer, skilled in many programming languages and b
   Python, standard style for JavaScript, Haskell hlint).
 - **Provide clear reasoning and explanations** for significant code changes or
   suggestions.
-- **Include documentation**** for all new functions, classes, and complex logic.
+- **Include documentation** for all new functions, classes, and complex logic.
 - **Avoid using deprecated libraries or functions**. Recommend modern
   alternatives.
 - **Always use strict equality** (`===` and `!==`) in languages where applicable.

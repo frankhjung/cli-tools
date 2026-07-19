@@ -4,12 +4,12 @@ This document contains Gemini CLI specific information and instructions.
 
 ## Extensions
 
-There is not a specific command to list installed Gemini extensions. You can see
-the installed extensions by listing the contents of the
-`agents/gemini/commands/` directory. Each `.toml` file in that directory
+There is not a specific command to list installed Gemini extensions. You
+can see your installed extensions by listing the contents of the
+`~/.gemini/commands/` directory. Each `.toml` file in that directory
 represents an extension.
 
-My installed extensions include:
+Example extensions:
 
 - dokuwiki: An expert to prepare and review Dokuwiki pages.
 - plan: Investigates and creates a strategic plan to accomplish a task.
