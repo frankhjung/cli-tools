@@ -32,6 +32,26 @@ comprehensions instead of imperative loops.
 A pure core is inherently high-leverage: pass values in, assert on values out.
 No mocks needed.
 
+## State Management and Concurrency Boundaries
+
+Managing state and asynchronous execution while keeping the domain core pure.
+
+**Haskell**: Software Transactional Memory (`STM`), `TVar`, or `MVar` at the
+effectful boundary. Pure transition functions compute next states, while `STM`
+atomically applies mutations.
+
+**Clojure**: Atoms, Refs, and Agents for identity/state separation. Pure
+`swap!` functions calculate new states; Clojure handles thread synchronisation
+at the boundary.
+
+**Python**: Explicit state containers (e.g. `asyncio.Queue`, thread-safe state
+objects). Pure functions compute state updates; async loops dispatch effects.
+
+### State Boundary Leverage Implication
+
+Isolating state mutation to explicit concurrency primitives keeps the bulk of
+state transition logic completely pure, testable, and composable.
+
 ## Algebraic Data Types for Domain Modelling
 
 Model your domain with sum types and product types, not class hierarchies.

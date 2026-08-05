@@ -1,6 +1,6 @@
 ---
-name: blog-writing-editor
-description: Review blog writing.
+name: blog-editor
+description: Review and edit blog posts.
 ---
 
 Provide rigorous, line-by-line editorial feedback for blog posts. Analyse text

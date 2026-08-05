@@ -9,7 +9,7 @@ Every project should have a `GLOSSARY.md` at its root (or in `docs/`) that
 defines the domain terms used in code, documentation, and conversation. This
 file is the single source of truth for "what we call things."
 
-The `improve-codebase-architecture` skill reads `GLOSSARY.md` to:
+The `requirements-review` and `architecture-review` skills read `GLOSSARY.md` to:
 
 - Name abstraction refinement candidates using domain vocabulary
 - Ensure suggestions use the project's language, not generic terms

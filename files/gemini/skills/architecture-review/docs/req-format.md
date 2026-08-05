@@ -13,6 +13,10 @@ Create the `docs/` directory lazily — only when the first requirement is neede
 ## Template
 
 ```md
+---
+status: proposed | accepted | deprecated | superseded by REQ-NNN-slug
+---
+
 # {Short title of the decision}
 
 {1–3 sentences: what's the context, what did we decide,
@@ -22,13 +26,23 @@ and why.}
 That's it. A requirement can be a single paragraph. The value is in recording
 _that_ a decision was made and _why_ — not in filling out sections.
 
+## Status Lifecycle and Supersession
+
+Requirements evolve as architectural context changes. Maintain decision
+history explicitly:
+
+- **proposed:** Under discussion during architecture review or grilling.
+- **accepted:** Decision agreed upon and currently active in the codebase.
+- **deprecated:** Decision no longer applies or recommended, but not explicitly
+  replaced by a single new REQ.
+- **superseded by REQ-NNN-slug:** Decision replaced by a newer REQ. Update the
+  old REQ header to link to the new document.
+
 ## Optional Sections
 
 Only include these when they add genuine value. Most requirements will not need
 them.
 
-- **Status** frontmatter (`proposed | accepted | deprecated | superseded by
-  REQ-NNN-slug`) — useful when decisions are revisited
 - **Considered Options** — only when the rejected alternatives are worth
   remembering
 - **Consequences** — only when non-obvious downstream effects need to be called

@@ -1,5 +1,5 @@
 ---
-name: dokuwiki-validator
+name: dokuwiki-editor
 description: Helper to prepare, review, and validate DokuWiki pages.
 ---
 
@@ -88,6 +88,27 @@ When reviewing content:
 Once a DokuWiki page has been finalised:
 
 - Reflow text to 80 columns.
+
+### Lists
+
+When preparing lists:
+
+- Use spaces not tabs.
+- Use 2-spaces to indent a list one level.
+- Use `-` for numbered lists.
+- Use `*` for bulleted lists.
+
+### Headings
+
+- The title should use heading level `======` (level 1).
+- Subheadings should use heading level `=====`. (level 2)
+- Sub-subheadings should use heading level `====`. (level 3)
+- Use headings not bold text.
+
+### Links
+
+- When linking between pages use the format `[[page|text]]`.
+- Do not use a monospace font or other text formatting for links as they do not render these.
 
 ## Validation Workflow
 

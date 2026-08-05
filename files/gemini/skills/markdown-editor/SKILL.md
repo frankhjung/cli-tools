@@ -1,5 +1,5 @@
 ---
-name: markdown-validator
+name: markdown-editor
 description: Check markdown content against standards.
 ---
 
