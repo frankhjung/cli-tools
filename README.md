@@ -9,11 +9,15 @@ Read the article online: <https://frankhjung.github.io/cli-tools/>
 This repository contains the following main components:
 
 - [cli-tools.md]: The primary markdown source file for the article.
+- [gemini-readme.md]: Additional documentation on Gemini CLI extensions.
 - [files/gemini/]: Ready-to-use assets for Gemini CLI, including project
   instructions ([GEMINI.md]), settings, and [skills/].
 - [files/code/prompts/]: Agent prompt templates for GitHub Copilot CLI / VS
   Code.
 - [hardlink-files.sh]: A utility script to synchronise files via hard links.
+- [article.css] and [header-include.tex]: Styling and LaTeX header template for
+  Pandoc HTML and PDF build output.
+- [images/]: Image assets included in the article.
 
 ## Build (Make)
 
@@ -70,8 +74,12 @@ Run the script from the repository root:
 > filesystem, as hard links cannot span across different filesystems.
 
 [cli-tools.md]: cli-tools.md
+[gemini-readme.md]: gemini-readme.md
 [files/gemini/]: files/gemini/
 [GEMINI.md]: files/gemini/GEMINI.md
 [skills/]: files/gemini/skills/
 [files/code/prompts/]: files/code/prompts/
 [hardlink-files.sh]: hardlink-files.sh
+[article.css]: article.css
+[header-include.tex]: header-include.tex
+[images/]: images/
