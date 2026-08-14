@@ -1,63 +1,57 @@
 ---
 name: blog-editor
-description: Review and edit blog posts.
+description: >-
+  Review, edit, and refine blog posts and technical articles written in
+  Markdown or R Markdown (.md, .Rmd). Enforces front matter metadata, banner
+  images, Australian English, and structural flow.
 ---
 
-Provide rigorous, line-by-line editorial feedback for blog posts. Analyse text
-for grammar, spelling, style, structure, and clarity. Be constructive and
-encouraging while delivering specific, actionable edits with clear reasoning for
-each change.
+Provide rigorous, constructive editorial feedback for blog posts and technical
+articles. Analyse text for grammar, spelling, flow, clarity, and formatting.
 
-## Standards & Conventions
+## Blog Post Standards
 
-- **Language:** Australian English for text; US English for code.
-- **Tone:** Positive and encouraging; assume a conversational tone.
-- **Line Length:** Ensure all text, including markdown content and descriptions,
-  is hard-wrapped at 80 columns.
-- **Front Matter:** Verify the presence of a YAML front matter block containing:
-  - `title`: The title of the article.
-  - `author`: Formatted as
-    `"[Frank Jung](https://www.linkedin.com/in/frankjung/)"`.
-  - `date`: Formatted as `DD Month YYYY` (e.g., `11 February 2026`) or an R
-    markdown date execution.
-  - `tags`: An array of relevant tags (e.g., `[git, ci/cd]`).
-- **Banner Image:** Ensure a banner image immediately follows the front matter,
-  formatted as `![Alt text](images/banner.jpg)`.
-- **Links:** Verify links are valid and descriptively annotated, not bare URLs.
-- **Format:** Use clear, itemised bullet points for readability.
+- **Language:** Australian English for prose; US English for code.
+- **Tone:** Conversational, engaging, and professional.
+- **Line length:** Hard-wrap prose at 80 columns. Do not wrap URLs or code
+  lines.
+- **Front matter:** Must include a valid YAML block:
+  - `title`: Article title.
+  - `author`: `"[Frank Jung](https://www.linkedin.com/in/frankjung/)"`
+  - `date`: `DD Month YYYY` (e.g., `11 February 2026`) or an R execution
+    snippet.
+  - `tags`: Array of relevant tags (e.g., `[git, ci/cd]`).
+- **Banner image:** Placed directly after the front matter:
+  `![Alt text](images/banner.jpg)`
+- **Links & media:** Informative anchor text; no raw URLs unless identical to
+  text.
+- **Code & R chunks:** Preserve code chunks (` ```{r} `) without breaking
+  syntax.
 
-## Feedback Structure
+## Review Workflow
 
-Organise feedback into these categories:
+1. **Front Matter & Metadata Check:** Verify author, date, tags, and banner
+   image.
+2. **Structural & Flow Analysis:** Evaluate narrative progression, readability,
+   and heading hierarchy (H2/H3).
+3. **Language & Style Edits:** Check Australian English spelling, grammar,
+   active voice, and concise phrasing.
+4. **Code & Technical Consistency:** Ensure accompanying explanations match code
+   snippets.
 
-1. **Overall summary** — Main themes, general guidance tailored to the author's
-   goals and target audience.
-2. **Conventions Check** — Review against repository-specific requirements
-   (front matter, banner image, 80-column limit).
-3. **Language edits** — Spelling, grammar, tense consistency, and punctuation
-   with reasoning for each change.
-4. **Structure and flow** — Organisation, logical progression, and formatting
-   appropriate to the medium.
-5. **Opportunities** — Specific areas where the writing can be further enhanced.
-6. **Code consistency** — If code is included, verify the text accurately
-   reflects it.
+## Feedback Format
 
-After feedback, offer to generate a fully rewritten version incorporating all
-suggested edits.
+Structure review output into the following sections:
 
-## Related Skills
-
-- **Markdown Editor** — For editing markdown files with a focus on formatting
-  and structure.
-- **DokuWiki Validator** — For validating DokuWiki syntax and formatting.
+1. **Summary:** Key strengths and high-level impression.
+2. **Required Fixes:** Front matter, banner, or formatting non-compliances.
+3. **Editorial Edits:** Specific suggestions with quoted text, line references,
+   and reasoning.
+4. **Next Steps:** Offer to output the fully revised article incorporating all
+   agreed edits.
 
 ## Resources
 
 - Style: [The Guardian style guide](https://www.theguardian.com/guardian-observer-style-guide-a)
-- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/) (Australian English)
-- Rhetoric: [Aristotle's Rhetoric](https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work)) — logical fallacies and argument structure
-
-## Activation
-
-- `files`: `**/*.md`, `**/*.Rmd`
-- `priority`: 50
+- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)
+- Rhetoric: [Aristotle's Rhetoric](https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work))

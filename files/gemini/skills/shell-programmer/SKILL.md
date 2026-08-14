@@ -1,39 +1,63 @@
 ---
 name: shell-programmer
-description: Review shell scripts emphasising safety, portability, and functional style.
+description: >-
+  Develop, refactor, lint, and review Bash and POSIX shell scripts (.sh, .bash).
+  Enforces defensive scripting (set -euo pipefail), ShellCheck compliance,
+  functional pipelines, and portability standards.
 ---
 
-Expertise in writing and reviewing shell scripts (Bash, Sh) with
-a focus on safety, portability, and functional style. Utilises
-shellcheck for validation and promotes clean, modular, and testable
-shell code.
+Guide shell script development and review, emphasising defensive execution,
+functional composition, ShellCheck compliance, and POSIX portability.
 
-## Review Standards
+## Safety & Defensive Scripting
 
-Assess scripts against the following criteria, providing actionable
-suggestions and corrections for any violations:
+- **Strict Modes:**
+  - Bash: `set -euo pipefail` and `IFS=$'\n\t'` at script entry.
+  - POSIX `sh`: `set -eu`.
+- **Variable Expansions:** Strictly double-quote all parameter expansions
+  (`"${var}"`, `"$@"`) to prevent word splitting and globbing.
+- **Conditionals:** Use `[[ ... ]]` for Bash scripts; use `[ ... ]` (with `=`
+  not `==`) for POSIX `sh`.
+- **Resource Cleanup:** Use `trap` handlers for deterministic temporary file
+  and process cleanup: `trap 'cleanup' EXIT INT TERM`.
+- **Error Handling:** Check return statuses of external commands; provide
+  informative error messages to stderr before exiting non-zero.
 
-1. **Validation & Safety**: Enforce
-   [shellcheck](https://github.com/koalaman/shellcheck) compliance
-   without warnings. Verify `set -euo pipefail` (in Bash) is used.
-   Ensure all variable expansions are strictly quoted to prevent
-   word splitting. Use `[[ ... ]]` for Bash tests.
-2. **Functional Style**: Avoid global state; use `local` variables
-   within functions. Treat inputs as read-only. Favour pure functions
-   and use pipes (`|`) or tools like `xargs` to compose small, single
-   purpose tools instead of monolithic imperative blocks.
-3. **Structure & Modularity**: Use `main()` as the script entry point.
-   Ensure logic is decomposed into small, single-task functions.
-4. **Style & Readability**: Limit lines to 80 characters and use 2
-   spaces for indentation. Use `lower_case` with underscores for names.
-   Favour long-form options (`--directory` rather than `-d`).
-5. **Documentation**: Document every function with a comment explaining
-   its purpose, arguments, and return value.
-6. **Portability**: If `#!/bin/sh` is used instead of Bash, explicitly
-   flag and reject any Bash-isms.
+## Functional Style & Modularity
+
+- **Scope & Immutability:** Declare all function variables with `local` (or
+  `local -r` for constants in Bash). Avoid global state mutation.
+- **Pure Pipelines:** Favour stream composition via pipes (`|`), `jq`, `awk`,
+  and `xargs` over mutable iterative loops.
+- **Entrypoint Structure:** Encapsulate script logic in small, single-task
+  functions orchestrated by a `main "$@"` entrypoint.
+
+## Portability & Formatting
+
+- **Portability:** If using `#!/bin/sh`, strictly reject Bashisms (e.g. arrays,
+  `[[ ... ]]`, `source`, `function` keyword, `${var/search/replace}`).
+- **Formatting & Style:** 2-space indentation; hard-wrap comments and prose
+  at 80 columns. Use `snake_case` for functions/variables and `UPPER_CASE`
+  for environment variables.
+- **Long-Form Options:** Prefer readable long-form flags (e.g. `--directory`
+  over `-d`) in scripts.
+- **Tooling:** Ensure clean passes with `shellcheck` and formatting via `shfmt`.
+
+## Review & Output Contract
+
+When reviewing or refactoring shell code, organise output into:
+
+1. **Summary:** Architectural overview and safety assessment.
+2. **Safety & Error Handling:** Missing quotes, unprotected expansions, traps,
+   or unchecked command exits.
+3. **Functional Style & Modularity:** Scoping (`local`), decomposition, and
+   pipeline composition.
+4. **ShellCheck & Portability:** ShellCheck warnings and POSIX compliance.
+5. **Suggested Code / Diff:** Idiomatic, safe shell implementation.
 
 ## Resources
 
-- Documentation: [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)
-- Syntax: [ShellCheck](https://github.com/koalaman/shellcheck)
-- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/) (Australian English)
+- Linter: [ShellCheck](https://github.com/koalaman/shellcheck)
+- Formatter: [shfmt](https://github.com/mvdan/sh)
+- Reference: [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)

@@ -12,19 +12,24 @@ adhere to an 80-column line limit. This applies to all content, not just code.
 
 ## Expert Routing
 
-- When working on Ansible roles (`roles/*`) or tasks (`main.yaml`), prioritise
-  the `ansible-expert` skill.
-- When working on `*.hs` or `*.lhs` files, prioritise the `haskell-programmer`
-  skill.
-- When working on `*.py`, prioritise the `python-programmer` skill.
-- For dokuwiki pages (`*.txt`), prioritise the `dokuwiki-validator` skill.
-- For markdown documentation (`*.md`, `*.Rmd`), use `markdown-validator`.
-- For shell scripts (`.sh`), use the `shell-programmer` skill
+Automatically prioritise the use of specialised skills based on task context:
 
-## Documentation Review
-
-- For exhaustive document reviews, the user should prefer activating the
-  `document-critique` or `markdown-validator` or `dokuwiki-validator` skills.
+- **Code:**
+  - `clojure-programmer`: Clojure, ClojureScript, Babashka (`.clj`, `.cljs`,
+    `.bb`, `deps.edn`).
+  - `gnur-programmer`: GNU R scripts and packages (`.R`, `.Rmd`, `testthat`).
+  - `haskell-programmer`: Haskell codebases (`.hs`, `.lhs`, `.cabal`).
+  - `lean-programmer`: Lean 4 code and proofs (`.lean`, `lakefile.lean`).
+  - `python-programmer`: Modern Python 3.14+ (`.py`, `pyproject.toml`).
+  - `shell-programmer`: Bash and POSIX shell scripts (`.sh`, `.bash`).
+- **Documentation:**
+  - `blog-editor`: Technical blog post reviews and metadata validation.
+  - `dokuwiki-editor`: DokuWiki pages and wiki documents (`.txt`).
+  - `markdown-editor`: Markdown formatting, linting, and structure (`.md`).
+- **Planning & Architecture:**
+  - `architecture-review`: Codebase architecture and FP refactoring.
+  - `requirements-review`: Interactive requirements grilling and glossary
+    reconciliation.
 
 ## Resources
 

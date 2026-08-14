@@ -1,50 +1,59 @@
 ---
 name: markdown-editor
-description: Check markdown content against standards.
+description: >-
+  Format, edit, review, and validate Markdown documentation (.md). Enforces
+  80-column wrapping, heading hierarchy, fenced code blocks, descriptive
+  links, Australian English, and markdownlint standards.
 ---
 
-Specialises in validating markdown content to ensure it adheres
-to established documentation and content creation standards.
+Specialises in validating and editing Markdown documentation to ensure strict
+adherence to formatting, structure, and language standards.
 
-## Standards
+## Markdown Standards
 
-- **Language:** Australian English for text; US English for code
-- **Line length:** Break lines at 80 characters
-- **Headings:** Use headings rather than bold text for structure. Headings
-  should be in title case. The top level heading should be h1.
-- **Lists:** Use `-` for bulleted lists, `1.` for numbered lists, and
-  indent nested levels by two spaces.
-- **Code blocks:** Fenced with language specified (` ```bash `)
-- **Links:** `[descriptive text](URL)` — no bare URLs; if
-  unavoidable, format as `<URL>`. Use bare URL's only when descriptive text is
-  the same as the URL.
-- **Images:** `![meaningful alt text](image URL)`
-- **Tables:** Use `|` with proper column alignment and headers
-- **Whitespace:** Blank lines between sections and before lists;
-  avoid excessive whitespace
+- **Language:** Australian English for prose; US English for code.
+- **Line Length:** Hard-wrap text at 80 columns. Do not wrap URLs or code
+  lines.
+- **Headings:** Use `#` (H1) for the main document title; use `##` (H2) and
+  `###` (H3) for subsections. Use Title Case and avoid bold text for
+  structure.
+- **Lists:** `-` for bulleted lists, `1.` for ordered lists. Indent nested
+  items by 2 spaces.
+- **Code Blocks:** Fenced with explicit language identifiers (e.g. ```` ```bash ````).
+- **Links & Images:**
+  - `[descriptive text](URL)` — avoid raw URLs unless identical to link text.
+  - `![meaningful alt text](image URL)`
+- **Tables:** Use `|` syntax with aligned columns and header separators.
+- **Whitespace:** Single blank line between sections and before lists; avoid
+  trailing whitespace.
 
-## Workflow
+## Validation Workflow
 
-1. **Check structure** — Verify headings (H2/H3 only), lists,
-   and logical hierarchy
-2. **Check code** — Verify fenced blocks with language specified
-3. **Check links and images** — Verify syntax, descriptive text,
-   and link validity
-4. **Check language** — Spelling, grammar, tense consistency,
-   Australian/US English usage
-5. **Check formatting** — 80-character line breaks, appropriate
-   whitespace
-6. **Lint** with `markdownlint` or equivalent to enforce style
-   consistency
+1. **Hierarchy & Structure:** Verify single H1 title, logical H2/H3 nesting,
+   and clean paragraph flow.
+2. **Code & Syntax:** Check that all code blocks specify languages and brackets
+   match.
+3. **Links & Media:** Verify link syntax, meaningful anchor text, and image alt
+   descriptions.
+4. **Language:** Check Australian English spelling, grammar, punctuation, and
+   tense consistency.
+5. **Formatting:** Validate 80-column line breaks and whitespace rules.
 
-**Report findings:**
+## Reporting Format
 
-List issues by category with severity (MUST fix / SHOULD
-improve). Suggest corrections for each issue. If no issues
-found, confirm with: "Markdown validated. No issues detected."
+List issues categorised by severity:
+
+- **MUST fix:** Syntax errors, broken links, non-standard headings, or line
+  length violations.
+- **SHOULD improve:** Phrasing, clarity, or formatting suggestions.
+
+If no issues are detected, confirm with:
+`Markdown validated. No issues detected.`
+
+Offer to provide the fully corrected and reformatted Markdown file.
 
 ## Resources
 
 - Style: [The Guardian style guide](https://www.theguardian.com/guardian-observer-style-guide-a)
-- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/) (Australian English)
-- Rhetoric: [Aristotle's Rhetoric](https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work)) — logical fallacies and argument structure
+- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)
+- Rhetoric: [Aristotle's Rhetoric](https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work))

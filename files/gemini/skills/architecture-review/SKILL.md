@@ -1,156 +1,97 @@
 ---
 name: architecture-review
-description: Improve codebase architecture with FP-idiomatic refinements.
+description: >-
+  Identify low-leverage modules and guide FP-idiomatic architectural
+  refactoring. Conducts multi-stage exploration, interface design,
+  backward-compatible migration planning, and TDD implementation.
 ---
 
-Identify low-leverage Modules and propose FP-idiomatic refinements that
-increase leverage. Optimise for testability, composability, and readability. Use
-`GLOSSARY.md` for domain terms and `docs/REQ-*` for prior decisions.
+Guide architectural refactoring to increase module leverage, composability,
+and testability using pure functional programming patterns.
 
 ## Operating Mode
 
-Read-only until the user selects a candidate (step 2).
+Read-only until the user selects a candidate module (Step 2).
 
-- Do not edit files.
-- Do not create tests.
-- Do not run build or lint commands that mutate the workspace.
+- Do not edit files, create tests, or run mutating commands during
+  exploration.
+- After candidate selection, design alternative interfaces (Step 3),
+  stress-test with `requirements-review` (Step 4), plan migration (Step 5),
+  and execute via TDD (Step 6).
 
-After selection, design the interface (step 3), stress-test it (step 4), plan
-migration (step 5), then follow TDD (step 6).
+## Multi-Stage Process
 
-### Orchestration
+### 1. Explore Codebase
 
-Multi-turn skill. Use `update_topic` at each phase:
+Inspect `GLOSSARY.md` and `docs/REQ-*` for domain context. Walk the codebase
+using `grep_search` and `list_dir` to measure architectural friction:
 
-1. **Step 1 (Explore)**: Title "Exploring Architecture", summary of search
-   strategy.
-2. **Step 2 (Candidates)**: Title "Architecture Candidates", summary of
-   findings.
-3. **Step 3 (Design)**: Title "Designing Interface", summary of alternatives.
-4. **Step 4 (Grill)**: Title "Grilling Design", summary of constraints
-   resolved.
-5. **Step 5 (Migrate)**: Title "Migration Strategy", summary of transition.
-6. **Step 6 (Implement)**: Title "Implementing [Name]", summary of TDD plan.
-7. **Step 7 (Verify)**: Title "Verifying Architecture", summary of build checks.
-
-## Vocabulary
-
-Refer to [docs/language.md](docs/language.md) for all architectural terms and
-definitions. Avoid generic terms like "component," "service," or "API."
-
-Core architectural terms defined in `language.md`: **Module**, **Interface**
-(Contract), **Leverage** (high/low), **Polymorphic Boundary**, **Capability
-Interface**, and **Adapter**.
-
-Use `GLOSSARY.md` for project domain terms and respect `docs/REQ-*` decisions.
-
-## Process
-
-### 1. Explore
-
-Read the project's `GLOSSARY.md` and any `docs/REQ-NNN-slug.md` in the target area.
-See [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md) for glossary formatting rules.
-
-Walk the codebase to record architectural friction and quantitative metrics:
-
-- **High Fan-in / Fan-out:** Modules imported across many contexts or depending
-  on many downstream components.
-- **Low Leverage:** Modules where the public interface is nearly as complex as
-  the internal implementation.
-- **Lost Locality:** Pure functions extracted solely for unit tests, while bugs
-  concentrate in caller invocation logic.
-- **Leaky Boundaries:** Tightly coupled modules leaking implementation details
-  across polymorphic boundaries.
-- **Untested Surface:** Core domain logic hard to test through current interface.
-
-Run the **deletion test** on candidate modules: would deleting the module
-concentrate complexity in one place, or scatter it across callers?
+- **High Fan-in / Fan-out:** Modules coupled across many disparate contexts.
+- **Low Leverage:** Modules where interface complexity equals internal logic.
+- **Lost Locality:** Helpers extracted solely for unit tests, while caller
+  orchestration logic harbours defects.
+- **Leaky Boundaries:** Modules exposing internal representations.
+- **Deletion Test:** Would removing the module concentrate complexity
+  locally or scatter it across callers?
 
 ### 2. Present Candidates
 
-List refinement candidates. For each candidate include:
+List refactoring candidates with:
 
-- **Files** — involved files/modules
-- **Problem** — architectural friction and metrics
-- **Solution** — plain English, framed using FP patterns (see
-  [docs/fp-patterns.md](docs/fp-patterns.md))
-- **Benefits** — expected leverage, locality, and testability improvements
+- **Files:** Target modules and dependents.
+- **Problem:** Architectural friction and metric evidence.
+- **Solution:** Plain-English FP pattern
+  (see [docs/fp-patterns.md](docs/fp-patterns.md)).
+- **Benefits:** Expected gains in leverage, locality, and testability.
 
-Use `GLOSSARY.md` vocabulary for domain concepts and
-[docs/language.md](docs/language.md) for architecture.
-
-**REQ conflicts:** Surface only when friction warrants reopening prior REQs.
-
-Do NOT propose concrete interfaces yet. Ask the user: "Which of these candidates
-would you like to explore?"
+*Do not propose concrete code interfaces yet. Prompt the user to choose a
+candidate.*
 
 ### 3. Design the Interface
 
 Follow [docs/interface-design.md](docs/interface-design.md). Design at least
-three genuinely different alternatives before selecting a recommendation.
+three distinctly different interface contracts before recommending one.
 
 ### 4. Grilling Loop
 
-Use the `grill-me` skill to stress-test the interface design. If
-`activate_skill(name="grill-me")` is available, call it first. Otherwise, run
-the grilling checklist inline.
-
-Apply updates inline as decisions crystallise:
-
-- Add new terms to `GLOSSARY.md` lazily.
-- Update `GLOSSARY.md` definitions when clarified.
-- Offer a REQ document when a load-bearing decision is rejected or affirmed. See
-  [docs/req-format.md](docs/req-format.md).
+Stress-test the chosen interface using the `requirements-review` skill.
+Update `GLOSSARY.md` lazily and propose decision notes in
+`docs/REQ-NNN-slug.md` for load-bearing trade-offs.
 
 ### 5. Plan Migration Strategy
 
-Before changing code, outline a backward-compatible migration plan (e.g.
-Strangler Fig pattern). Ensure callers can transition incrementally without
-breaking the build.
+Outline a backward-compatible migration plan (e.g. Strangler Fig pattern)
+ensuring callers can transition incrementally without breaking builds.
 
-### 6. Write Tests First (TDD)
+### 6. Test-Driven Implementation (TDD)
 
-Follow the TDD workflow in [docs/tdd.md](docs/tdd.md):
+Follow [docs/tdd.md](docs/tdd.md):
 
-1. **Red:** Write failing tests against the refined interface.
-2. **Green:** Minimum implementation to pass.
-3. **Refactor:** Clean implementation while keeping tests green.
-
-Prefer property-based tests for pure functions.
+1. **Red:** Write failing tests against the new contract.
+2. **Green:** Minimal pure implementation to pass.
+3. **Refactor:** Clean implementation while preserving green tests.
 
 ### 7. Build and Verify
 
-After implementation:
+- Execute test and build suites (`make`, `cabal test`, `pytest`, `cargo test`).
+- Perform dead-code cleanup of deprecated modules.
+- Validate documentation formatting with `markdown-editor`.
 
-- Execute build and test suites (`make`, `cabal test`, `pytest`).
-- Verify dead-code cleanup — remove unused legacy modules and imports.
-- Validate generated markdown documentation using `markdown-validator`.
+## Supporting Documents & Resources
 
-## Exploration Tips
+All architectural documentation lives in `docs/`:
 
-- **`grep_search`** for high import fan-in or public export lists.
-- **`file_search`** for clusters of related files.
-- **Look for pass-through code** formatting data solely for downstream calls.
-
-## Supporting Documents
-
-All supporting documents live in `docs/`:
-
-- [language.md](docs/language.md) — shared vocabulary
-- [interface-design.md](docs/interface-design.md) — design-it-twice and
-  dependency strategy
-- [req-format.md](docs/req-format.md) — REQ document format
-- [tdd.md](docs/tdd.md) — test-driven design workflow
-- [fp-patterns.md](docs/fp-patterns.md) — FP patterns and leverage implications
-
-Additional:
-
-- [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md) — format for project `GLOSSARY.md`
+- [language.md](docs/language.md) — Shared architectural vocabulary.
+- [interface-design.md](docs/interface-design.md) — Multi-option design rules.
+- [req-format.md](docs/req-format.md) — Decision document schema.
+- [tdd.md](docs/tdd.md) — Test-driven development workflow.
+- [fp-patterns.md](docs/fp-patterns.md) — FP design patterns.
+- [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md) — Domain glossary schema.
 
 ## Cross-Skill References
 
-- **`grill-me`** — grilling loop (step 4)
-- **`markdown-validator`** — validate generated markdown
-- **`haskell-programmer`** — Haskell type safety, purity, HLint
-- **`clojure-programmer`** — Clojure data orientation, protocols
-- **`python-programmer`** — Python functional style, ruff, typing, pytest
+- **`requirements-review`** — Grilling interface designs (Step 4).
+- **`markdown-editor`** — Markdown validation and linting.
+- **Language Skills:** `clojure-programmer`, `gnur-programmer`,
+  `haskell-programmer`, `lean-programmer`, `python-programmer`,
+  `shell-programmer`.

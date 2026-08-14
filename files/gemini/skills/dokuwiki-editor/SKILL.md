@@ -1,150 +1,63 @@
 ---
 name: dokuwiki-editor
-description: Helper to prepare, review, and validate DokuWiki pages.
+description: >-
+  Create, edit, review, and validate DokuWiki pages and wiki documents (.txt).
+  Enforces DokuWiki markup syntax, Australian English, 80-column line wrapping,
+  and structured validation reporting.
 ---
 
-Specialised expertise in [DokuWiki](https://www.dokuwiki.org/)
-[syntax](https://www.dokuwiki.org/wiki:syntax), usage, and best
-practices for creating, editing, reviewing, and validating DokuWiki
-pages.
+Expert guidance for creating, reviewing, and validating DokuWiki content.
+Ensures correct DokuWiki markup, structural clarity, and language standards.
 
-## Goal
+## Standards & Formatting
 
-Prepare a DokuWiki page for the provided request or content while
-ensuring syntax correctness, language quality, and structural clarity.
+- **Language:** Australian English for prose; US English for code.
+- **Line length:** Hard-wrap all text at 80 columns. Do not break URLs.
+- **Code formatting:** Use double single quotes for inline monospaced text
+  (`''code''`), never backticks.
 
-## Standards
+## DokuWiki Syntax Reference
 
-- **Language:** Australian English for text; US English for code
-- **Line length:** 80-column limit for all generated content
-- **Code formatting:** Use double single quotes for monospaced
-  text (''example''), not backticks
+- **Headings:**
+  - `====== Level 1 (Title) ======`
+  - `===== Level 2 (Section) =====`
+  - `==== Level 3 (Subsection) ====`
+  - `=== Level 4 ===`
+  - `== Level 5 ==`
+  *(Do not use bold text for headings).*
+- **Text Styles:** `**bold**`, `//italic//`, `__underline__`, `''monospace''`.
+- **Lists:**
+    Do _not_ wrap lines for list items.
+    Indent list items with two spaces (not tabs) per level:
+    - Unordered: `  * Item`
+    - Ordered: `  - Item`
+- **Links:** `[[page|Link Text]]` or `[[https://example.com|Link Text]]`.
+  Do not place text styling inside link brackets.
+- **Code Blocks:** `<code [lang]>...</code>` or `<file [name]>...</file>`.
+- **Tags:** `{{tag>tag1 tag2}}` when categorising content.
 
-## Capabilities
+## Review & Validation Workflow
 
-The skill can perform the following tasks:
+1. **Syntax Validation:** Verify heading hierarchy, list indentation, link
+   syntax, and code block formatting.
+2. **Language & Clarity:** Review Australian English spelling, grammar, tense
+   consistency, and concise expression.
+3. **Reference Integrity:** Ensure internal page targets and external URLs are
+   valid and descriptive.
+4. **Line Wrapping:** Reflow all prose cleanly at 80 columns.
 
-- **Clear writing style**
-  - Ensures sentences are concise and easy to understand.
-  - Flags overly complex phrasing, ambiguity, or unnecessary jargon.
-  - Suggests improvements to readability and flow.
-- **Reference verification**
-  - Confirms internal and external references are present and
-    correctly linked.
-  - Detects broken links, missing anchors, and mismatched labels.
-- **Spelling checks**
-  - Identifies misspelled words and suggests corrections while
-    preserving technical terminology.
-  - Enforces Australian English for text and US English for code.
-- **Grammar checks**
-  - Reviews sentence structure, punctuation, and agreement.
-  - Ensures tense consistency and correct word usage.
-- **DokuWiki syntax and best practices**
-  - Advises on markup for headings, lists, links, images, and other
-    elements.
-  - Recommends best practices for organising content and templates.
-- **Tagging and categorisation**
-  - Suggests appropriate tags for content categorisation.
-  - Ensures tags follow DokuWiki conventions.
-- **Link and reference management**
-  - Validates link formatting and functional targets.
-  - Provides guidance on effective cross-references.
-- **Content structuring**
-  - Helps structure content logically for navigation and readability.
-  - Recommends sectioning and formatting improvements.
-- **Git integration**
-  - Assists with version control practices for DokuWiki content in
-    Git repositories.
-  - Provides guidance on commit messages and branching strategies.
+## Reporting Format
 
-## Workflow and Behavior
+List issues categorised by **Syntax**, **Language**, or **Links** with
+specific suggested corrections.
 
-### Preparing Content
-
-When preparing or creating content:
-
-- Use existing DokuWiki syntax and conventions.
-- Set tags appropriately to categorise and organise content.
-- Ensure links and references are valid and correctly formatted.
-- Maintain a clear and concise writing style.
-- Reflow text to 80 columns.
-- When no issues are found, return:
-  "DokuWiki page created. No issues detected."
-
-### Reviewing Content
-
-When reviewing content:
-
-- Check grammar and spelling errors.
-- Check broken links, missing anchors, and mismatched labels.
-- Check text is clear and concise.
-- Ensure links and references are valid and correctly formatted.
-- Ensure Australian English is used for text.
-- Ensure US English is used for code.
-- Use existing DokuWiki syntax and conventions.
-
-### Final Formatting
-
-Once a DokuWiki page has been finalised:
-
-- Reflow text to 80 columns.
-
-### Lists
-
-When preparing lists:
-
-- Use spaces not tabs.
-- Use 2-spaces to indent a list one level.
-- Use `-` for numbered lists.
-- Use `*` for bulleted lists.
-
-### Headings
-
-- The title should use heading level `======` (level 1).
-- Subheadings should use heading level `=====`. (level 2)
-- Sub-subheadings should use heading level `====`. (level 3)
-- Use headings not bold text.
-
-### Links
-
-- When linking between pages use the format `[[page|text]]`.
-- Do not use a monospace font or other text formatting for links as they do not render these.
-
-## Validation Workflow
-
-**For all content (create, review, finalise):**
-
-1. **Validate syntax** - Ensure all markup (headings, lists,
-   links, images) is correct and follows DokuWiki conventions
-2. **Check language** - Grammar, spelling, clarity, tone, tense
-   consistency; flag ambiguity, jargon, and overly complex
-   phrasing
-3. **Verify links** - Correct formatting, functional targets,
-   matching labels; detect broken links and missing anchors
-4. **Reflow text** to 80 columns
-5. **Tag appropriately** for categorisation and cross-referencing
-
-**Report findings:**
-
-List issues by category (syntax, language, links) with specific
-corrections suggested. If no issues found, confirm with:
-  "DokuWiki page validated. No issues detected."
-
-## Related Skills
-
-- **Blog Writing Editor** - For line-by-line editorial feedback on
-  blog posts.
-- **Markdown Editor** - For editing markdown files with a focus on
-  formatting and structure.
+- If issues are resolved during creation, confirm with:
+  `DokuWiki page created. No issues detected.`
+- If validating existing content with no issues found, confirm with:
+  `DokuWiki page validated. No issues detected.`
 
 ## Resources
 
-- DokuWiki Syntax: [DokuWiki Syntax Guide](https://www.dokuwiki.org/wiki:syntax)
-- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/) (Australian English)
+- Syntax Guide: [DokuWiki Syntax Guide](https://www.dokuwiki.org/wiki:syntax)
 - Style: [The Guardian style guide](https://www.theguardian.com/guardian-observer-style-guide-a)
-- Rhetoric: [Aristotle's Rhetoric](https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work)) - logical fallacies and argument structure
-
-## Activation
-
-- `files`: `**/*.txt`
-- `priority`: 50
+- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)

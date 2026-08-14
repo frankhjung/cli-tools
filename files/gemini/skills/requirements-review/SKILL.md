@@ -1,79 +1,54 @@
 ---
 name: requirements-review
-description: Grill relentlessly about a plan or design.
+description: >-
+  Conduct interactive requirements elicitation and stress-test plans or
+  designs. Explores edge cases, sharpens domain terms, enforces invariants,
+  and updates GLOSSARY.md and architecture records.
 ---
 
-# Requirements Review
+Guide requirements elicitation through rigorous, step-by-step architectural
+inquiry until complete alignment on design, scope, and domain models is reached.
 
-Interview the user relentlessly about every aspect of a plan or design until a
-shared architectural understanding is reached. Walk down each branch of the
-design tree, resolving dependencies between decisions step-by-step. For each
-question, provide a recommended answer.
+## Interview Workflow & Rules
 
-Ask questions one at a time. If a question can be answered by inspecting the
-codebase, explore the codebase first before asking.
+1. **Inspect Before Asking:** Explore the codebase and existing documentation
+   first; never ask questions that the code already answers.
+2. **One Question at a Time:** Ask targeted questions sequentially down the
+   decision tree. For every question, provide a recommended answer with clear
+   reasoning.
+3. **Sharpen Fuzzy Terms:** Propose canonical domain terminology when
+   ambiguous language arises (e.g. distinguishing User vs Customer vs Account).
+4. **Concrete Edge Cases:** Test boundaries with realistic failure scenarios
+   and state transitions.
 
-## During the Session
+## Grilling Dimensions
 
-### Grilling Checklist
+Stress-test requirements across these core dimensions:
 
-Stress-test requirements across these key dimensions:
+- **Scope & Non-Goals:** Explicit boundaries of what will *not* be built.
+- **State & Invariants:** Forbidden transitions, constraints, and data shapes.
+- **Failure Modes & Degradation:** Behaviour when downstream services or
+  dependencies fail.
+- **Data Ownership:** Which domain component owns specific fields and schemas.
+- **Concurrency & Ordering:** Simultaneous operations and race conditions.
 
-1. **Scope and Non-Goals:** What is explicitly out of scope for this change?
-2. **State and Invariants:** What state transitions or data shapes are
-   forbidden?
-3. **Failure Modes:** How does the system degrade when downstream dependencies
-   fail?
-4. **Data Ownership:** Which domain module owns each entity and field?
-5. **Concurrency:** What happens if two operations occur simultaneously?
+## Glossary & Architecture Documentation
 
-### Challenge Against the Glossary
+- **Glossary Checks:** Challenge terms against local and root `GLOSSARY.md`
+  files. Surface contradictions immediately.
+- **Inline Glossary Updates:** When a domain concept is defined, update the
+  relevant `GLOSSARY.md` immediately using the format defined in
+  [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md). Keep it devoid of implementation
+  details.
+- **Architecture Decisions:** When a load-bearing trade-off is resolved, offer
+  to record a decision note in `docs/REQ-NNN-slug.md`.
 
-When the user uses a term that conflicts with language in `GLOSSARY.md`, call
-it out immediately: *"Your glossary defines 'cancellation' as X, but you seem to
-mean Y — which is it?"*
+## Session Conclusion
 
-If both root and local glossaries exist, challenge terms against the local
-glossary first, then verify it does not conflict with the root glossary.
+Upon concluding the review:
 
-### Sharpen Fuzzy Language
-
-When vague or overloaded terms arise, propose a precise canonical term:
-*"You are saying 'account' — do you mean Customer or User? Those represent
-distinct domain concepts."*
-
-### Discuss Concrete Scenarios
-
-Stress-test domain relationships with concrete scenarios. Invent edge cases that
-force precision around conceptual boundaries.
-
-### Cross-Reference with Code
-
-Verify whether code matches stated requirements. Surface contradictions:
-*"The codebase cancels entire Orders, but you stated partial cancellation is
-possible — which behaviour is required?"*
-
-### Update `GLOSSARY.md` Inline
-
-When a domain term is resolved, update the relevant `GLOSSARY.md` immediately. Do
-not batch definitions up. Use the format defined in
-[GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md).
-
-Keep `GLOSSARY.md` devoid of implementation details; it is a domain glossary
-and nothing else.
-
-### Prompt for REQ Documents
-
-When a load-bearing architectural decision or trade-off is resolved, offer to
-record a requirement document:
-*"Should I record this decision in `docs/REQ-NNN-slug.md`?"*
-
-## At the End of the Session
-
-At the conclusion of the review session:
-
-1. Update the primary plan document to reflect all clarified requirements and
-   agreed decisions.
-2. Summarise any newly added or refined terms in `GLOSSARY.md`.
-3. Create requested `docs/REQ-NNN-slug.md` files for load-bearing architectural
-   trade-offs.
+1. Update the primary implementation plan or design document to reflect all
+   settled decisions.
+2. Summarise new or refined terms recorded in `GLOSSARY.md`.
+3. Create any requested architectural requirement notes
+   (`docs/REQ-NNN-slug.md`).
