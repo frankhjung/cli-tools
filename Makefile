@@ -27,6 +27,17 @@ default: $(PROJECT).html $(PROJECT).pdf
 		--output public/$@ \
 		$<
 
-.PHONY: clean
+.PHONY: clean install
 clean:
 	@$(RM) -rf public
+
+install:
+	# Gemini
+	@mkdir -p ~/.gemini/config/skills
+	@cp -v files/gemini/GEMINI.md ~/.gemini/GEMINI.md
+	@cp -vR files/gemini/skills/* ~/.gemini/config/skills/
+	# VS Code
+	@mkdir -p ~/.config/Code/User/prompts
+	@cp -vR files/code/prompts/* ~/.config/Code/User/prompts/
+	@mkdir -p ~/.agents/skills/
+	@cp -vR files/gemini/skills/* ~/.agents/skills/

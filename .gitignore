@@ -6,6 +6,7 @@ deleted.files
 .htaccess
 *.log
 .lsp/
+public/
 *.pyc
 *.retry
 .*.swo

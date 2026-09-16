@@ -13,9 +13,9 @@ strict idempotency, and clean playbook structures.
 
 - **Idempotency is Non-Negotiable:** All tasks must report `changed: false` on
   subsequent runs when the system is already in the desired state.
-- **Handlers for Side Effects:** Never restart services directly in task
-  blocks. Use `notify` triggers to run handlers (e.g. service restart or
-  reload) only when configuration files change.
+- **Handlers for Side Effects:** Never restart services directly in task blocks.
+  Use `notify` triggers to run handlers (e.g. service restart or reload) only
+  when configuration files change.
 - **Explicit Desired State:** Specify `state: present`, `state: started`, or
   appropriate explicit parameters rather than relying on implicit defaults.
 - **Loop Hygiene:** Use `loop_control.label` when looping over complex
@@ -53,10 +53,10 @@ When developing for this repository or similar Debian environments:
   dependencies, directories, and groups explicitly within the role.
 - **Debian Standards:** Adhere strictly to the Debian Filesystem Hierarchy
   Standard (FHS). Manage daemons natively via `ansible.builtin.systemd`.
-- **Targeting & Entrypoints:** The primary playbook is `site.yaml`, targeted
-  via `make` (which runs `ansible-playbook -e "target=$(uname -n)" site.yaml`).
-- **Conditional Roles:** Guard optional roles using inventory group checks
-  (e.g. `when: "'docker' in group_names"`).
+- **Targeting & Entrypoints:** The primary playbook is `site.yaml`, targeted via
+  `make` (which runs `ansible-playbook -e "target=$(uname -n)" site.yaml`).
+- **Conditional Roles:** Guard optional roles using inventory group checks (e.g.
+  `when: "'docker' in group_names"`).
 - **Rollback Roles:** If requested, provide matching removal roles (e.g.
   `roles/<role>_remove`) that purge packages, delete configs, and stop services.
 - **File Extensions:** Always use `.yaml` extensions consistently (not `.yml`).
@@ -64,10 +64,10 @@ When developing for this repository or similar Debian environments:
 ## Testing, Tooling & Workflow
 
 - **Linting & Validation:** Run `make lint` before finalising changes. This
-  validates playbook syntax, runs `ansible-lint`, and checks role invariants
-  via `tools/list_role_diffs.py`.
-- **Execution & Tagging:** Maintain meaningful task names and tags for
-  selective execution (`make tags tags=<role>`) and task resumption
+  validates playbook syntax, runs `ansible-lint`, and checks role invariants via
+  `tools/list_role_diffs.py`.
+- **Execution & Tagging:** Maintain meaningful task names and tags for selective
+  execution (`make tags tags=<role>`) and task resumption
   (`make resume task="<task name>"`).
 - **Idempotency Testing:** Verify roles by running the playbook twice. The
   second pass must return zero changes (`changed=0`).
@@ -85,12 +85,12 @@ When reviewing or refactoring Ansible code, organise output into:
 
 ## Related Skills
 
-- **Debian System Administration** - For role layout, package management,
-  and service lifecycle under Debian and FHS conventions.
-- **YAML & CI Automation** - For GitHub Actions, pipeline logic, and
-  structured configuration management workflows.
-- **Security Hardening** - For vault handling, least-privilege access,
-  service isolation, and secrets hygiene.
+- **Debian System Administration** - For role layout, package management, and
+  service lifecycle under Debian and FHS conventions.
+- **YAML & CI Automation** - For GitHub Actions, pipeline logic, and structured
+  configuration management workflows.
+- **Security Hardening** - For vault handling, least-privilege access, service
+  isolation, and secrets hygiene.
 
 ## Resources
 
