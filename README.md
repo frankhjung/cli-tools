@@ -14,7 +14,7 @@ This repository contains the following main components:
   instructions ([GEMINI.md]), settings, and [skills/].
 - [files/code/prompts/]: Agent prompt templates for GitHub Copilot CLI / VS
   Code.
-- [hardlink-files.sh]: A utility script to synchronise files via hard links.
+- [hardlink-files.sh]: A utility script to synchronise files via soft links.
 - [article.css] and [header-include.tex]: Styling and LaTeX header template for
   Pandoc HTML and PDF build output.
 - [images/]: Image assets included in the article.
@@ -48,18 +48,18 @@ See also my blog:
 
 - <https://frankhjung.blogspot.com/>
 
-## Hardlink Files Script (`hardlink-files.sh`)
+## Soft-link Files Script (`hardlink-files.sh`)
 
-The [hardlink-files.sh] script is used to synchronise the local assets
-in the `files/` directory with files from an Ansible AI role directory
-(defined in the `MAPPINGS` variable).
+The [hardlink-files.sh] script is used to synchronise the local assets in the
+`files/` directory with files from an Ansible AI role directory (defined in the
+`MAPPINGS` variable).
 
-It creates hard links for all regular files, preserving the directory
-structure. Because hard links are used:
+It creates soft links for all regular files, preserving the directory structure.
+Because soft links are used:
 
-- Both paths refer to the same inode on disk.
-- Edits made to files in either directory are immediately reflected in both.
-- Duplicate file storage is avoided.
+- Destination files point to the source files.
+- Edits made to source files are immediately reflected in destinations.
+- Links can span across different filesystems.
 
 ### Usage
 
@@ -69,9 +69,8 @@ Run the script from the repository root:
 ./hardlink-files.sh
 ```
 
-> [!IMPORTANT]
-> Both the source and destination directories must reside on the same
-> filesystem, as hard links cannot span across different filesystems.
+> [!IMPORTANT] If the source path moves or is removed, links in destination
+> become broken.
 
 [cli-tools.md]: cli-tools.md
 [gemini-readme.md]: gemini-readme.md
