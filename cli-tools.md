@@ -7,7 +7,6 @@ This repo is a set of ready-to-copy assets for working with Gemini CLI:
 
 - Project instructions (`GEMINI.md`)
 - Gemini CLI settings (`.gemini/settings.json`)
-- Custom slash commands (`.gemini/commands/*.toml`)
 - Skills (`.gemini/skills/**/SKILL.md`)
 
 See also: [gemini-readme.md](gemini-readme.md) for extra Gemini CLI notes
@@ -65,16 +64,13 @@ From your target project directory:
 ```bash
 export CLI_TOOLS_DIR=/path/to/this/repo
 
-mkdir -p .gemini/commands .gemini/skills
+mkdir -p .gemini/skills
 
 # Project instructions (loaded when you run `gemini` in this folder)
 cp "$CLI_TOOLS_DIR/files/gemini/GEMINI.md" ./GEMINI.md
 
 # Gemini CLI settings for this project
 cp "$CLI_TOOLS_DIR/files/gemini/settings.json" ./.gemini/settings.json
-
-# Custom slash commands (invoked like: /plan <goal>)
-cp "$CLI_TOOLS_DIR/files/gemini/commands/"*.toml ./.gemini/commands/
 
 # Skills (discovered by Gemini CLI)
 cp -r "$CLI_TOOLS_DIR/files/gemini/skills/"* ./.gemini/skills/

@@ -46,7 +46,18 @@ help: ## Show this help message
 clean: ## Remove generated files
 	@$(RM) -rf public
 
-install: install-links ## Install configuration files
+install: install-copy ## Install configuration files
+
+install-copy: ## Install skills by copying (default)
+	@echo "Installing Gemini files by copying..."
+	@mkdir -p ~/.gemini
+	@cp -v files/gemini/GEMINI.md ~/.gemini/GEMINI.md
+	@cp -v files/gemini/settings.json ~/.gemini/settings.json
+	@mkdir -p ~/.gemini/skills
+	@cp -vR files/gemini/skills/* ~/.gemini/skills/
+	@echo "Installing VS Code skills by copying..."
+	@mkdir -p ~/.config/Code/User/prompts
+	@cp -vR files/code/prompts/* ~/.config/Code/User/prompts/
 
 ## Symlink every file under $(1) into $(2),
 ## preserving the relative directory structure.
@@ -60,26 +71,14 @@ define link-tree
 endef
 
 install-links: ## Install skills via symlinks
-	@echo "Linking Gemini skills..."
-	@mkdir -p "$${HOME}/.gemini/config/skills"
+	@echo "Linking Gemini files..."
+	@mkdir -p "$${HOME}/.gemini"
 	@ln -sfn "$(FILES)/gemini/GEMINI.md" \
 	  "$${HOME}/.gemini/GEMINI.md"
-	$(call link-tree,$(FILES)/gemini/skills,$${HOME}/.gemini/config/skills)
+	@ln -sfn "$(FILES)/gemini/settings.json" \
+	  "$${HOME}/.gemini/settings.json"
+	@mkdir -p "$${HOME}/.gemini/skills"
+	$(call link-tree,$(FILES)/gemini/skills,$${HOME}/.gemini/skills)
 	@echo "Linking VS Code prompts..."
 	@mkdir -p "$${HOME}/.config/Code/User/prompts"
 	$(call link-tree,$(FILES)/code/prompts,$${HOME}/.config/Code/User/prompts)
-	@echo "Linking agent skills..."
-	@mkdir -p "$${HOME}/.agents/skills"
-	$(call link-tree,$(FILES)/gemini/skills,$${HOME}/.agents/skills)
-
-install-copy: ## Install skills by copying (fallback)
-	@echo "Installing Gemini skills by copying..."
-	@mkdir -p ~/.gemini/config/skills
-	@cp -v files/gemini/GEMINI.md ~/.gemini/GEMINI.md
-	@cp -vR files/gemini/skills/* ~/.gemini/config/skills/
-	@echo "Installing VS Code skills by copying..."
-	@mkdir -p ~/.config/Code/User/prompts
-	@cp -vR files/code/prompts/* ~/.config/Code/User/prompts/
-	@echo "Installing agent skills by copying..."
-	@mkdir -p ~/.agents/skills/
-	@cp -vR files/gemini/skills/* ~/.agents/skills/
