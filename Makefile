@@ -5,10 +5,26 @@
 
 PROJECT := cli-tools
 PANDOC  ?= pandoc
+
+# Summary of Skill Directories:
+#
+# - `~/.agents/skills/`:
+# The open cross-agent standard directory. Read by Copilot, Antigravity (when
+# in ~), Claude, and where Omarchy installs its system skills.
+#
+# - `~/.copilot/skills/`:
+# The dedicated personal skill folder for GitHub Copilot.
+#
+# - `~/.gemini/skills/`:
+# The user skill store for the standalone Node Gemini CLI (gemini).
+# For Antigravity, place global skills in ~/.gemini/config/skills/.
+
 SRC_DIR := $(CURDIR)/files/gemini
 SKILLS_SRC := $(SRC_DIR)/skills
+RULES_SRC  := $(SRC_DIR)/rules
 GEMINI_DIR := $(HOME)/.gemini
-GEMINI_SKILLS_DIR := $(GEMINI_DIR)/skills
+GEMINI_SKILLS_DIR := $(GEMINI_DIR)/config/skills
+GEMINI_RULES_DIR  := $(GEMINI_DIR)/config/rules
 COPILOT_SKILLS_DIR := $(HOME)/.copilot/skills
 
 default: $(PROJECT).html $(PROJECT).pdf
@@ -32,7 +48,7 @@ default: $(PROJECT).html $(PROJECT).pdf
 		--output public/$@ \
 		$<
 
-.PHONY: clean help install install-links install-copy
+.PHONY: clean help install
 help: ## Show this help message
 	@echo ""
 	@echo "Default goal: ${.DEFAULT_GOAL}"
@@ -50,37 +66,15 @@ help: ## Show this help message
 clean: ## Remove generated files
 	@$(RM) -rf public
 
-install: install-copy ## Install configuration files
-
-install-copy: ## Install skills by copying (default)
-	@echo "Installing Gemini files by copying..."
+install: ## Install configuration by copying (default)
+	@echo "Installing Gemini files..."
 	@mkdir -p "$(GEMINI_DIR)"
-	@cp -v "$(SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
-	@cp -v "$(SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
+	@cp -av "$(SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
+	@cp -av "$(SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
 	@mkdir -p "$(GEMINI_SKILLS_DIR)"
-	@cp -vR "$(SKILLS_SRC)"/* "$(GEMINI_SKILLS_DIR)/"
-	@echo "Installing Copilot skills by copying..."
+	@cp -av "$(SKILLS_SRC)"/. "$(GEMINI_SKILLS_DIR)/"
+	@mkdir -p "$(GEMINI_RULES_DIR)"
+	@cp -av "$(RULES_SRC)"/. "$(GEMINI_RULES_DIR)/"
+	@echo "Installing Copilot skills..."
 	@mkdir -p "$(COPILOT_SKILLS_DIR)"
-	@cp -vR "$(SKILLS_SRC)"/* "$(COPILOT_SKILLS_DIR)/"
-
-## Symlink every file under $(1) into $(2),
-## preserving the relative directory structure.
-define link-tree
-	@find "$(1)" -type f | while read -r src; do \
-	  rel="$${src#$(1)/}"; \
-	  mkdir -p "$(2)/$$(dirname "$$rel")"; \
-	  ln -sfn "$$src" "$(2)/$$rel"; \
-	  echo "  $$rel"; \
-	done
-endef
-
-install-links: ## Install skills via symlinks
-	@echo "Linking Gemini files..."
-	@mkdir -p "$(GEMINI_DIR)"
-	@ln -sfn "$(SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/GEMINI.md"
-	@ln -sfn "$(SRC_DIR)/settings.json" "$(GEMINI_DIR)/settings.json"
-	@mkdir -p "$(GEMINI_SKILLS_DIR)"
-	$(call link-tree,$(SKILLS_SRC),$(GEMINI_SKILLS_DIR))
-	@echo "Linking Copilot skills..."
-	@mkdir -p "$(COPILOT_SKILLS_DIR)"
-	$(call link-tree,$(SKILLS_SRC),$(COPILOT_SKILLS_DIR))
+	@cp -av "$(SKILLS_SRC)"/. "$(COPILOT_SKILLS_DIR)/"

@@ -1,8 +1,9 @@
-# Article: Gemini and VSCode CLI Tools
+# Article: Gemini and VS Code CLI Tools
 
 This repository contains the source and build tooling for the article.
 
-Read the article online: <https://frankhjung.github.io/cli-tools/>
+Read the article online:
+[Frankly Speaking - CLI Tools](https://frankhjung.github.io/cli-tools/)
 
 ## Repository Structure
 
@@ -10,13 +11,11 @@ This repository contains the following main components:
 
 - [cli-tools.md]: The primary markdown source file for the article.
 - [gemini-readme.md]: Additional documentation on Gemini CLI extensions.
-- [files/gemini/]: Ready-to-use assets for Gemini CLI, including project
-  instructions ([GEMINI.md]), settings, and [skills/].
-- [files/code/prompts/]: Agent prompt templates for GitHub Copilot CLI / VS
-  Code.
+- [files/gemini/]: Ready-to-use assets for Gemini CLI, including template
+  instructions ([GEMINI.md]), settings, [rules/], [gems/], and [skills/].
 - [hardlink-files.sh]: A utility script to synchronise files via soft links.
-- [article.css] and [header-include.tex]: Styling and LaTeX header template for
-  Pandoc HTML and PDF build output.
+- [article.css] and [header-include.tex]: Styling and LaTeX header template
+  for Pandoc HTML and PDF build output.
 - [images/]: Image assets included in the article.
 
 ## Build (Make)
@@ -31,6 +30,11 @@ Targets:
 
 - `make` → builds HTML and PDF into the `public/` directory
 - `make clean` → removes the `public/` directory
+- `make help` → displays available Makefile targets
+- `make install` → installs assets by copying to `~/.gemini/` and
+  `~/.copilot/skills/`
+- `make install-copy` → copies assets to user configuration directories
+- `make install-links` → installs assets via symlinks into user directories
 
 ## Output
 
@@ -41,21 +45,21 @@ Targets:
 
 This article is published in these locations:
 
-- <https://frankhjung.github.io/cli-tools/>
-- <https://frankhjung.github.io/cli-tools/cli-tools.pdf>
+- [HTML Version](https://frankhjung.github.io/cli-tools/)
+- [PDF Version](https://frankhjung.github.io/cli-tools/cli-tools.pdf)
 
 See also my blog:
 
-- <https://frankhjung.blogspot.com/>
+- [Frankly Speaking](https://frankhjung.blogspot.com/)
 
 ## Soft-link Files Script (`hardlink-files.sh`)
 
 The [hardlink-files.sh] script is used to synchronise the local assets in the
-`files/` directory with files from an Ansible AI role directory (defined in the
-`MAPPINGS` variable).
+`files/` directory with files from an Ansible AI role directory (defined in
+the `MAPPINGS` variable).
 
-It creates soft links for all regular files, preserving the directory structure.
-Because soft links are used:
+It creates soft links for all regular files, preserving the directory
+structure. Because soft links are used:
 
 - Destination files point to the source files.
 - Edits made to source files are immediately reflected in destinations.
@@ -69,15 +73,17 @@ Run the script from the repository root:
 ./hardlink-files.sh
 ```
 
-> [!IMPORTANT] If the source path moves or is removed, links in destination
-> become broken.
+> [!IMPORTANT]
+> If the source path moves or is removed, links in the destination become
+> broken.
 
 [cli-tools.md]: cli-tools.md
 [gemini-readme.md]: gemini-readme.md
 [files/gemini/]: files/gemini/
 [GEMINI.md]: files/gemini/GEMINI.md
+[rules/]: files/gemini/rules/
+[gems/]: files/gemini/gems/
 [skills/]: files/gemini/skills/
-[files/code/prompts/]: files/code/prompts/
 [hardlink-files.sh]: hardlink-files.sh
 [article.css]: article.css
 [header-include.tex]: header-include.tex
