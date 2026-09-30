@@ -4,8 +4,12 @@
 .SUFFIXES: .html .md .pdf
 
 PROJECT := cli-tools
-PANDOC  := pandoc
-FILES   := $(CURDIR)/files
+PANDOC  ?= pandoc
+SRC_DIR := $(CURDIR)/files/gemini
+SKILLS_SRC := $(SRC_DIR)/skills
+GEMINI_DIR := $(HOME)/.gemini
+GEMINI_SKILLS_DIR := $(GEMINI_DIR)/skills
+COPILOT_SKILLS_DIR := $(HOME)/.copilot/skills
 
 default: $(PROJECT).html $(PROJECT).pdf
 
@@ -50,14 +54,14 @@ install: install-copy ## Install configuration files
 
 install-copy: ## Install skills by copying (default)
 	@echo "Installing Gemini files by copying..."
-	@mkdir -p ~/.gemini
-	@cp -v files/gemini/GEMINI.md ~/.gemini/GEMINI.md
-	@cp -v files/gemini/settings.json ~/.gemini/settings.json
-	@mkdir -p ~/.gemini/skills
-	@cp -vR files/gemini/skills/* ~/.gemini/skills/
-	@echo "Installing VS Code skills by copying..."
-	@mkdir -p ~/.config/Code/User/prompts
-	@cp -vR files/code/prompts/* ~/.config/Code/User/prompts/
+	@mkdir -p "$(GEMINI_DIR)"
+	@cp -v "$(SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
+	@cp -v "$(SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
+	@mkdir -p "$(GEMINI_SKILLS_DIR)"
+	@cp -vR "$(SKILLS_SRC)"/* "$(GEMINI_SKILLS_DIR)/"
+	@echo "Installing Copilot skills by copying..."
+	@mkdir -p "$(COPILOT_SKILLS_DIR)"
+	@cp -vR "$(SKILLS_SRC)"/* "$(COPILOT_SKILLS_DIR)/"
 
 ## Symlink every file under $(1) into $(2),
 ## preserving the relative directory structure.
@@ -72,13 +76,11 @@ endef
 
 install-links: ## Install skills via symlinks
 	@echo "Linking Gemini files..."
-	@mkdir -p "$${HOME}/.gemini"
-	@ln -sfn "$(FILES)/gemini/GEMINI.md" \
-	  "$${HOME}/.gemini/GEMINI.md"
-	@ln -sfn "$(FILES)/gemini/settings.json" \
-	  "$${HOME}/.gemini/settings.json"
-	@mkdir -p "$${HOME}/.gemini/skills"
-	$(call link-tree,$(FILES)/gemini/skills,$${HOME}/.gemini/skills)
-	@echo "Linking VS Code prompts..."
-	@mkdir -p "$${HOME}/.config/Code/User/prompts"
-	$(call link-tree,$(FILES)/code/prompts,$${HOME}/.config/Code/User/prompts)
+	@mkdir -p "$(GEMINI_DIR)"
+	@ln -sfn "$(SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/GEMINI.md"
+	@ln -sfn "$(SRC_DIR)/settings.json" "$(GEMINI_DIR)/settings.json"
+	@mkdir -p "$(GEMINI_SKILLS_DIR)"
+	$(call link-tree,$(SKILLS_SRC),$(GEMINI_SKILLS_DIR))
+	@echo "Linking Copilot skills..."
+	@mkdir -p "$(COPILOT_SKILLS_DIR)"
+	$(call link-tree,$(SKILLS_SRC),$(COPILOT_SKILLS_DIR))
