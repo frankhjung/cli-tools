@@ -9,6 +9,7 @@ For language-specific coding standards, refer to:
 - `haskell-programmer` — type safety, purity, HLint
 - `clojure-programmer` — data orientation, protocols
 - `python-programmer` — functional style, ruff, typing
+- `typescript-programmer` — immutability, strict types, fast-check
 
 ## Pure Core, Effectful Shell
 

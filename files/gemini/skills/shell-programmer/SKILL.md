@@ -1,10 +1,14 @@
 ---
 name: shell-programmer
 description: >-
-  Develop, refactor, lint, and review Bash and POSIX shell scripts (.sh, .bash).
-  Enforces defensive scripting (set -euo pipefail), ShellCheck compliance,
-  functional pipelines, and portability standards.
+  Develop, refactor, lint, and review Bash and POSIX shell scripts
+  (.sh, .bash). Use this skill when developing, refactoring, linting,
+  testing, or reviewing shell scripts. Enforces defensive scripting
+  (set -euo pipefail), ShellCheck compliance, functional pipelines, and
+  portability standards.
 ---
+
+# Shell Programmer
 
 Guide shell script development and review, emphasising defensive execution,
 functional composition, ShellCheck compliance, and POSIX portability.
@@ -12,7 +16,8 @@ functional composition, ShellCheck compliance, and POSIX portability.
 ## Safety & Defensive Scripting
 
 - **Strict Modes:**
-  - Bash: `set -euo pipefail` and `IFS=$'\n\t'` at script entry.
+  - Bash: `set -Eeuo pipefail`, `shopt -s inherit_errexit` (Bash 4.4+), and
+    `IFS=$'\n\t'` at script entry.
   - POSIX `sh`: `set -eu`.
 - **Variable Expansions:** Strictly double-quote all parameter expansions
   (`"${var}"`, `"$@"`) to prevent word splitting and globbing.
@@ -20,6 +25,10 @@ functional composition, ShellCheck compliance, and POSIX portability.
   not `==`) for POSIX `sh`.
 - **Resource Cleanup:** Use `trap` handlers for deterministic temporary file
   and process cleanup: `trap 'cleanup' EXIT INT TERM`.
+- **Dependency Checks:** Verify required external tools early with
+  `command -v tool >/dev/null 2>&1 || exit 1`.
+- **Script Locality:** Determine script directory safely:
+  `readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"`.
 - **Error Handling:** Check return statuses of external commands; provide
   informative error messages to stderr before exiting non-zero.
 
@@ -41,7 +50,10 @@ functional composition, ShellCheck compliance, and POSIX portability.
   for environment variables.
 - **Long-Form Options:** Prefer readable long-form flags (e.g. `--directory`
   over `-d`) in scripts.
-- **Tooling:** Ensure clean passes with `shellcheck` and formatting via `shfmt`.
+- **Tooling & Tests:** Clean passes with `shellcheck`, formatting via `shfmt`,
+  and automated testing using `bats-core` under `test/`.
+- **Task Runner:** Use `Makefile` targets (`make check`, `make format`,
+  `make test`).
 
 ## Review & Output Contract
 
@@ -55,9 +67,17 @@ When reviewing or refactoring shell code, organise output into:
 4. **ShellCheck & Portability:** ShellCheck warnings and POSIX compliance.
 5. **Suggested Code / Diff:** Idiomatic, safe shell implementation.
 
+## Cross-Skill References
+
+- **`makefile-programmer`** — Coordinate `Makefile` targets for script checks.
+- **`ansible-programmer`** — Manage shell scripts and commands in Ansible.
+- **`markdown-editor`** — Format script documentation and markdown comments.
+
 ## Resources
 
 - Linter: [ShellCheck](https://github.com/koalaman/shellcheck)
 - Formatter: [shfmt](https://github.com/mvdan/sh)
-- Reference: [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+- Testing: [bats-core](https://github.com/bats-core/bats-core)
+- Style Guide:
+  [Google Shell Guide](https://google.github.io/styleguide/shellguide.html)
 - Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)

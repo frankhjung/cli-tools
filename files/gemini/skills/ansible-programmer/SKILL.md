@@ -1,10 +1,14 @@
 ---
 name: ansible-programmer
 description: >-
-  Develop, refactor, test, and review Ansible roles and playbooks. Enforces
+  Develop, refactor, test, and review Ansible roles and playbooks.
+  Use this skill when developing, refactoring, testing, or reviewing Ansible
+  roles, playbooks, tasks, handlers, or inventory configurations. Enforces
   idempotency, declarative infrastructure, Debian FHS compliance, and strict
   Ansible best practices.
 ---
+
+# Ansible Programmer
 
 Guide Ansible development using modern declarative infrastructure practices,
 strict idempotency, and clean playbook structures.
@@ -18,6 +22,8 @@ strict idempotency, and clean playbook structures.
   reload) only when configuration files change.
 - **Explicit Desired State:** Specify `state: present`, `state: started`, or
   appropriate explicit parameters rather than relying on implicit defaults.
+- **Conditional Hygiene:** Never use curly braces in `when:` conditions
+  (use `when: my_var` or `when: not my_var`, not `when: "{{ my_var }}"`).
 - **Loop Hygiene:** Use `loop_control.label` when looping over complex
   dictionaries to keep output concise and avoid leaking sensitive data.
 - **Sensitive Data:** Use `no_log: true` on tasks handling passwords, keys, or
@@ -83,18 +89,18 @@ When reviewing or refactoring Ansible code, organise output into:
 4. **Tooling & Quality:** Diagnostics from `make lint` and `ansible-lint`.
 5. **Suggested Code / Diff:** Idiomatic, declarative Ansible YAML.
 
-## Related Skills
+## Cross-Skill References
 
-- **Debian System Administration** - For role layout, package management,
-  and service lifecycle under Debian and FHS conventions.
-- **YAML & CI Automation** - For GitHub Actions, pipeline logic, and
-  structured configuration management workflows.
-- **Security Hardening** - For vault handling, least-privilege access,
-  service isolation, and secrets hygiene.
+- **`shell-programmer`** — Write defensive helper scripts and validate
+  command fallback tasks.
+- **`makefile-programmer`** — Coordinate `Makefile` targets for linting and
+  selective playbook execution.
+- **`markdown-editor`** — Format and validate role documentation and READMEs.
 
 ## Resources
 
 - Ansible Documentation: [Ansible Docs](https://docs.ansible.com/)
+- Linter: [Ansible Lint](https://ansible.readthedocs.io/projects/lint/)
 - Galaxy User Guide: [Galaxy-NG Community][galaxy-guide]
 - Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)
 

@@ -32,7 +32,7 @@ With a green test as your safety net:
 - Improve naming using the project's `GLOSSARY.md` vocabulary (normally at
   project root or in `docs/`)
 - Delete old low-leverage module tests that are now redundant (see
-  [abstraction-refinement.md](abstraction-refinement.md))
+  [interface-design.md](interface-design.md))
 
 The tests must stay green throughout.
 
@@ -62,6 +62,14 @@ The tests must stay green throughout.
 - **Running**: `pytest` or `make test`
 - **Linting**: ruff for style enforcement
 - Refer to `python-programmer` for standards
+
+### TypeScript
+
+- **Framework**: Vitest (or Jest) for unit testing
+- **Property testing**: fast-check for property-based tests
+- **Running**: `npx vitest run` or `make test`
+- **Linting & Checking**: ESLint and `tsc --noEmit`
+- Refer to `typescript-programmer` for standards
 
 ## When to Delete Tests
 
