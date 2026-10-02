@@ -2,9 +2,13 @@
 name: python-programmer
 description: >-
   Develop, refactor, test, and review modern Python 3.14+ codebases (.py,
-  pyproject.toml). Enforces functional programming idioms, PEP 695 type
-  parameters, frozen dataclasses, ruff/uv tooling, and property testing.
+  pyproject.toml). Use this skill when developing, refactoring, testing,
+  linting, or reviewing Python codebases. Enforces functional programming
+  idioms, PEP 695 type parameters, frozen dataclasses, ruff/uv tooling, and
+  property testing.
 ---
+
+# Python Programmer
 
 Guide Python development using modern functional idioms, strict Python 3.14+
 type annotations, pure domain modelling, and fast `uv`/`ruff` tooling.
@@ -17,7 +21,7 @@ type annotations, pure domain modelling, and fast `uv`/`ruff` tooling.
 - **Naming:** `snake_case` for variables, functions, and modules; `PascalCase`
   for classes, type aliases, and Protocols; `UPPER_CASE` for constants.
 - **Linters & Formatters:** Enforce code quality via `ruff` (`ruff check`,
-  `ruff format`).
+  `ruff format`) and static typing via `pyright` or `mypy`.
 
 ## Functional Programming Foundations
 
@@ -27,7 +31,8 @@ type annotations, pure domain modelling, and fast `uv`/`ruff` tooling.
 - **Functional Constructs:** Avoid imperative loops where comprehensions,
   `map`, `filter`, `functools`, or `itertools` are cleaner.
 - **Immutability:** Favour immutable data structures (`tuple`, `frozenset`,
-  `types.MappingProxyType`, and `@dataclass(frozen=True, slots=True)`).
+  `types.MappingProxyType`, and `@dataclass(frozen=True, slots=True)`). Use
+  `copy.replace()` for functional updates of immutable dataclasses.
 
 ## Python 3.14+ Type System & Domain Modelling
 
@@ -39,7 +44,9 @@ type annotations, pure domain modelling, and fast `uv`/`ruff` tooling.
 - **Protocols & ADTs:**
   - Define interfaces with `typing.Protocol` (structural subtyping).
   - Model domain variants using frozen dataclass sum types with
-    `match ... case` pattern matching.
+    `match ... case` pattern matching and `typing.assert_never()` for
+    exhaustiveness.
+  - Use `typing.override` when implementing protocol contracts.
 - **Exception Safety:** Use specific exception types; support `ExceptionGroup`
   and `except*` where appropriate. Never use bare `except:`.
 
@@ -48,7 +55,8 @@ type annotations, pure domain modelling, and fast `uv`/`ruff` tooling.
 - **Environment & Build (`uv`):** Use `uv run` for execution and `uv add` for
   dependencies managed in `pyproject.toml`.
 - **Testing:** Use `pytest` for unit testing and `Hypothesis` for generative
-  property-based testing on pure functions under `tests/`.
+  property-based testing on pure functions under `tests/`. Prefer property
+  tests for domain invariants.
 - **Documentation:** PEP 257 docstrings (`"""..."""`) on all public functions,
   classes, and modules.
 - **Task Runner:** Use `Makefile` targets (`make format`, `make check`,
@@ -65,10 +73,21 @@ When reviewing or refactoring Python code, organise output into:
 4. **Tooling & Quality:** Ruff diagnostics, docstrings, and test coverage.
 5. **Suggested Code / Diff:** Idiomatic, tested Python 3.14 implementation.
 
+## Cross-Skill References
+
+- **`architecture-review`** — Pure core / effectful shell, polymorphic
+  boundaries, and FP refactoring.
+- **`requirements-review`** — Stress-test domain invariants and data models.
+- **`makefile-programmer`** — Coordinate `Makefile` targets for builds and
+  tests.
+- **`markdown-editor`** — Format docstrings and markdown documentation.
+
 ## Resources
 
+- Language: [Python Documentation](https://docs.python.org/3/)
 - Package Manager: [uv Documentation](https://docs.astral.sh/uv/)
 - Linter & Formatter: [Ruff Documentation](https://docs.astral.sh/ruff/)
+- Static Typing: [Pyright](https://microsoft.github.io/pyright/)
 - Test Framework: [pytest](https://docs.pytest.org/),
   [Hypothesis](https://hypothesis.readthedocs.io/)
 - Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)

@@ -16,7 +16,8 @@ best practices.
 - **Include documentation** for all new functions, classes, and complex logic.
 - **Avoid using deprecated libraries or functions**. Recommend modern
   alternatives.
-- **Always use strict equality** (`===` and `!==`) in languages where applicable.
+- **Always use strict equality** (`===` and `!==`) in languages where
+  applicable.
 - **Consider potential performance bottlenecks** (e.g., excessive loops,
   memory leaks).
 
@@ -25,7 +26,8 @@ best practices.
 - **Indentation:** Use 2 spaces for indentation (unless file-specific context
   indicates otherwise).
 - **Naming:** Use descriptive names for variables, functions, and classes.
-- **Formatting:** Maintain consistent formatting and code style across all files.
+- **Formatting:** Maintain consistent formatting and code style across all
+  files.
 
 ### Interaction Rules
 
@@ -80,7 +82,8 @@ When reviewing content:
 - Do not change the technical meaning of the content.
 - Prefer minimal, targeted edits unless clarity improvements require rephrasing.
 - When no issues are found, return:
-  *“No issues detected. The document meets all clarity, reference, spelling, and grammar standards.”*
+  *“No issues detected. The document meets all clarity, reference, spelling,*
+  *and grammar standards.”*
 
 ### Gemini Added Memories
 

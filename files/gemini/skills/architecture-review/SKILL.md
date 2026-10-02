@@ -2,9 +2,12 @@
 name: architecture-review
 description: >-
   Identify low-leverage modules and guide FP-idiomatic architectural
-  refactoring. Conducts multi-stage exploration, interface design,
-  backward-compatible migration planning, and TDD implementation.
+  refactoring. Use this skill when reviewing codebase architecture, assessing
+  modularity and leverage, designing polymorphic boundaries, or planning TDD
+  refactoring.
 ---
+
+# Architecture Review
 
 Guide architectural refactoring to increase module leverage, composability,
 and testability using pure functional programming patterns.
@@ -17,7 +20,7 @@ Read-only until the user selects a candidate module (Step 2).
   exploration.
 - After candidate selection, design alternative interfaces (Step 3),
   stress-test with `requirements-review` (Step 4), plan migration (Step 5),
-  and execute via TDD (Step 6).
+  execute via TDD (Step 6), and verify via the test suite (Step 7).
 
 ## Multi-Stage Process
 
@@ -36,27 +39,31 @@ using `grep_search` and `list_dir` to measure architectural friction:
 
 ### 2. Present Candidates
 
-List refactoring candidates with:
+List 2–3 refactoring candidates with:
 
 - **Files:** Target modules and dependents.
 - **Problem:** Architectural friction and metric evidence.
 - **Solution:** Plain-English FP pattern
-  (see [docs/fp-patterns.md](docs/fp-patterns.md)).
+  (see [docs/fp-patterns.md](./docs/fp-patterns.md)).
 - **Benefits:** Expected gains in leverage, locality, and testability.
 
 *Do not propose concrete code interfaces yet. Prompt the user to choose a
-candidate.*
+candidate using `ask_question`.*
 
 ### 3. Design the Interface
 
-Follow [docs/interface-design.md](docs/interface-design.md). Design at least
-three distinctly different interface contracts before recommending one.
+Follow [docs/interface-design.md](./docs/interface-design.md). Design at least
+three distinctly different interface contracts before recommending one:
+
+1. **Minimal Interface:** 1–3 operations maximising leverage per method.
+2. **Rich Interface:** Comprehensive capability interface covering extensions.
+3. **Data-Oriented:** Plain algebraic data types or maps with pure functions.
 
 ### 4. Grilling Loop
 
-Stress-test the chosen interface using the `requirements-review` skill.
-Update `GLOSSARY.md` lazily and propose decision notes in
-`docs/REQ-NNN-slug.md` for load-bearing trade-offs.
+Stress-test the chosen interface using the `requirements-review` skill (or
+recommend the `/grill-me` slash command). Update `GLOSSARY.md` lazily and
+propose decision notes in `docs/REQ-NNN-slug.md` for load-bearing trade-offs.
 
 ### 5. Plan Migration Strategy
 
@@ -65,28 +72,31 @@ ensuring callers can transition incrementally without breaking builds.
 
 ### 6. Test-Driven Implementation (TDD)
 
-Follow [docs/tdd.md](docs/tdd.md):
+Follow [docs/tdd.md](./docs/tdd.md):
 
-1. **Red:** Write failing tests against the new contract.
+1. **Red:** Write failing tests against the new contract (preferring
+   property-based tests for pure functions).
 2. **Green:** Minimal pure implementation to pass.
-3. **Refactor:** Clean implementation while preserving green tests.
+3. **Refactor:** Clean implementation while preserving green tests and prune
+   obsolete unit tests from superseded helpers.
 
 ### 7. Build and Verify
 
-- Execute test and build suites (`make`, `cabal test`, `pytest`, `cargo test`).
+- Execute test and build suites (`make test`, `cabal test`, `clojure -M:test`,
+  `lake test`, `pytest`).
 - Perform dead-code cleanup of deprecated modules.
 - Validate documentation formatting with `markdown-editor`.
 
 ## Supporting Documents & Resources
 
-All architectural documentation lives in `docs/`:
+Supporting reference documentation lives in `./docs/`:
 
-- [language.md](docs/language.md) — Shared architectural vocabulary.
-- [interface-design.md](docs/interface-design.md) — Multi-option design rules.
-- [req-format.md](docs/req-format.md) — Decision document schema.
-- [tdd.md](docs/tdd.md) — Test-driven development workflow.
-- [fp-patterns.md](docs/fp-patterns.md) — FP design patterns.
-- [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md) — Domain glossary schema.
+- [language.md](./docs/language.md) — Shared architectural vocabulary.
+- [interface-design.md](./docs/interface-design.md) — Multi-option design rules.
+- [req-format.md](./docs/req-format.md) — Decision document schema.
+- [tdd.md](./docs/tdd.md) — Test-driven development workflow.
+- [fp-patterns.md](./docs/fp-patterns.md) — FP design patterns.
+- [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md) — Domain glossary schema.
 
 ## Cross-Skill References
 

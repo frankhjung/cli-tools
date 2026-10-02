@@ -11,9 +11,11 @@ This repository contains the following main components:
 
 - [cli-tools.md]: The primary markdown source file for the article.
 - [gemini-readme.md]: Additional documentation on Gemini CLI extensions.
+- [SKILLS.md]: Quick-start guide for installing and managing Agent Skills.
 - [files/gemini/]: Ready-to-use assets for Gemini CLI, including template
   instructions ([GEMINI.md]), settings, [rules/], [gems/], and [skills/].
-- [hardlink-files.sh]: A utility script to synchronise files via soft links.
+- [sync-files.sh]: A utility script to synchronise files by copying them
+  physically into the project.
 - [article.css] and [header-include.tex]: Styling and LaTeX header template
   for Pandoc HTML and PDF build output.
 - [images/]: Image assets included in the article.
@@ -52,39 +54,36 @@ See also my blog:
 
 - [Frankly Speaking](https://frankhjung.blogspot.com/)
 
-## Soft-link Files Script (`hardlink-files.sh`)
+## Copy Files Script (`sync-files.sh`)
 
-The [hardlink-files.sh] script is used to synchronise the local assets in the
+The [sync-files.sh] script is used to synchronise the local assets in the
 `files/` directory with files from an Ansible AI role directory (defined in
 the `MAPPINGS` variable).
 
-It creates soft links for all regular files, preserving the directory
-structure. Because soft links are used:
-
-- Destination files point to the source files.
-- Edits made to source files are immediately reflected in destinations.
-- Links can span across different filesystems.
+It creates a physical copy of each file and directory, preserving the directory
+structure without creating symlinks or hardlinks.
 
 ### Usage
 
 Run the script from the repository root:
 
 ```bash
-./hardlink-files.sh
+./sync-files.sh
 ```
 
 > [!IMPORTANT]
-> If the source path moves or is removed, links in the destination become
-> broken.
+> The destination is an independent copy, so edits are local to this project and
+> do not modify the original Ansible source files.
 
 [cli-tools.md]: cli-tools.md
 [gemini-readme.md]: gemini-readme.md
+[SKILLS.md]: SKILLS.md
 [files/gemini/]: files/gemini/
 [GEMINI.md]: files/gemini/GEMINI.md
 [rules/]: files/gemini/rules/
 [gems/]: files/gemini/gems/
 [skills/]: files/gemini/skills/
-[hardlink-files.sh]: hardlink-files.sh
+[sync-files.sh]: sync-files.sh
 [article.css]: article.css
 [header-include.tex]: header-include.tex
 [images/]: images/

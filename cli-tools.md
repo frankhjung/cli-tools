@@ -9,8 +9,12 @@ This repo is a set of ready-to-copy assets for working with Gemini CLI:
 - Gemini CLI settings (`.gemini/settings.json`)
 - Skills (`.gemini/skills/**/SKILL.md`)
 
-See also: [gemini-readme.md](gemini-readme.md) for extra Gemini CLI notes
-(extensions, Conductor, etc.).
+See also:
+
+- [gemini-readme.md](gemini-readme.md) for extra Gemini CLI notes
+  (extensions, Conductor, etc.).
+- [SKILLS.md](SKILLS.md) for a quick-start guide to installing and managing
+  Agent Skills.
 
 A smaller section at the end covers GitHub Copilot CLI.
 
@@ -18,8 +22,9 @@ A smaller section at the end covers GitHub Copilot CLI.
 
 For installation see the following:
 
-- Gemini CLI: <https://geminicli.com/>
-- GitHub Copilot CLI (via GitHub CLI): <https://docs.github.com/>
+- Gemini CLI: [Gemini CLI Website](https://geminicli.com/)
+- GitHub Copilot CLI (via GitHub CLI):
+  [GitHub CLI Documentation](https://docs.github.com/)
 
 ## Quick Start (Gemini CLI)
 
@@ -105,16 +110,19 @@ If multiple skills share the same name, project-local skills win.
 
 These ship as templates in `files/gemini/skills/`:
 
-- `blog-writing-editor`
+- `ansible-programmer`
+- `architecture-review`
+- `blog-banner-creator`
+- `blog-editor`
 - `clojure-programmer`
-- `dokuwiki-validator`
+- `dokuwiki-editor`
 - `gnur-programmer`
-- `grill-me`
 - `haskell-programmer`
-- `improve-codebase-architecture`
 - `lean-programmer`
-- `markdown-validator`
+- `makefile-programmer`
+- `markdown-editor`
 - `python-programmer`
+- `requirements-review`
 - `shell-programmer`
 
 See also: `files/gemini/gems/` for reusable prompt “gems”.

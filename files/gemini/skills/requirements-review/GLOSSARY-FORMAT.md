@@ -9,7 +9,8 @@ Every project should have a `GLOSSARY.md` at its root (or in `docs/`) that
 defines the domain terms used in code, documentation, and conversation. This
 file is the single source of truth for "what we call things."
 
-The `requirements-review` and `architecture-review` skills read `GLOSSARY.md` to:
+The `requirements-review` and `architecture-review` skills read
+`GLOSSARY.md` to:
 
 - Name abstraction refinement candidates using domain vocabulary
 - Ensure suggestions use the project's language, not generic terms
@@ -72,5 +73,5 @@ appointment. A Visit has exactly one primary provider and one billing context.
 
 ## Validation
 
-Use the `markdown-validator` skill to ensure `GLOSSARY.md` conforms to markdown
+Use the `markdown-editor` skill to ensure `GLOSSARY.md` conforms to markdown
 standards.

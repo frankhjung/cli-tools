@@ -24,14 +24,16 @@ protocol to specify, plan, and implement software features and bug fixes.
 To install the Conductor extension, run:
 
 ```bash
-gemini extensions install https://github.com/gemini-cli-extensions/conductor --auto-update
+gemini extensions install \
+  https://github.com/gemini-cli-extensions/conductor --auto-update
 ```
 
 ## Quick Start: Gemini Rules and Skills in Antigravity
 
 In Antigravity IDE, agent customisation is divided into **Rules** (persistent
 behaviours, constraints, and process invariants) and **Skills** (modular,
-task-oriented capabilities and tool bundles).
+task-oriented capabilities and tool bundles). See also [SKILLS.md](SKILLS.md)
+for the complete quick-start guide to installing and managing agent skills.
 
 ### 1. Rules vs. Skills
 
@@ -89,12 +91,14 @@ Always run `make test` before declaring code tasks complete.
 ### 4. Packaging Skills
 
 Each skill resides in its own folder and requires a `SKILL.md` with YAML
-frontmatter:
+front matter:
 
 ```markdown
 ---
 name: lean4-proofs
-description: Verify Lean 4 theorems and run proof diagnostics. Use when working with .lean files.
+description: >-
+  Verify Lean 4 theorems and run proof diagnostics. Use when working with
+  .lean files.
 ---
 # Lean 4 Diagnostics
 1. Inspect the theorem statement and current context.
@@ -114,7 +118,7 @@ description: Verify Lean 4 theorems and run proof diagnostics. Use when working 
 [Prompt / Issue]
        │
        ▼
-1. UNDERSTAND ──> Reads context + activates relevant skills (e.g., /lean4-proofs)
+1. UNDERSTAND ──> Reads context + activates skills (e.g. /lean4-proofs)
        │
        ▼
 2. PLAN       ──> Formulates implementation strategy
