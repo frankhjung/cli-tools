@@ -32,7 +32,7 @@ With a green test as your safety net:
 - Improve naming using the project's `GLOSSARY.md` vocabulary (normally at
   project root or in `docs/`)
 - Delete old low-leverage module tests that are now redundant (see
-  [abstraction-refinement.md](abstraction-refinement.md))
+  [interface-design.md](interface-design.md))
 
 The tests must stay green throughout.
 

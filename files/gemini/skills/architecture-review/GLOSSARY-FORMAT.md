@@ -72,5 +72,5 @@ appointment. A Visit has exactly one primary provider and one billing context.
 
 ## Validation
 
-Use the `markdown-validator` skill to ensure `GLOSSARY.md` conforms to markdown
+Use the `markdown-editor` skill to ensure `GLOSSARY.md` conforms to markdown
 standards.
