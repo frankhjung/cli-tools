@@ -14,6 +14,8 @@ This repository contains the following main components:
 - [SKILLS.md]: Quick-start guide for installing and managing Agent Skills.
 - [files/gemini/]: Ready-to-use assets for Gemini CLI, including template
   instructions ([GEMINI.md]), settings, [rules/], [gems/], and [skills/].
+- [files/copilot/]: Dedicated GitHub Copilot skills managed directly in this
+  repository.
 - [sync-files.sh]: A utility script to synchronise files by copying them
   physically into the project.
 - [article.css] and [header-include.tex]: Styling and LaTeX header template
@@ -33,10 +35,9 @@ Targets:
 - `make` → builds HTML and PDF into the `public/` directory
 - `make clean` → removes the `public/` directory
 - `make help` → displays available Makefile targets
-- `make install` → installs assets by copying to `~/.gemini/` and
-  `~/.copilot/skills/`
-- `make install-copy` → copies assets to user configuration directories
-- `make install-links` → installs assets via symlinks into user directories
+- `make install` → installs all Gemini and Copilot configuration files via rsync
+- `make install-gemini` → installs Gemini configuration to `~/.gemini/`
+- `make install-copilot` → installs Copilot skills to `~/.copilot/skills/`
 
 ## Output
 
@@ -56,29 +57,34 @@ See also my blog:
 
 ## Copy Files Script (`sync-files.sh`)
 
-The [sync-files.sh] script is used to synchronise the local assets in the
-`files/` directory with files from an Ansible AI role directory (defined in
-the `MAPPINGS` variable).
+The [sync-files.sh] script is used to synchronise local Gemini assets in
+`files/gemini/` with files from an Ansible AI role directory (defaulting to
+`~/dev/ansible/debian/roles/antigravity/files`). Copilot files in
+`files/copilot/` are managed directly within this repository.
 
 It creates a physical copy of each file and directory, preserving the directory
 structure without creating symlinks or hardlinks.
 
 ### Usage
 
-Run the script from the repository root:
+Run the script from the repository root (optionally specifying an alternative
+source directory via `SYNC_SRC_BASE`):
 
 ```bash
 ./sync-files.sh
+# or specify the gemini skills src directory:
+SYNC_SRC_BASE=/path/to/role/files ./sync-files.sh
 ```
 
 > [!IMPORTANT]
-> The destination is an independent copy, so edits are local to this project and
-> do not modify the original Ansible source files.
+> The destination is an independent copy, so edits are local to this project
+> and do not modify the original Ansible source files.
 
 [cli-tools.md]: cli-tools.md
 [gemini-readme.md]: gemini-readme.md
 [SKILLS.md]: SKILLS.md
 [files/gemini/]: files/gemini/
+[files/copilot/]: files/copilot/
 [GEMINI.md]: files/gemini/GEMINI.md
 [rules/]: files/gemini/rules/
 [gems/]: files/gemini/gems/

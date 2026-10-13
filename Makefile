@@ -1,10 +1,16 @@
 #!/usr/bin/make
 
+SHELL := bash
+.SHELLFLAGS := -euo pipefail -c
+MAKEFLAGS += --warn-undefined-variables
+.DELETE_ON_ERROR:
+
 .SUFFIXES:
 .SUFFIXES: .html .md .pdf
 
 PROJECT := cli-tools
 PANDOC  ?= pandoc
+RSYNC   ?= rsync
 
 # Summary of Skill Directories:
 #
@@ -19,12 +25,17 @@ PANDOC  ?= pandoc
 # The user skill store for the standalone Node Gemini CLI (gemini).
 # For Antigravity, place global skills in ~/.gemini/config/skills/.
 
-SRC_DIR := $(CURDIR)/files/gemini
-SKILLS_SRC := $(SRC_DIR)/skills
-RULES_SRC  := $(SRC_DIR)/rules
-GEMINI_DIR := $(HOME)/.gemini
-GEMINI_SKILLS_DIR := $(GEMINI_DIR)/config/skills
-GEMINI_RULES_DIR  := $(GEMINI_DIR)/config/rules
+# Gemini configuration
+GEMINI_SRC_DIR     := $(CURDIR)/files/gemini
+GEMINI_SKILLS_SRC  := $(GEMINI_SRC_DIR)/skills
+GEMINI_RULES_SRC   := $(GEMINI_SRC_DIR)/rules
+GEMINI_DIR         := $(HOME)/.gemini
+GEMINI_SKILLS_DIR  := $(GEMINI_DIR)/config/skills
+GEMINI_RULES_DIR   := $(GEMINI_DIR)/config/rules
+
+# Copilot configuration
+COPILOT_SRC_DIR    := $(CURDIR)/files/copilot
+COPILOT_SKILLS_SRC := $(COPILOT_SRC_DIR)/skills
 COPILOT_SKILLS_DIR := $(HOME)/.copilot/skills
 
 default: $(PROJECT).html $(PROJECT).pdf
@@ -48,10 +59,10 @@ default: $(PROJECT).html $(PROJECT).pdf
 		--output public/$@ \
 		$<
 
-.PHONY: clean help install
+.PHONY: default clean help install install-copilot install-gemini
 help: ## Show this help message
 	@echo ""
-	@echo "Default goal: ${.DEFAULT_GOAL}"
+	@echo "Default goal: $(.DEFAULT_GOAL)"
 	@awk 'BEGIN { \
 	  FS = ":.*##"; \
 	  printf "\nUsage:\n"; \
@@ -66,15 +77,21 @@ help: ## Show this help message
 clean: ## Remove generated files
 	@$(RM) -rf public
 
-install: ## Install configuration by copying (default)
+# Note: rsync deliberately omits --delete so skills already present in the
+# targets (e.g. from plugins) are preserved.
+install: install-gemini install-copilot ## Install all configuration files
+
+install-gemini: ## Install Gemini configuration files
 	@echo "Installing Gemini files..."
 	@mkdir -p "$(GEMINI_DIR)"
-	@cp -av "$(SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
-	@cp -av "$(SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
+	@$(RSYNC) -av "$(GEMINI_SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
+	@$(RSYNC) -av "$(GEMINI_SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
 	@mkdir -p "$(GEMINI_SKILLS_DIR)"
-	@cp -av "$(SKILLS_SRC)"/. "$(GEMINI_SKILLS_DIR)/"
+	@$(RSYNC) -av "$(GEMINI_SKILLS_SRC)/" "$(GEMINI_SKILLS_DIR)/"
 	@mkdir -p "$(GEMINI_RULES_DIR)"
-	@cp -av "$(RULES_SRC)"/. "$(GEMINI_RULES_DIR)/"
+	@$(RSYNC) -av "$(GEMINI_RULES_SRC)/" "$(GEMINI_RULES_DIR)/"
+
+install-copilot: ## Install Copilot skills
 	@echo "Installing Copilot skills..."
 	@mkdir -p "$(COPILOT_SKILLS_DIR)"
-	@cp -av "$(SKILLS_SRC)"/. "$(COPILOT_SKILLS_DIR)/"
+	@$(RSYNC) -av "$(COPILOT_SKILLS_SRC)/" "$(COPILOT_SKILLS_DIR)/"

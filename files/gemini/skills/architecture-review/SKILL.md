@@ -2,9 +2,9 @@
 name: architecture-review
 description: >-
   Identify low-leverage modules and guide FP-idiomatic architectural
-  refactoring. Use this skill when reviewing codebase architecture, assessing
-  modularity and leverage, designing polymorphic boundaries, or planning TDD
-  refactoring.
+  refactoring. Use this skill when reviewing codebase architecture, auditing
+  modularity and leverage, designing polymorphic boundaries, decoupling
+  components, diagnosing architectural smells, or planning TDD refactoring.
 ---
 
 # Architecture Review
@@ -27,7 +27,8 @@ Read-only until the user selects a candidate module (Step 2).
 ### 1. Explore Codebase
 
 Inspect `GLOSSARY.md` and `docs/REQ-*` for domain context. Walk the codebase
-using `grep_search` and `list_dir` to measure architectural friction:
+using codebase exploration tools (such as `grep_search`, `list_dir`,
+`view_file`, or read-only shell commands) to measure architectural friction:
 
 - **High Fan-in / Fan-out:** Modules coupled across many disparate contexts.
 - **Low Leverage:** Modules where interface complexity equals internal logic.
@@ -36,6 +37,15 @@ using `grep_search` and `list_dir` to measure architectural friction:
 - **Leaky Boundaries:** Modules exposing internal representations.
 - **Deletion Test:** Would removing the module concentrate complexity
   locally or scatter it across callers?
+- **Complexity/Size Reduction Objective:** Prioritise refactors that reduce
+  cyclomatic/cognitive complexity, branching depth, and LOC while preserving
+  requirement behaviour.
+
+When proposing refactors, prefer simplification patterns that reduce code size
+without weakening specifications: consolidate duplicated logic, replace
+condition-heavy flows with ADT/polymorphic dispatch, introduce pure
+combinators/pipelines, collapse pass-through abstractions, and extract
+load-bearing boundaries only.
 
 ### 2. Present Candidates
 
@@ -48,7 +58,9 @@ List 2–3 refactoring candidates with:
 - **Benefits:** Expected gains in leverage, locality, and testability.
 
 *Do not propose concrete code interfaces yet. Prompt the user to choose a
-candidate using `ask_question`.*
+candidate using `ask_question`. Prefix the top recommendation with
+`(Recommended)`, explain trade-offs, and format selectable options as the
+user's direct responses.*
 
 ### 3. Design the Interface
 
@@ -59,16 +71,21 @@ three distinctly different interface contracts before recommending one:
 2. **Rich Interface:** Comprehensive capability interface covering extensions.
 3. **Data-Oriented:** Plain algebraic data types or maps with pure functions.
 
+Confirm the chosen contract with the user (via `ask_question` if there are
+competing design trade-offs) before proceeding.
+
 ### 4. Grilling Loop
 
 Stress-test the chosen interface using the `requirements-review` skill (or
 recommend the `/grill-me` slash command). Update `GLOSSARY.md` lazily and
-propose decision notes in `docs/REQ-NNN-slug.md` for load-bearing trade-offs.
+propose decision notes in `docs/REQ-NNN-slug.md`
+(see [docs/req-format.md](./docs/req-format.md)) for load-bearing trade-offs.
 
 ### 5. Plan Migration Strategy
 
 Outline a backward-compatible migration plan (e.g. Strangler Fig pattern)
-ensuring callers can transition incrementally without breaking builds.
+ensuring callers can transition incrementally without breaking builds (or
+recommend the `/plan` slash command for complex multi-phase migrations).
 
 ### 6. Test-Driven Implementation (TDD)
 
@@ -87,9 +104,9 @@ Follow [docs/tdd.md](./docs/tdd.md):
 - Perform dead-code cleanup of deprecated modules.
 - Validate documentation formatting with `markdown-editor`.
 
-## Supporting Documents & Resources
+## Supporting Reference Documents
 
-Supporting reference documentation lives in `./docs/`:
+Supporting documentation lives in `./docs/` and the skill root:
 
 - [language.md](./docs/language.md) — Shared architectural vocabulary.
 - [interface-design.md](./docs/interface-design.md) — Multi-option design rules.
