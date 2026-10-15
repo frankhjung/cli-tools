@@ -14,8 +14,8 @@ This repository contains the following main components:
 - [SKILLS.md]: Quick-start guide for installing and managing Agent Skills.
 - [files/gemini/]: Ready-to-use assets for Gemini CLI, including template
   instructions ([GEMINI.md]), settings, [rules/], [gems/], and [skills/].
-- [files/copilot/]: Dedicated GitHub Copilot skills managed directly in this
-  repository.
+- [files/copilot/]: Dedicated GitHub Copilot skills ([files/copilot/skills/])
+  managed directly in this repository.
 - [sync-files.sh]: A utility script to synchronise files by copying them
   physically into the project.
 - [article.css] and [header-include.tex]: Styling and LaTeX header template
@@ -36,7 +36,8 @@ Targets:
 - `make clean` → removes the `public/` directory
 - `make help` → displays available Makefile targets
 - `make install` → installs all Gemini and Copilot configuration files via rsync
-- `make install-gemini` → installs Gemini configuration to `~/.gemini/`
+- `make install-gemini` → installs Gemini configuration, rules, and skills to
+  `~/.gemini/`
 - `make install-copilot` → installs Copilot skills to `~/.copilot/skills/`
 
 ## Output
@@ -85,6 +86,7 @@ SYNC_SRC_BASE=/path/to/role/files ./sync-files.sh
 [SKILLS.md]: SKILLS.md
 [files/gemini/]: files/gemini/
 [files/copilot/]: files/copilot/
+[files/copilot/skills/]: files/copilot/skills/
 [GEMINI.md]: files/gemini/GEMINI.md
 [rules/]: files/gemini/rules/
 [gems/]: files/gemini/gems/

@@ -116,6 +116,7 @@ These ship as templates in `files/gemini/skills/`:
 - `blog-editor`
 - `clojure-programmer`
 - `dokuwiki-editor`
+- `elm-programmer`
 - `gnur-programmer`
 - `haskell-programmer`
 - `lean-programmer`
@@ -124,6 +125,7 @@ These ship as templates in `files/gemini/skills/`:
 - `python-programmer`
 - `requirements-review`
 - `shell-programmer`
+- `typescript-programmer`
 
 See also: `files/gemini/gems/` for reusable prompt “gems”.
 
@@ -149,7 +151,34 @@ gh copilot explain --help
 ### About agents and skills for Copilot
 
 The Copilot CLI itself does not typically consume agent persona files. If you
-are using Copilot Agents (e.g., in VS Code), this repo includes:
+are using Copilot Agents (e.g., in VS Code), this repo includes dedicated
+skills in `files/copilot/skills/`.
 
-- Agent prompts in `files/code/prompts/`: copy to
-  `~/.config/Code/User/prompts`
+Install them to your personal Copilot skills folder via Make:
+
+```bash
+make install-copilot
+# installs to ~/.copilot/skills/
+```
+
+Alternatively, copy them into `.agents/skills/` in your project or globally
+to `~/.agents/skills/` to follow the open cross-agent standard.
+
+### Included Copilot Skills
+
+These ship in `files/copilot/skills/`:
+
+- `ansible-programmer`
+- `architecture-review`
+- `blog-editor`
+- `clojure-programmer`
+- `dokuwiki-editor`
+- `elm-programmer`
+- `gnur-programmer`
+- `haskell-programmer`
+- `lean-programmer`
+- `makefile-programmer`
+- `markdown-editor`
+- `python-programmer`
+- `requirements-review`
+- `shell-programmer`
