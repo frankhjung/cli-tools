@@ -21,6 +21,8 @@ readonly DEFAULT_SRC_BASE="${HOME}/dev/ansible/debian/roles/antigravity/files"
 readonly SRC_BASE="${SYNC_SRC_BASE:-${DEFAULT_SRC_BASE}}"
 readonly GEMINI_DEST="${SCRIPT_DIR}/files/gemini"
 readonly TARGETS=(skills rules)
+readonly GEMINI_MD_SRC="${SRC_BASE}/GEMINI.md"
+readonly GEMINI_MD_DEST="${GEMINI_DEST}/GEMINI.md"
 
 require_tool() {
   command -v "$1" >/dev/null 2>&1 || {
@@ -45,10 +47,23 @@ sync_target() {
   printf '\n'
 }
 
+sync_gemini_md() {
+  if [[ ! -f "${GEMINI_MD_SRC}" ]]; then
+    printf 'ERROR: Source file not found: %s\n' "${GEMINI_MD_SRC}" >&2
+    exit 1
+  fi
+
+  mkdir --parents "${GEMINI_DEST}"
+  printf 'Syncing %s -> %s\n' "${GEMINI_MD_SRC}" "${GEMINI_MD_DEST}"
+  rsync --archive --verbose "${GEMINI_MD_SRC}" "${GEMINI_MD_DEST}"
+  printf '\n'
+}
+
 main() {
   local target
 
   require_tool rsync
+  sync_gemini_md
   for target in "${TARGETS[@]}"; do
     sync_target "${target}"
   done

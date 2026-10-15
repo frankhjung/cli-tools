@@ -20,8 +20,12 @@ Automatically prioritise the use of specialised skills based on task context:
   - `gnur-programmer`: GNU R scripts and packages (`.R`, `.Rmd`, `testthat`).
   - `haskell-programmer`: Haskell codebases (`.hs`, `.lhs`, `.cabal`).
   - `lean-programmer`: Lean 4 code and proofs (`.lean`, `lakefile.lean`).
+  - `makefile-programmer`: Makefile editing and target execution (`Makefile`,
+    `*.mk`).
   - `python-programmer`: Modern Python 3.14+ (`.py`, `pyproject.toml`).
   - `shell-programmer`: Bash and POSIX shell scripts (`.sh`, `.bash`).
+  - `typescript-programmer`: TypeScript, Node.js, and web codebases (`.ts`,
+    `.tsx`, `package.json`, `tsconfig.json`).
 - **Documentation:**
   - `blog-editor`: Technical blog post reviews and metadata validation.
   - `dokuwiki-editor`: DokuWiki pages and wiki documents (`.txt`).

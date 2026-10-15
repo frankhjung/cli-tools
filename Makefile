@@ -11,6 +11,7 @@ MAKEFLAGS += --warn-undefined-variables
 PROJECT := cli-tools
 PANDOC  ?= pandoc
 RSYNC   ?= rsync
+RSYNC_FLAGS ?= -av --checksum
 
 # Summary of Skill Directories:
 #
@@ -84,14 +85,14 @@ install: install-gemini install-copilot ## Install all configuration files
 install-gemini: ## Install Gemini configuration files
 	@echo "Installing Gemini files..."
 	@mkdir -p "$(GEMINI_DIR)"
-	@$(RSYNC) -av "$(GEMINI_SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
-	@$(RSYNC) -av "$(GEMINI_SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
+	@$(RSYNC) $(RSYNC_FLAGS) "$(GEMINI_SRC_DIR)/GEMINI.md" "$(GEMINI_DIR)/"
+	@$(RSYNC) $(RSYNC_FLAGS) "$(GEMINI_SRC_DIR)/settings.json" "$(GEMINI_DIR)/"
 	@mkdir -p "$(GEMINI_SKILLS_DIR)"
-	@$(RSYNC) -av "$(GEMINI_SKILLS_SRC)/" "$(GEMINI_SKILLS_DIR)/"
+	@$(RSYNC) $(RSYNC_FLAGS) "$(GEMINI_SKILLS_SRC)/" "$(GEMINI_SKILLS_DIR)/"
 	@mkdir -p "$(GEMINI_RULES_DIR)"
-	@$(RSYNC) -av "$(GEMINI_RULES_SRC)/" "$(GEMINI_RULES_DIR)/"
+	@$(RSYNC) $(RSYNC_FLAGS) "$(GEMINI_RULES_SRC)/" "$(GEMINI_RULES_DIR)/"
 
 install-copilot: ## Install Copilot skills
 	@echo "Installing Copilot skills..."
 	@mkdir -p "$(COPILOT_SKILLS_DIR)"
-	@$(RSYNC) -av "$(COPILOT_SKILLS_SRC)/" "$(COPILOT_SKILLS_DIR)/"
+	@$(RSYNC) $(RSYNC_FLAGS) "$(COPILOT_SKILLS_SRC)/" "$(COPILOT_SKILLS_DIR)/"
