@@ -15,11 +15,12 @@ This repository contains the following main components:
 - [files/gemini/]: Ready-to-use assets for Gemini CLI, including template
   instructions ([GEMINI.md]), settings, [rules/], [gems/], and [skills/].
 - [files/copilot/]: Dedicated GitHub Copilot skills ([files/copilot/skills/])
-  managed directly in this repository.
+  managed directly in this repository. See
+  [Copilot File Locations](files/copilot/README.md).
 - [sync-files.sh]: A utility script to synchronise files by copying them
   physically into the project.
-- [article.css] and [header-include.tex]: Styling and LaTeX header template
-  for Pandoc HTML and PDF build output.
+- [article.css] and [header-include.tex]: Styling and LaTeX header template for
+  Pandoc HTML and PDF build output.
 - [images/]: Image assets included in the article.
 
 ## Build (Make)
@@ -77,9 +78,8 @@ source directory via `SYNC_SRC_BASE`):
 SYNC_SRC_BASE=/path/to/role/files ./sync-files.sh
 ```
 
-> [!IMPORTANT]
-> The destination is an independent copy, so edits are local to this project
-> and do not modify the original Ansible source files.
+> [!IMPORTANT] The destination is an independent copy, so edits are local to
+> this project and do not modify the original Ansible source files.
 
 [cli-tools.md]: cli-tools.md
 [gemini-readme.md]: gemini-readme.md
