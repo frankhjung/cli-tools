@@ -71,6 +71,28 @@ The tests must stay green throughout.
 - **Linting & Checking**: ESLint and `tsc --noEmit`
 - Refer to `typescript-programmer` for standards
 
+### Elm
+
+- **Framework**: `elm-test` for unit and fuzz testing
+- **Property testing**: `Test.fuzz`, `Test.fuzz2`, `Test.fuzz3`
+- **Running**: `npx elm-test` or `make test`
+- **Linting & Checking**: `elm-review`, `elm-format --validate`, and `elm make`
+- Refer to `elm-programmer` for standards
+
+### Lean 4
+
+- **Framework**: Lake test runner (`@[test_driver]`), `#guard_msgs`, and theorem
+  proving
+- **Running**: `lake test` and `lake build` (or `make test`)
+- Refer to `lean-programmer` for standards
+
+### GNU R
+
+- **Framework**: `testthat` under `tests/testthat/`
+- **Running**: `Rscript -e "testthat::test_local()"` or `make test`
+- **Linting**: `lintr` and `styler`
+- Refer to `gnur-programmer` for standards
+
 ## When to Delete Tests
 
 After refining a module's abstraction, old unit tests on the now-merged

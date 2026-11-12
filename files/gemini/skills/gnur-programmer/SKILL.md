@@ -6,6 +6,8 @@ description: >-
   Roxygen2 documentation, and testthat unit testing.
 ---
 
+# GNU R Programmer
+
 Guide GNU R development with a focus on functional programming principles,
 vectorisation, clean code structure, and comprehensive documentation.
 
@@ -37,9 +39,20 @@ vectorisation, clean code structure, and comprehensive documentation.
   pure functions have isolated unit tests.
 - **Linting & Formatting:** Validate styling using `styler` and `lintr`.
 
-## Review & Output Format
+## Agent Development & Validation Workflow
 
-When reviewing or refactoring R code, structure output as follows:
+- **No Interactive R Session:** Validate code via non-interactive CLI commands
+  (`make test`, `make check`, or `Rscript -e "testthat::test_local()"`).
+- **Static Check Pre-Flight:** Run `Rscript -e "lintr::lint('<file>')"` to
+  verify style compliance and catch syntax issues rapidly.
+- **Fast Hypothesis Testing:** Use `Rscript -e "..."` or short scripts in the
+  session scratch directory to verify vectorised expressions and edge cases.
+
+## Review & Output Contract
+
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** High-level assessment of code quality and functional design.
 2. **Functional & Vectorisation:** Identified loops, side effects, or
@@ -50,7 +63,17 @@ When reviewing or refactoring R code, structure output as follows:
    test recommendations.
 5. **Suggested Code / Diff:** Concrete, idiomatic R implementation.
 
+## Cross-Skill References
+
+- **`architecture-review`** — Pure core / effectful shell and FP refactoring.
+- **`blog-editor`** — Validate R Markdown (`.Rmd`) articles and code chunks.
+- **`makefile-programmer`** — Coordinate `Makefile` targets for builds and
+  tests.
+- **`markdown-editor`** — Format documentation and vignettes.
+
 ## Resources
 
 - Style: [Tidyverse Style Guide](https://style.tidyverse.org/)
 - Documentation: [Roxygen2 Reference](https://roxygen2.r-lib.org/)
+- Testing: [testthat Reference](https://testthat.r-lib.org/)
+- Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)

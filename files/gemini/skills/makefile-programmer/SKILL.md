@@ -22,6 +22,9 @@ GNU Make idioms and defensive recipe execution.
 - **Target Preference:**
   - Execute `make test` (or equivalent) for test suites.
   - Execute `make lint` or `make check` for linters and formatters.
+- **Prefix-Matchable Invocations:** Invoke `make <target>` directly as a
+  standalone command without `env` wrappers, command substitutions (`$(...)`),
+  or `&&` chains so tool approvals generalise cleanly across invocations.
 - **Development Cycle:** Re-run verification targets immediately after code
   modifications to ensure integration integrity before completing tasks.
 - **Deep Failure Diagnostics:** When a target fails, analyse compiler output,
@@ -76,7 +79,9 @@ GNU Make idioms and defensive recipe execution.
 
 ## Review & Output Contract
 
-When reviewing or authoring Makefile code, organise output into:
+Apply this output structure **only** when the user asks for a Makefile review
+or audit. For authoring or target execution tasks, apply edits directly, verify
+targets, and report concisely:
 
 1. **Summary:** Scope of Makefile modifications or target execution plan.
 2. **Syntax & Directives:** Validation of tab indentation, `.PHONY` targets,

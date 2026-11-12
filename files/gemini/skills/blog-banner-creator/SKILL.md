@@ -17,7 +17,8 @@ metaphors with fine hand-drawn paper texture.
 ## Operating Mode
 
 - **Drafting and Prompt Formulation:** Analyse post text, formulate a physical
-  metaphor, and generate the exact diffusion prompt formatted for Imagen 3.
+  metaphor, and generate the exact diffusion prompt formatted for the
+  `image-generator` subagent.
 - **Autonomous Image Generation:** Delegate to the `image-generator` subagent
   using the validated 16:9 prompt template.
 

@@ -61,9 +61,21 @@ safety, total functions, strictness, and idiomatic tooling.
 - **Task Runner:** Use `Makefile` targets (`make format`, `make check`,
   `make build`, `make test`, `make doc`).
 
+## Agent Development & Validation Workflow
+
+- **No Interactive GHCi:** You lack a persistent GHCi session. Validate types
+  and compilation via CLI targets (`make check`, `make test`, or
+  `cabal build --ghc-options="-fno-code"`).
+- **Static Check Pre-Flight:** Run `hlint .` and `fourmolu --mode check .` (or
+  `make check`) before running full test suites.
+- **Fast Hypothesis Testing:** Use `ghc -e "..."` or short scripts in the
+  session scratch directory to test pure expressions and type reductions.
+
 ## Review & Output Contract
 
-When reviewing or refactoring Haskell code, organise findings into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** Architectural overview and type design quality.
 2. **Type Safety & Totality:** Partial functions, missing type signatures, or

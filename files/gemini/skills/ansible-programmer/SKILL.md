@@ -72,6 +72,10 @@ When developing for this repository or similar Debian environments:
 - **Linting & Validation:** Run `make lint` before finalising changes. This
   validates playbook syntax, runs `ansible-lint`, and checks role invariants
   via `tools/list_role_diffs.py`.
+- **Prefix-Matchable Commands:** When executing commands via `run_command`,
+  invoke `make` or `ansible-playbook` directly with literal arguments (avoid
+  `$(...)` subshells, `env` wrappers, or `&&` chains) so command approvals
+  remain prefix-matchable.
 - **Execution & Tagging:** Maintain meaningful task names and tags for
   selective execution (`make tags tags=<role>`) and task resumption
   (`make resume task="<task name>"`).
@@ -80,7 +84,9 @@ When developing for this repository or similar Debian environments:
 
 ## Review & Output Contract
 
-When reviewing or refactoring Ansible code, organise output into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** Architectural overview and scope of changes.
 2. **Idempotency & State:** Verification of idempotency, handler use, and

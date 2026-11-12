@@ -27,8 +27,8 @@ Read-only until the user selects a candidate module (Step 2).
 ### 1. Explore Codebase
 
 Inspect `GLOSSARY.md` and `docs/REQ-*` for domain context. Walk the codebase
-using codebase exploration tools (such as `grep_search`, `list_dir`,
-`view_file`, or read-only shell commands) to measure architectural friction:
+using read-only exploration tools (`read_file`, `run_command` with `git grep`
+or `rg`, or the `research` subagent) to measure architectural friction:
 
 - **High Fan-in / Fan-out:** Modules coupled across many disparate contexts.
 - **Low Leverage:** Modules where interface complexity equals internal logic.
@@ -119,6 +119,6 @@ Supporting documentation lives in `./docs/` and the skill root:
 
 - **`requirements-review`** — Grilling interface designs (Step 4).
 - **`markdown-editor`** — Markdown validation and linting.
-- **Language Skills:** `clojure-programmer`, `gnur-programmer`,
-  `haskell-programmer`, `lean-programmer`, `python-programmer`,
-  `shell-programmer`, `typescript-programmer`.
+- **Language Skills:** `clojure-programmer`, `elm-programmer`,
+  `gnur-programmer`, `haskell-programmer`, `lean-programmer`,
+  `python-programmer`, `shell-programmer`, `typescript-programmer`.

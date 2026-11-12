@@ -6,20 +6,23 @@ description: >-
   links, Australian English, and markdownlint standards.
 ---
 
+# Markdown Editor
+
 Specialises in validating and editing Markdown documentation to ensure strict
 adherence to formatting, structure, and language standards.
 
 ## Markdown Standards
 
 - **Language:** Australian English for prose; US English for code.
-- **Line Length:** Hard-wrap text at 80 columns. Do not wrap URLs or code
-  lines.
+- **Line Length:** Hard-wrap prose at 80 columns. Do not wrap long URLs, code
+  blocks, Mermaid diagrams, or wide tables where wrapping breaks syntax.
 - **Headings:** Use `#` (H1) for the main document title; use `##` (H2) and
   `###` (H3) for subsections. Use Title Case and avoid bold text for
   structure.
 - **Lists:** `-` for bulleted lists, `1.` for ordered lists. Indent nested
   items by 2 spaces.
-- **Code Blocks:** Fenced with explicit language identifiers (e.g. ```` ```bash ````).
+- **Code Blocks:** Fenced with explicit language identifiers
+  (e.g. ```` ```bash ````).
 - **Links & Images:**
   - `[descriptive text](URL)` — avoid raw URLs unless identical to link text.
   - `![meaningful alt text](image URL)`
@@ -54,6 +57,11 @@ Offer to provide the fully corrected and reformatted Markdown file.
 
 ## Resources
 
-- Style: [The Guardian style guide](https://www.theguardian.com/guardian-observer-style-guide-a)
+- Style: [The Guardian Style Guide][guardian-style]
 - Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)
-- Rhetoric: [Aristotle's Rhetoric](https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work))
+- Rhetoric: [Aristotle's Rhetoric][rhetoric]
+
+[guardian-style]:
+https://www.theguardian.com/guardian-observer-style-guide-a
+[rhetoric]:
+https://en.wikipedia.org/wiki/Rhetoric_(Aristotle's_work)

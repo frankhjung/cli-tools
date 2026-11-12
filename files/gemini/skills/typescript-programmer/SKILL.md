@@ -90,36 +90,7 @@ with `fast-check`, and centralised `Makefile` workflow orchestration.
 - **Explicit Type Signatures:** Always include explicit parameter types and
   explicit return type annotations on all function signatures. Never rely on
   implicit return type inference for exported functions or public module
-  boundaries.
-
-### Annotated Function Example
-
-```typescript
-/**
- * Calculates compound interest for an investment balance.
- * Pure function with referential transparency.
- *
- * @template T - Numeric subtype for branded monetary amounts.
- * @param principal - Initial investment balance; must be non-negative.
- * @param rate - Annual interest rate expressed as a decimal (e.g. 0.05).
- * @param periods - Compounding frequency per annum; must exceed zero.
- * @param timeYears - Duration of the investment term in years.
- * @returns Resulting total balance compounded over the term.
- *
- * @example
- * ```ts
- * const total = calculateCompoundInterest(1000, 0.05, 12, 5);
- * ```
- */
-export function calculateCompoundInterest<T extends number>(
-  principal: T,
-  rate: number,
-  periods: number,
-  timeYears: number,
-): number {
-  return principal * (1 + rate / periods) ** (periods * timeYears);
-}
-```
+  boundaries (see [examples/patterns.md](./examples/patterns.md)).
 
 ## Testing & QuickCheck-Style Property Testing
 
@@ -142,28 +113,6 @@ export function calculateCompoundInterest<T extends number>(
   - **Invariant Preservation:** Validity constraints hold across state
     transitions.
 
-### Property Test Example
-
-```typescript
-import { describe, it } from 'vitest';
-import * as fc from 'fast-check';
-
-describe('formatCurrency property tests', () => {
-  it('preserves sign and always contains currency code', () => {
-    fc.assert(
-      fc.property(
-        fc.double({ noNaN: true, min: -1e9, max: 1e9 }),
-        fc.constantFrom('AUD', 'USD', 'EUR'),
-        (amount, currency) => {
-          const result = formatCurrency(amount, currency);
-          return result.includes(currency);
-        },
-      ),
-    );
-  });
-});
-```
-
 ## Build Orchestration & Makefile Tooling
 
 - **Centralised Task Management:** Wrap all development, formatting, linting,
@@ -183,40 +132,9 @@ describe('formatCurrency property tests', () => {
   - Configure `SHELL := bash` and `.SHELLFLAGS := -eu -o pipefail -c` for
     defensive error handling.
   - Provide a default `help` target parsing double-hash comments (`##`).
-
-### Reference Makefile
-
-```makefile
-.DEFAULT_GOAL := help
-.PHONY: help format lint check test build clean
-
-SHELL := bash
-.SHELLFLAGS := -eu -o pipefail -c
-
-help: ## Display available targets
-	@awk 'BEGIN {FS = ":.*?## "}; \
-		/^[a-zA-Z_-]+:.*?## / \
-		{printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}' \
-		$(MAKEFILE_LIST)
-
-format: ## Format all TypeScript source files
-	npx prettier --write "src/**/*.ts" "tests/**/*.ts"
-
-lint: ## Run ESLint across codebase
-	npx eslint "src/**/*.ts" "tests/**/*.ts"
-
-check: ## Perform static type checking without emitting files
-	npx tsc --noEmit
-
-test: ## Execute unit and fast-check property tests
-	npx vitest run
-
-build: check ## Compile TypeScript to JavaScript distribution
-	npx tsc -p tsconfig.build.json
-
-clean: ## Remove compiled artifacts
-	rm -rf dist tsconfig.build.tsbuildinfo
-```
+- **Reference Implementation:** See
+  [examples/patterns.md](./examples/patterns.md) for a complete reference
+  `Makefile`, TSDoc annotated function, and `fast-check` property test suite.
 
 ## Agent Development & Validation Workflow
 
@@ -231,7 +149,9 @@ clean: ## Remove compiled artifacts
 
 ## Review & Output Contract
 
-When reviewing or refactoring TypeScript code, organise findings into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** Architectural overview, functional design, and modularity.
 2. **Type Safety & Soundness:** Compiler strictness, branded types, avoidance of

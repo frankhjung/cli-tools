@@ -81,7 +81,9 @@ data-oriented design, Malli schemas, and CLI-based validation loops.
 
 ## Review & Output Contract
 
-When reviewing or refactoring Clojure code, organise findings into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** Architectural overview and design quality.
 2. **Data-Oriented Design & Schemas:** Use of plain maps, namespaced keywords,

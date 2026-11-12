@@ -62,9 +62,18 @@ type annotations, pure domain modelling, and fast `uv`/`ruff` tooling.
 - **Task Runner:** Use `Makefile` targets (`make format`, `make check`,
   `make test`, `make build`, `make clean`).
 
+## Agent Development & Validation Workflow
+
+- **Pre-Flight Checks:** Run `ruff check` and `pyright` / `mypy` (or
+  `make check`) before running full test suites.
+- **Fast Hypothesis Testing:** Use `uv run python -c "..."` or short scripts in
+  the session scratch directory to verify pure functions and edge cases.
+
 ## Review & Output Contract
 
-When reviewing or refactoring Python code, organise output into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** Architectural overview and design quality.
 2. **Type System & PEP 695:** Type coverage, protocol usage, and modern syntax.

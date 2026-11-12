@@ -19,8 +19,8 @@ refer only to the type-level surface).
 the polymorphic boundary is the topic; "implementation" otherwise.
 
 **Leverage** (Ousterhout's "depth") — How much behaviour a caller can exercise
-per unit of interface they must learn. **High-leverage** = large behaviour behind
-a small interface. **Low-leverage** = interface nearly as complex as the
+per unit of interface they must learn. **High-leverage** = large behaviour
+behind a small interface. **Low-leverage** = interface nearly as complex as the
 implementation (leaky abstraction).
 
 **Polymorphic Boundary** — Where behaviour varies polymorphically without

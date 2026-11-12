@@ -78,7 +78,9 @@ safety, totality, robust proof construction, and idiomatic Lake build tooling.
 
 ## Review & Output Contract
 
-When reviewing or refactoring Lean 4 code, organise findings into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or proof tasks, apply edits directly, verify with
+Lake, and report concisely:
 
 1. **Summary:** Architectural overview, design quality, and verification scope.
 2. **Totality & Termination:** Non-terminating functions or improper `partial`

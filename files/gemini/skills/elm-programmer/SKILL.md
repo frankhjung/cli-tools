@@ -125,93 +125,8 @@ via `Makefile`.
   `@docs` tags grouped under Markdown headers.
 - **Top-Level Definitions:** Every exported type, smart constructor, and
   function must have an `elm-doc` comment detailing parameter contracts, domain
-  invariants, and runnable examples.
-
-### Annotated Module Example
-
-```elm
-module Domain.CompoundInterest exposing
-    ( Principal
-    , Terms
-    , fromFloat
-    , toFloat
-    , calculate
-    )
-
-{-| Financial domain logic for calculating compound interest with validated
-monetary amounts.
-
-# Types
-@docs Principal, Terms
-
-# Conversion
-@docs fromFloat, toFloat
-
-# Calculations
-@docs calculate
--}
-
-
-{-| An opaque type representing a validated, non-negative principal balance.
--}
-type Principal
-    = Principal Float
-
-
-{-| Investment terms for compound interest calculation.
-
-Grouped into a record to prevent accidental argument transposition.
--}
-type alias Terms =
-    { rate : Float
-    , periodsPerYear : Int
-    , years : Float
-    }
-
-
-{-| Construct a `Principal` from a raw `Float`.
-
-Follows "Parse, don't validate", returning `Nothing` if the amount is negative,
-`NaN`, or infinite.
-
-    fromFloat 1000.0 == Just (Principal 1000.0)
-    fromFloat -50.0 == Nothing
--}
-fromFloat : Float -> Maybe Principal
-fromFloat amount =
-    if isNaN amount || isInfinite amount || amount < 0 then
-        Nothing
-
-    else
-        Just (Principal amount)
-
-
-{-| Extract the raw `Float` value from a `Principal`.
--}
-toFloat : Principal -> Float
-toFloat (Principal amount) =
-    amount
-
-
-{-| Calculate compound interest over a specified investment term.
-
-    terms =
-        { rate = 0.05
-        , periodsPerYear = 12
-        , years = 5.0
-        }
-
-    fromFloat 1000.0
-        |> Maybe.map (calculate terms)
--}
-calculate : Terms -> Principal -> Float
-calculate terms (Principal p) =
-    let
-        n =
-            Basics.toFloat (max 1 terms.periodsPerYear)
-    in
-    p * ((1 + (terms.rate / n)) ^ (n * terms.years))
-```
+  invariants, and runnable examples (see
+  [examples/patterns.md](./examples/patterns.md)).
 
 ## Testing with `elm-test`
 
@@ -227,45 +142,8 @@ calculate terms (Principal p) =
   - Test idempotence: `format (format text) == format text`.
 - **Fuzzer Composition:** Build domain fuzzers using `Fuzz.map`, `Fuzz.andThen`,
   `Fuzz.int`, `Fuzz.floatRange`, and `Fuzz.oneOf`. Avoid `Fuzz.filter` to
-  prevent test runner exhaustion.
-
-### Fuzz Property Test Example
-
-```elm
-module Domain.CompoundInterestTest exposing (suite)
-
-import Domain.CompoundInterest as Interest
-import Expect
-import Fuzz
-import Test exposing (Test, describe, fuzz2)
-
-
-suite : Test
-suite =
-    describe "Domain.CompoundInterest"
-        [ fuzz2
-            (Fuzz.floatRange 0 1000000)
-            (Fuzz.floatRange 0 1)
-            "non-negative principal and rate yield final balance >= principal"
-            (\rawPrincipal rate ->
-                case Interest.fromFloat rawPrincipal of
-                    Just principal ->
-                        let
-                            terms =
-                                { rate = rate
-                                , periodsPerYear = 12
-                                , years = 5.0
-                                }
-                        in
-                        Interest.calculate terms principal
-                            |> Expect.atLeast (Interest.toFloat principal)
-
-                    Nothing ->
-                        Expect.fail
-                            "Expected valid principal from non-negative range"
-            )
-        ]
-```
+  prevent test runner exhaustion (see
+  [examples/patterns.md](./examples/patterns.md)).
 
 ## Tooling & Makefile Orchestration
 
@@ -279,45 +157,9 @@ suite =
   - `make test`: Run unit and fuzz tests via `elm-test`.
   - `make build`: Compile optimised production bundle (`elm make --optimize`).
   - `make clean`: Clean build artefacts and compiler caches.
-
-### Reference Makefile
-
-```makefile
-.DEFAULT_GOAL := help
-.PHONY: help format lint check test build clean
-
-SHELL := bash
-.SHELLFLAGS := -eu -o pipefail -c
-
-ELM_MAIN := src/Main.elm
-DIST_DIR := dist
-
-help: ## Display available targets
-	@awk 'BEGIN {FS = ":.*?## "}; \
-		/^[a-zA-Z_-]+:.*?## / \
-		{printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}' \
-		$(MAKEFILE_LIST)
-
-format: ## Format all Elm source and test files
-	npx elm-format src/ tests/ --yes
-
-lint: ## Run elm-review static analysis
-	npx elm-review
-
-check: ## Type-check Elm sources and validate documentation
-	npx elm-format src/ tests/ --validate
-	npx elm make $(ELM_MAIN) --output=/dev/null
-
-test: ## Execute unit and fuzz property tests
-	npx elm-test
-
-build: check ## Compile optimised Elm bundle
-	mkdir -p $(DIST_DIR)
-	npx elm make $(ELM_MAIN) --optimize --output=$(DIST_DIR)/elm.js
-
-clean: ## Remove build artefacts and compiler caches
-	rm -rf $(DIST_DIR) elm-stuff review/elm-stuff
-```
+- **Reference Implementation:** See
+  [examples/patterns.md](./examples/patterns.md) for a complete reference
+  `Makefile`, annotated opaque module, and `elm-test` fuzz suite.
 
 ## Agent Development & Validation Workflow
 
@@ -336,7 +178,9 @@ clean: ## Remove build artefacts and compiler caches
 
 ## Review & Output Contract
 
-When reviewing or refactoring Elm code, structure findings into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary & Architecture:** TEA structure, separation of view and update,
    avoidance of nested components, and minimal `Model` state.
@@ -369,8 +213,17 @@ When reviewing or refactoring Elm code, structure findings into:
 
 - Language: [Elm Official Guide](https://guide.elm-lang.org/)
 - Package Index & Docs: [Elm Packages](https://package.elm-lang.org/)
-- Design Guidelines: [Elm Package Design Guidelines](https://package.elm-lang.org/help/design-guidelines)
-- Elm Architecture: [How to Use The Elm Architecture](https://guide.elm-lang.org/architecture/)
-- Linter: [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/)
-- Test Framework: [elm-test](https://package.elm-lang.org/packages/elm-explorations/test/latest/)
+- Design Guidelines: [Elm Package Design Guidelines][elm-design]
+- Elm Architecture: [How to Use The Elm Architecture][elm-tea]
+- Linter: [elm-review][elm-review]
+- Test Framework: [elm-test][elm-test]
 - Dictionary: [Macquarie Dictionary](https://www.macquariedictionary.com.au/)
+
+[elm-design]:
+https://package.elm-lang.org/help/design-guidelines
+[elm-tea]:
+https://guide.elm-lang.org/architecture/
+[elm-review]:
+https://package.elm-lang.org/packages/jfmengels/elm-review/latest/
+[elm-test]:
+https://package.elm-lang.org/packages/elm-explorations/test/latest/

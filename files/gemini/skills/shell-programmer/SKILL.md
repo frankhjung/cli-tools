@@ -11,7 +11,8 @@ description: >-
 # Shell Programmer
 
 Guide shell script development and review, emphasising defensive execution,
-functional composition, ShellCheck compliance, and POSIX portability.
+functional composition, ShellCheck compliance, readability, maintainability,
+and POSIX portability.
 
 ## Safety & Defensive Scripting
 
@@ -34,6 +35,12 @@ functional composition, ShellCheck compliance, and POSIX portability.
 
 ## Functional Style & Modularity
 
+- **Readability & Maintainability:** Prioritise code clarity, logical flow, and
+  long-term maintainability over clever micro-optimisations while strictly
+  adhering to Shell script best practices.
+- **Annotations & Documentation:** Ensure all functions and significant code
+  blocks are annotated with clear, concise comments explaining purpose,
+  inputs, outputs, and non-obvious design choices.
 - **Scope & Immutability:** Declare all function variables with `local` (or
   `local -r` for constants in Bash). Avoid global state mutation.
 - **Pure Pipelines:** Favour stream composition via pipes (`|`), `jq`, `awk`,
@@ -55,9 +62,18 @@ functional composition, ShellCheck compliance, and POSIX portability.
 - **Task Runner:** Use `Makefile` targets (`make check`, `make format`,
   `make test`).
 
+## Agent Development & Validation Workflow
+
+- **Static Check Pre-Flight:** Always run `shellcheck <script>` and
+  `shfmt -d <script>` (or `make check`) immediately after editing shell files.
+- **Safe Dry-Runs:** Validate syntax with `bash -n <script>` or `sh -n <script>`
+  before executing scripts with side effects.
+
 ## Review & Output Contract
 
-When reviewing or refactoring shell code, organise output into:
+Apply this output structure **only** when the user asks for a code review or
+audit. For implementation or bug-fix tasks, apply edits directly, run
+verification, and report concisely:
 
 1. **Summary:** Architectural overview and safety assessment.
 2. **Safety & Error Handling:** Missing quotes, unprotected expansions, traps,
