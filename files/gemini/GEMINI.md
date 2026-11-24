@@ -20,11 +20,15 @@ before developing, refactoring, testing, or reviewing files:
 - **Code & Infrastructure:**
   - `ansible-programmer`: Ansible roles, playbooks, and inventories (`.yaml`).
   - `clojure-programmer`: Clojure, ClojureScript, Babashka (`.clj`, `.cljs`,
-    `.bb`, `deps.edn`).
-  - `elm-programmer`: Elm applications and packages (`.elm`, `elm.json`).
-  - `gnur-programmer`: GNU R scripts and packages (`.R`, `.Rmd`, `testthat`).
-  - `haskell-programmer`: Haskell codebases (`.hs`, `.lhs`, `.cabal`).
-  - `lean-programmer`: Lean 4 code and proofs (`.lean`, `lakefile.lean`).
+    `.cljc`, `.edn`, `.bb`, `deps.edn`).
+  - `elm-programmer`: Elm applications and packages (`.elm`, `elm.json`,
+    `review/src/ReviewConfig.elm`).
+  - `gnur-programmer`: GNU R scripts and packages (`.R`, `.Rmd`, `DESCRIPTION`,
+    `NAMESPACE`, `testthat`).
+  - `haskell-programmer`: Haskell codebases (`.hs`, `.lhs`, `.cabal`,
+    `package.yaml`).
+  - `lean-programmer`: Lean 4 code and proofs (`.lean`, `lakefile.lean`,
+    `lakefile.toml`).
   - `makefile-programmer`: Makefile editing and target execution (`Makefile`,
     `*.mk`).
   - `python-programmer`: Modern Python 3.14+ (`.py`, `pyproject.toml`).

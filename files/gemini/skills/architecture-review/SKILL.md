@@ -113,7 +113,8 @@ Supporting documentation lives in `./docs/` and the skill root:
 - [req-format.md](./docs/req-format.md) — Decision document schema.
 - [tdd.md](./docs/tdd.md) — Test-driven development workflow.
 - [fp-patterns.md](./docs/fp-patterns.md) — FP design patterns.
-- [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md) — Domain glossary schema.
+- [GLOSSARY-FORMAT.md](../requirements-review/GLOSSARY-FORMAT.md) — Domain
+  glossary schema.
 
 ## Cross-Skill References
 

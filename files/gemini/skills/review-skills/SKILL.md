@@ -146,7 +146,7 @@ directly, run verification, and report concisely:
 - Dictionary: [Macquarie Dictionary][macquarie] (Australian English)
 
 [agy-custom]:
-https://github.com/google-deepmind
+https://antigravity.google/docs/skills.md
 [guardian-style]:
 https://www.theguardian.com/guardian-observer-style-guide-a
 [macquarie]:

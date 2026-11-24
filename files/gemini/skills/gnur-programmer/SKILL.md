@@ -1,9 +1,11 @@
 ---
 name: gnur-programmer
 description: >-
-  Develop, refactor, test, and review GNU R code (.R, .Rmd). Enforces
-  functional programming idioms, vectorisation, tidyverse/base R style,
-  Roxygen2 documentation, and testthat unit testing.
+  Develop, refactor, test, and review GNU R code (.R, .Rmd, DESCRIPTION,
+  NAMESPACE). Use this skill when developing, refactoring, testing, linting,
+  or reviewing R scripts and packages. Enforces functional programming idioms,
+  vectorisation, tidyverse/base R style, Roxygen2 documentation, and testthat
+  unit testing.
 ---
 
 # GNU R Programmer

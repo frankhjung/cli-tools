@@ -58,7 +58,7 @@ describe('formatCurrency property tests', () => {
 .PHONY: help format lint check test build clean
 
 SHELL := bash
-.SHELLFLAGS := -eu -o pipefail -c
+.SHELLFLAGS := -euo pipefail -c
 
 help: ## Display available targets
 	@awk 'BEGIN {FS = ":.*?## "}; \

@@ -102,7 +102,9 @@ scannability, and journalistic rigour.
 
 ## Output Contract
 
-Structure all review feedback into the following distinct sections:
+Apply this output structure **only** when performing a read-only editorial
+review. When instructed to edit or revise the article directly, apply the
+changes to the file and summarise your edits concisely:
 
 1. **Summary:** Key strengths, high-level impression, and lede assessment.
 2. **Required Fixes:** Front matter defects, missing banner images, broken

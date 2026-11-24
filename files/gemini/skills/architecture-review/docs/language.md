@@ -1,7 +1,7 @@
 # Language
 
 Shared vocabulary for every suggestion this skill makes. Use these terms exactly
-— do not substitute "component," "service," or "API." Use "boundary" only in
+— do not substitute "component", "service", or "API". Use "boundary" only in
 "push effects to the boundary"; for architecture terms, say **polymorphic
 boundary**, **capability interface**, or **interface**.
 

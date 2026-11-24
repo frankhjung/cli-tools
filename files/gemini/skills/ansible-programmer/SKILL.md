@@ -78,7 +78,7 @@ When developing for this repository or similar Debian environments:
   remain prefix-matchable.
 - **Execution & Tagging:** Maintain meaningful task names and tags for
   selective execution (`make tags tags=<role>`) and task resumption
-  (`make resume task="<task name>"`).
+  (`make resume-task task="<task name>"`).
 - **Idempotency Testing:** Verify roles by running the playbook twice. The
   second pass must return zero changes (`changed=0`).
 

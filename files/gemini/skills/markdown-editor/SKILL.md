@@ -1,9 +1,10 @@
 ---
 name: markdown-editor
 description: >-
-  Format, edit, review, and validate Markdown documentation (.md). Enforces
-  80-column wrapping, heading hierarchy, fenced code blocks, descriptive
-  links, Australian English, and markdownlint standards.
+  Format, edit, review, and validate Markdown documentation (.md). Use this
+  skill when creating, editing, formatting, reviewing, or linting Markdown
+  files. Enforces 80-column wrapping, heading hierarchy, fenced code blocks,
+  descriptive links, Australian English, and markdownlint standards.
 ---
 
 # Markdown Editor
@@ -43,6 +44,10 @@ adherence to formatting, structure, and language standards.
 5. **Formatting:** Validate 80-column line breaks and whitespace rules.
 
 ## Reporting Format
+
+Apply this reporting format **only** when the user asks for a review or
+validation report. When asked to create or edit a file directly, apply the
+changes using `edit_file` or `write_file` and report concisely.
 
 List issues categorised by severity:
 

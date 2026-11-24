@@ -74,8 +74,8 @@ For each design, document:
 4. Dependency strategy and adapters
 5. Trade-offs — where leverage is high, where thin
 
-Then validate against [FP Patterns](fp-patterns.md) and use `grill-me` to
-resolve ambiguities.
+Then validate against [FP Patterns](fp-patterns.md) and use the
+`requirements-review` skill (or `/grill-me`) to resolve ambiguities.
 
 ### 3. Compare and Recommend
 
@@ -86,7 +86,8 @@ Give your own recommendation: which design is strongest and why. If elements
 from different designs combine well, propose a hybrid. Be opinionated — the user
 wants a strong read, not a menu.
 
-Use `grill-me` to stress-test the chosen design with the user before committing.
+Use the `requirements-review` skill (or `/grill-me`) to stress-test the chosen
+design with the user before committing.
 
 ## Migration and Backward Compatibility Strategy
 

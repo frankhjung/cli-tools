@@ -127,11 +127,6 @@ with `fast-check`, and centralised `Makefile` workflow orchestration.
     tests.
   - `make build`: Compile TypeScript and bundle distributables (`tsc`, `tsup`).
   - `make clean`: Remove build outputs (`dist/`, `build/`, `*.tsbuildinfo`).
-- **Idiomatic Makefile Rules:**
-  - Declare all action targets as `.PHONY`.
-  - Configure `SHELL := bash` and `.SHELLFLAGS := -eu -o pipefail -c` for
-    defensive error handling.
-  - Provide a default `help` target parsing double-hash comments (`##`).
 - **Reference Implementation:** See
   [examples/patterns.md](./examples/patterns.md) for a complete reference
   `Makefile`, TSDoc annotated function, and `fast-check` property test suite.

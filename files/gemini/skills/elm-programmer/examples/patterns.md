@@ -131,7 +131,7 @@ suite =
 .PHONY: help format lint check test build clean
 
 SHELL := bash
-.SHELLFLAGS := -eu -o pipefail -c
+.SHELLFLAGS := -euo pipefail -c
 
 ELM_MAIN := src/Main.elm
 DIST_DIR := dist

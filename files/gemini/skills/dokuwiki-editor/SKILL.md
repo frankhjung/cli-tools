@@ -62,6 +62,10 @@ Ensures correct DokuWiki markup, structural clarity, and language standards.
 
 ## Reporting Format
 
+Apply this reporting format **only** when the user asks for a review or
+validation report. For direct editing tasks, modify the file directly and
+report concisely.
+
 List issues categorised by **Syntax**, **Language**, or **Links** with
 specific suggested corrections.
 

@@ -73,37 +73,16 @@ via `Makefile`.
   - Handle all possibilities explicitly. Avoid partial runtime expectations;
     propagate uncertainty with `Maybe` or `Result`.
 
-## Pipelines, Chaining & Combinators
+## Pipelines & Combinators
 
-- **Forward Pipelines (`|>`):**
-  - Use the forward pipe operator `|>` to write readable transformations that
-    flow naturally from top to bottom:
-    `rawString |> String.trim |> Email.fromString`
-  - Design functions with the primary data argument last to facilitate piping:
-    `List.filter : (a -> Bool) -> List a -> List a`
-    `Dict.insert : comparable -> v -> Dict comparable v -> Dict comparable v`
-  - When a function takes several arguments of the same type, group them into a
-    descriptive record rather than a long list of positional arguments to
-    prevent accidental transposition bugs.
-- **Avoid Point-Free Style and Composition (`>>` / `<<`):**
-  - Elm style guidelines strongly discourage function composition operators
-    (`>>` and `<<`) and point-free acrobatics.
-  - Write explicit pipelines with `|>` or use clean anonymous functions
-    (`\x -> ...`). Explicit code is easier to read, refactor, and debug.
-- **Chaining with `andThen`:**
-  - Use `Maybe.andThen` to chain operations where any step might return
-    `Nothing`:
-    `findUser id |> Maybe.andThen getProfile |> Maybe.andThen .avatarUrl`
-  - Use `Result.andThen` to sequence operations that can fail with an error,
-    stopping at the first failure.
-- **Transforming with `map` and `mapError`:**
-  - Use `Maybe.map` and `Result.map` to transform successful values inside
-    containers without manually unpacking them.
-  - Use `Result.mapError` to convert low-level errors (such as `Http.Error`)
-    into high-level domain errors.
-- **Combining Multiple Values:**
-  - Combine independent `Maybe` or `Result` values using `map2`, `map3`, etc.:
-    `Result.map2 makeUser (validateName rawName) (validateAge rawAge)`
+- **Forward Pipelines (`|>`):** Design functions with the primary data argument
+  last to support readable `|>` pipelines. Group multiple same-typed arguments
+  into a descriptive record to prevent transposition bugs.
+- **Avoid Point-Free Composition (`>>` / `<<`):** Write explicit `|>` pipelines
+  or anonymous functions (`\x -> ...`) instead of `>>` / `<<` composition.
+- **Container Chaining:** Chain fallible or optional steps with `andThen`,
+  transform values with `map` / `mapError`, and combine independent containers
+  with `map2` / `map3`.
 
 ## Boundary Safety & JSON Interop
 
@@ -130,44 +109,33 @@ via `Makefile`.
 
 ## Testing with `elm-test`
 
-- **Unit Testing:** Write deterministic example-based tests using `Test` and
-  `Expect` (`Expect.equal`, `Expect.within`, `Expect.err`).
-- **Generative Fuzz Testing:**
-  - Implement property-based tests using `Test.fuzz`, `Test.fuzz2`, and
-    `Test.fuzz3` to verify invariants across hundreds of generated inputs.
-  - Test codec symmetry / round-trips:
-    `Decode.decodeValue decoder (encode value) == Ok value`
-  - Test smart constructor invariants: Every value returned by a smart
-    constructor satisfies domain predicates.
-  - Test idempotence: `format (format text) == format text`.
-- **Fuzzer Composition:** Build domain fuzzers using `Fuzz.map`, `Fuzz.andThen`,
-  `Fuzz.int`, `Fuzz.floatRange`, and `Fuzz.oneOf`. Avoid `Fuzz.filter` to
-  prevent test runner exhaustion (see
+- **Unit & Fuzz Testing:** Pair deterministic `Test`/`Expect` unit tests with
+  generative property tests (`Test.fuzz`, `Test.fuzz2`, `Test.fuzz3`) verifying
+  codec round-trips, smart constructor invariants, and idempotence.
+- **Fuzzer Composition:** Compose domain fuzzers with `Fuzz.map`,
+  `Fuzz.andThen`, `Fuzz.floatRange`, and `Fuzz.oneOf`. Avoid `Fuzz.filter` to
+  prevent runner exhaustion (see
   [examples/patterns.md](./examples/patterns.md)).
 
 ## Tooling & Makefile Orchestration
 
 - **Static Analysis (`elm-review`):** Configure rules in `review/` to eliminate
   dead code, prevent unused variables, and enforce architectural guidelines.
-- **Standard Workflow Targets:**
-  - `make format`: Format all `.elm` files with `elm-format --yes`.
-  - `make lint`: Run `elm-review` across source and test directories.
-  - `make check`: Type-check code and validate formatting (`elm make` to
-    `/dev/null` and `elm-format --validate`).
-  - `make test`: Run unit and fuzz tests via `elm-test`.
-  - `make build`: Compile optimised production bundle (`elm make --optimize`).
-  - `make clean`: Clean build artefacts and compiler caches.
+- **Standard Workflow Targets:** `make format` (`elm-format --yes`),
+  `make lint` (`elm-review`), `make check` (`elm make` to `/dev/null` and
+  `elm-format --validate`), `make test` (`elm-test`), `make build`
+  (`elm make --optimize`), and `make clean`.
 - **Reference Implementation:** See
-  [examples/patterns.md](./examples/patterns.md) for a complete reference
-  `Makefile`, annotated opaque module, and `elm-test` fuzz suite.
+  [examples/patterns.md](./examples/patterns.md) for a reference `Makefile`,
+  annotated opaque module, and `elm-test` fuzz suite.
 
 ## Agent Development & Validation Workflow
 
 1. **Understand & Model:** Inspect domain specifications. Design custom types
    to make invalid states unrepresentable before writing logic.
 2. **Interactive Type Design:** When designing custom types or TEA state models
-   with trade-offs, consult the user (`ask_question` when available). Prefix
-   the recommended option with `(Recommended)`.
+   with trade-offs, consult the user via `ask_question`. Prefix the recommended
+   option with `(Recommended)`.
 3. **Compiler-Driven Refactoring:** Work iteratively with the Elm compiler.
    Modify types first, then run `make check` to systematically address compiler
    errors across pattern matches and call sites.

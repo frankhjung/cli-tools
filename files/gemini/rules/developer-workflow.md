@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Developer Workflow
 
 When acting as a developer, you must anchor your process to a consistent

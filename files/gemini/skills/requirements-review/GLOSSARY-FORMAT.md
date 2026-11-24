@@ -7,7 +7,7 @@ language that informs architectural decisions.
 
 Every project should have a `GLOSSARY.md` at its root (or in `docs/`) that
 defines the domain terms used in code, documentation, and conversation. This
-file is the single source of truth for "what we call things."
+file is the single source of truth for "what we call things".
 
 The `requirements-review` and `architecture-review` skills read
 `GLOSSARY.md` to:
@@ -37,7 +37,7 @@ confusion.
 - **One term per heading.** Use H2 for each term.
 - **Alphabetical order.** Sort terms alphabetically for easy scanning.
 - **Domain terms only.** Do not define general programming terms (e.g.
-  "function," "variable"). Define terms specific to this project's domain.
+  "function", "variable"). Define terms specific to this project's domain.
 - **Plain language.** Write definitions a new team member could understand
   without prior context.
 - **Include non-obvious distinctions.** If two terms are easily confused,
